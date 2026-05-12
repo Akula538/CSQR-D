@@ -16,3 +16,6 @@ app/.cxx
 
 # local config
 local.properties
+
+#vs code
+.vscode
