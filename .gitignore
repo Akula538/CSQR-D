@@ -1,2 +1,18 @@
+# APK файлы
 *.apk
-.vscode
+
+# Android build
+/build
+/.gradle
+/captures
+.externalNativeBuild
+
+# Android Studio
+.idea
+*.iml
+
+# C++ build
+app/.cxx
+
+# local config
+local.properties
