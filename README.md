@@ -6,9 +6,7 @@ CSQR-D reconstructs the geometry of a curved QR code, rectifies the image, and t
 
 On the current benchmark dataset, conventional QR scanners recognize only about 20–30% of the samples, while CSQR-D reaches 95–98% depending on the deformation level.
 
-> **Project status:** active experimental project. The current release focuses on curved QR codes on smooth surfaces rather than arbitrary QR damage or occlusion.
-
-![Curved QR geometric correction](docs/images/placeholder-correction.png)
+![Curved QR geometric correction](docs/images/Original_Corrected.png)
 
 ## What is CSQR-D?
 

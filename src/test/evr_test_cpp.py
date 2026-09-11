@@ -53,3 +53,7 @@ def test(data_path):
 
     print(f"passed {passed}/{total}")
     print(f"time: {total_time/total}")
+    
+
+if __name__ == "__main__":
+    test("data")
