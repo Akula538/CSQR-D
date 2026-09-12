@@ -20,7 +20,7 @@ The current implementation is intended for QR codes located on **smooth curved s
 
 CSQR-D is integrated into **Curved QR Scanner**, an Android application designed for practical QR scanning. The application provides a convenient camera-based interface while using the CSQR-D scanner to handle QR codes that are difficult for conventional scanners to read.
 
-[Download Curved QR Scanner from GitHub Releases](https://github.com/Akula538/CSQR-D/releases/tag/v2.0)
+[Download Curved QR Scanner from GitHub Releases](https://github.com/Akula538/CSQR-D/releases)
 
 ## Benchmark
 
