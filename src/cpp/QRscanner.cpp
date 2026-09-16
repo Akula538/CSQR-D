@@ -205,9 +205,9 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
     for (auto& pattern : pattern_recovered)
         for (auto& p : pattern)
             p *= (1.0 / scale);
-    tps.affine(1.0 / scale, 0.0);
-
-    auto cut = cut_image(img, qr, pattern_recovered, distribution.size);
+            
+    auto cut = cut_image(img, qr, pattern_recovered, distribution.size);        
+    tps.affine(1.0 / scale, -cut.shift);
     auto nodes = vectorfield_nodes(cut.img, cut.qr, cut.pattern_recovered, distribution.size, 6, 5, 20, &tps);
 
     TPS vector_tps;

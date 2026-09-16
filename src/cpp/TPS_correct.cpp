@@ -64,15 +64,16 @@ Points TPS::tps_transform(const Points& points) const
             x += U * params_.at<double>(i, 0);
             y += U * params_.at<double>(i, 1);
         }
-        mapped.emplace_back(x * scale_ + shift_, y * scale_ + shift_);
+        mapped.emplace_back(x * scale_ + shift_.x, y * scale_ + shift_.y);
     }
     return mapped;
 }
 
-void TPS::affine(double scale, double shift)
+void TPS::affine(double scale, Point shift)
 {
     scale_ *= scale;
-    shift_ += shift;
+    shift_.x += shift.x;
+    shift_.y += shift.y;
 }
 
 cv::Mat TPS::warp_image_tps(const cv::Mat& src_img, cv::Size out_shape, double scale, double margins, int order, double cval) const

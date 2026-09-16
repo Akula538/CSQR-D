@@ -122,6 +122,8 @@ CutImageResult cut_image(const cv::Mat& img, const Points& qr, const std::vector
                  std::max(1, static_cast<int>(y2) - static_cast<int>(y1)));
     roi &= cv::Rect(0, 0, img.cols, img.rows);
     result.img = img(roi).clone();
+    result.shift = shift;
+
     return result;
 }
 

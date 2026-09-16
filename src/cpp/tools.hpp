@@ -29,6 +29,7 @@ struct CutImageResult {
     cv::Mat img;
     Points qr;
     std::vector<Points> pattern_recovered;
+    Point shift;
 };
 
 CutImageResult cut_image(const cv::Mat& img, const Points& qr, const std::vector<Points>& pattern_recovered, int QRsize);
