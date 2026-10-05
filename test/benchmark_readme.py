@@ -169,46 +169,101 @@ def summarize():
     return summary
 
 def update_readme(summary):
-    # Update results without replacing the editorial text in either README.
     names = ['ZXing-C++', 'ZBar', 'OpenCV', 'QReader', 'CSQR-D']
     for name in names:
         assert summary['accuracy'][name]['Overall']['samples'] == 169
         assert summary['runtime'][name]['samples'] == 135
         assert summary['runtime'][name]['measurements'] == 405
     assert sum(cell['samples'] for row in summary['curved_runtime'].values() for cell in row.values()) == 169
+    environment = json.loads((OUT / 'environment.json').read_text(encoding='utf-8'))
+    accuracy_rows = []
+    for level in ['0', '1', '2', '3', 'Overall']:
+        count = summary['accuracy']['CSQR-D'][level]['samples']
+        label = '**Overall**' if level == 'Overall' else level
+        accuracy_rows.append('| ' + ' | '.join([label, str(count)] +
+            [f"{summary['accuracy'][name][level]['rate_percent']:.2f}%" for name in names]) + ' |')
+    runtime_rows = []
+    for name in names:
+        stats = summary['runtime'][name]
+        runtime_rows.append('| ' + ' | '.join(['ZBar / pyzbar' if name == 'ZBar' else name] +
+            [f"{stats[key]:.2f}" for key in ['mean_ms', 'median_ms', 'p95_ms']]) + ' |')
+    curved_rows = []
+    for level in range(4):
+        curved_rows.append('| ' + ' | '.join([str(level)] +
+            [f"{summary['curved_runtime'][str(level)][ec]['mean_ms']:.2f}" for ec in 'LMQH']) + ' |')
+    success_counts = ', '.join(f"{name}: {summary['runtime'][name]['decoded']}/135" for name in names)
+    packages = environment['packages']
+    versions = ', '.join(f'{name} {packages[name]}' for name in ['zxing-cpp', 'pyzbar', 'opencv-python', 'qreader', 'qrdet', 'torch'])
+    section = f'''## Benchmark
+
+### Dataset
+
+The accuracy benchmark uses all **169 smartphone images** in `data`. Deformation levels are read from the `_d0`–`_d3` filename suffixes; QR error-correction levels L, M, Q and H are also encoded in the filenames.
+
+- **0** — almost flat (12 samples)
+- **1** — slightly curved (53 samples)
+- **2** — noticeably curved (92 samples)
+- **3** — strongly curved (12 samples)
+
+For accuracy, images are downscaled to **2000 pixels on the longer side**, preserving aspect ratio (normally 2000×924 or 924×2000; one image is 965×2000). All five scanners receive the same resized images. Resizing uses Pillow LANCZOS; no other external preprocessing is applied.
+
+### Recognition accuracy
+
+Recognition rate is the fraction of images for which the scanner returns a nonempty decoded QR payload. CSQR-D outputs `None` and `CTF` count as failures. This measures decoding success, without checking payloads against an independent ground-truth annotation.
+
+| Deformation | Samples | ZXing-C++ | ZBar / pyzbar | OpenCV | QReader | CSQR-D |
+|---|---:|---:|---:|---:|---:|---:|
+{chr(10).join(accuracy_rows)}
+
+### Runtime comparison
+
+Runtime is measured on all **135 PNG images (640×640)** in `data2`, without resizing. The accompanying `labels.csv.gz` is not an image and is excluded. Each scanner performs one untimed warm-up, followed by **three measured calls per image** (405 measurements per scanner). Mean, median and P95 are calculated over all calls, including failed decoding attempts; P95 uses linear percentile interpolation.
+
+| Scanner | Mean (ms) | Median (ms) | P95 (ms) |
+|---|---:|---:|---:|
+{chr(10).join(runtime_rows)}
+
+The dataset is easier than the curved-QR dataset but is not decoded successfully by every scanner. Success counts on the first measured call per image: {success_counts}.
+
+### CSQR-D runtime
+
+This benchmark uses all **169 images in `data`**, downscaled to **1000 pixels on the longer side**, preserving aspect ratio. Each cell is the **mean runtime in milliseconds**, including successful and failed attempts, for that deformation / error-correction group. There is one measured call per image after an untimed warm-up. **Resizing and saving the resized image happen before timing and are excluded.**
+
+| Deformation / EC | L | M | Q | H |
+|---|---:|---:|---:|---:|
+{chr(10).join(curved_rows)}
+
+### Measurement environment and reproduction
+
+Measured on Windows 11 with an **{environment['cpu']}**, using Python 3.12.4. All benchmarks run sequentially on CPU. Comparison libraries: {versions}. Input resizing used Pillow {environment.get('input_resizer_version', packages['Pillow'])}. QReader uses its small (`s`) model and confidence threshold 0.5; model loading, downloading and initialization are excluded from timing.
+
+CSQR-D uses the existing **C++ Release CLI** for every benchmark, with `--seed 1`:
+
+```powershell
+.\\src\\cpp\\build\\bin\\qrscanner_cli.exe <image-path> --seed 1
+```
+
+Timing uses `perf_counter_ns` and includes image reading. CSQR-D timings also include CLI process startup and shutdown; the other scanners use Python bindings in an already running process. These are invocation times for the specified interfaces, rather than isolated decoder kernel times. Some `data2` images contain multiple QR codes: CSQR-D returns one decoded payload, while the comparison bindings may return several. ZXing-C++ and ZBar are restricted to QR codes; OpenCV uses `QRCodeDetector.detectAndDecodeMulti`. Scanners retain their default internal preprocessing.
+
+The [benchmark script](test/benchmark_readme.py), [pinned requirements](test/benchmark_requirements.txt), [per-image measurements](test/benchmark_results), [summary](test/benchmark_results/summary.json), and [environment / CLI hash](test/benchmark_results/environment.json) are included for reproduction. From the repository root:
+
+```powershell
+python -m pip install --target test/deps -r test/benchmark_requirements.txt
+python test/benchmark_readme.py
+python test/benchmark_readme.py --summarize --update-readme
+```
+
+Completed scanner / dataset runs are resumed from the JSONL files; move those files aside before a fresh measurement. Input hashes, dimensions and group labels are recorded in [the dataset manifest](test/benchmark_results/manifest.json).
+
+'''
+    readme = ROOT / 'README.md'
+    text = readme.read_text(encoding='utf-8')
+    text = re.sub(r'## Benchmark\n.*?(?=## How it works)', lambda _: section, text, flags=re.S)
     overall = summary['accuracy']['CSQR-D']['Overall']
-    for filename, russian in [('README.md', False), ('README.ru.md', True)]:
-        readme = ROOT / filename
-        text = readme.read_text(encoding='utf-8')
-        def number(value):
-            formatted = f"{value:.2f}"
-            return formatted.replace('.', ',') if russian else formatted
-        accuracy_rows = []
-        for level in ['0', '1', '2', '3', 'Overall']:
-            label = ('**Всего**' if russian else '**Overall**') if level == 'Overall' else level
-            count = summary['accuracy']['CSQR-D'][level]['samples']
-            accuracy_rows.append('| ' + ' | '.join([label, str(count)] +
-                [number(summary['accuracy'][name][level]['rate_percent']) + '%' for name in names]) + ' |')
-        runtime_rows = []
-        for name in names:
-            stats = summary['runtime'][name]
-            runtime_rows.append('| ' + ' | '.join(['ZBar / pyzbar' if name == 'ZBar' else name] +
-                [number(stats[key]) for key in ['mean_ms', 'median_ms', 'p95_ms']]) + ' |')
-        curved_rows = ['| ' + ' | '.join([str(level)] +
-            [number(summary['curved_runtime'][str(level)][ec]['mean_ms']) for ec in 'LMQH']) + ' |'
-            for level in range(4)]
-        tables = iter([accuracy_rows, runtime_rows, curved_rows])
-        def replace_table(match):
-            headers = match.group().splitlines()[:2]
-            return '\n'.join(headers + next(tables)) + '\n'
-        text, count = re.subn(r'(?m)^\|[^\n]*\n(?:\|[^\n]*\n?)+', replace_table, text)
-        assert count == 3, f'Expected three benchmark tables in {filename}'
-        result = (f"**{overall['decoded']} из {overall['samples']} изображений ({number(overall['rate_percent'])}%)**"
-                  if russian else f"**{overall['decoded']} of {overall['samples']} images ({number(overall['rate_percent'])}%)**")
-        pattern = r'\*\*\d+ из \d+ изображений \([\d,]+%\)\*\*' if russian else r'\*\*\d+ of \d+ images \([\d.]+%\)\*\*'
-        text, count = re.subn(pattern, lambda _: result, text)
-        assert count == 1, f'Expected one overall result in {filename}'
-        readme.write_text(text, encoding='utf-8')
+    rate = overall['rate_percent']
+    text = re.sub(r'On the current benchmark dataset,.*?\n',
+        f"On the current benchmark dataset, the C++ implementation of CSQR-D decodes **{overall['decoded']} of {overall['samples']} images ({rate:.2f}%)**. Detailed results and measurement conditions are provided below.\n", text)
+    readme.write_text(text, encoding='utf-8')
 
 def main():
     parser = argparse.ArgumentParser()
