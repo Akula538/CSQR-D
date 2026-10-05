@@ -1,5 +1,7 @@
 # CSQR-D — Curved Surface QR Decode
 
+[Русская версия](README.ru.md)
+
 QR code detection and decoding for QR codes placed on arbitrary smooth non-planar surfaces.
 
 CSQR-D reconstructs the geometry of a curved QR code, rectifies the image, and then uses conventional QR decoding to recover the encoded data.
