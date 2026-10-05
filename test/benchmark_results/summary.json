@@ -1,0 +1,255 @@
+{
+  "accuracy": {
+    "ZXing-C++": {
+      "0": {
+        "samples": 12,
+        "decoded": 7,
+        "rate_percent": 58.333333333333336
+      },
+      "1": {
+        "samples": 53,
+        "decoded": 20,
+        "rate_percent": 37.735849056603776
+      },
+      "2": {
+        "samples": 92,
+        "decoded": 9,
+        "rate_percent": 9.782608695652174
+      },
+      "3": {
+        "samples": 12,
+        "decoded": 0,
+        "rate_percent": 0.0
+      },
+      "Overall": {
+        "samples": 169,
+        "decoded": 36,
+        "rate_percent": 21.301775147928993
+      }
+    },
+    "ZBar": {
+      "0": {
+        "samples": 12,
+        "decoded": 6,
+        "rate_percent": 50.0
+      },
+      "1": {
+        "samples": 53,
+        "decoded": 9,
+        "rate_percent": 16.9811320754717
+      },
+      "2": {
+        "samples": 92,
+        "decoded": 6,
+        "rate_percent": 6.521739130434782
+      },
+      "3": {
+        "samples": 12,
+        "decoded": 0,
+        "rate_percent": 0.0
+      },
+      "Overall": {
+        "samples": 169,
+        "decoded": 21,
+        "rate_percent": 12.42603550295858
+      }
+    },
+    "OpenCV": {
+      "0": {
+        "samples": 12,
+        "decoded": 4,
+        "rate_percent": 33.333333333333336
+      },
+      "1": {
+        "samples": 53,
+        "decoded": 7,
+        "rate_percent": 13.20754716981132
+      },
+      "2": {
+        "samples": 92,
+        "decoded": 0,
+        "rate_percent": 0.0
+      },
+      "3": {
+        "samples": 12,
+        "decoded": 0,
+        "rate_percent": 0.0
+      },
+      "Overall": {
+        "samples": 169,
+        "decoded": 11,
+        "rate_percent": 6.508875739644971
+      }
+    },
+    "QReader": {
+      "0": {
+        "samples": 12,
+        "decoded": 9,
+        "rate_percent": 75.0
+      },
+      "1": {
+        "samples": 53,
+        "decoded": 18,
+        "rate_percent": 33.9622641509434
+      },
+      "2": {
+        "samples": 92,
+        "decoded": 6,
+        "rate_percent": 6.521739130434782
+      },
+      "3": {
+        "samples": 12,
+        "decoded": 0,
+        "rate_percent": 0.0
+      },
+      "Overall": {
+        "samples": 169,
+        "decoded": 33,
+        "rate_percent": 19.526627218934912
+      }
+    },
+    "CSQR-D": {
+      "0": {
+        "samples": 12,
+        "decoded": 12,
+        "rate_percent": 100.0
+      },
+      "1": {
+        "samples": 53,
+        "decoded": 53,
+        "rate_percent": 100.0
+      },
+      "2": {
+        "samples": 92,
+        "decoded": 86,
+        "rate_percent": 93.47826086956522
+      },
+      "3": {
+        "samples": 12,
+        "decoded": 12,
+        "rate_percent": 100.0
+      },
+      "Overall": {
+        "samples": 169,
+        "decoded": 163,
+        "rate_percent": 96.44970414201184
+      }
+    }
+  },
+  "runtime": {
+    "ZXing-C++": {
+      "samples": 135,
+      "measurements": 405,
+      "decoded": 112,
+      "mean_ms": 8.700548395061729,
+      "median_ms": 8.5465,
+      "p95_ms": 11.271959999999982
+    },
+    "ZBar": {
+      "samples": 135,
+      "measurements": 405,
+      "decoded": 98,
+      "mean_ms": 14.892662716049383,
+      "median_ms": 14.8888,
+      "p95_ms": 17.43358
+    },
+    "OpenCV": {
+      "samples": 135,
+      "measurements": 405,
+      "decoded": 54,
+      "mean_ms": 26.27771259259259,
+      "median_ms": 27.0998,
+      "p95_ms": 38.57564
+    },
+    "QReader": {
+      "samples": 135,
+      "measurements": 405,
+      "decoded": 126,
+      "mean_ms": 238.71094913580245,
+      "median_ms": 177.9973,
+      "p95_ms": 680.5831199999999
+    },
+    "CSQR-D": {
+      "samples": 135,
+      "measurements": 405,
+      "decoded": 132,
+      "mean_ms": 39.55452074074074,
+      "median_ms": 34.4688,
+      "p95_ms": 78.731
+    }
+  },
+  "curved_runtime": {
+    "0": {
+      "L": {
+        "samples": 3,
+        "mean_ms": 83.97489999999999
+      },
+      "M": {
+        "samples": 3,
+        "mean_ms": 48.7854
+      },
+      "Q": {
+        "samples": 2,
+        "mean_ms": 70.41265
+      },
+      "H": {
+        "samples": 4,
+        "mean_ms": 46.9388
+      }
+    },
+    "1": {
+      "L": {
+        "samples": 15,
+        "mean_ms": 72.37768000000001
+      },
+      "M": {
+        "samples": 14,
+        "mean_ms": 60.411771428571434
+      },
+      "Q": {
+        "samples": 13,
+        "mean_ms": 74.60080769230768
+      },
+      "H": {
+        "samples": 11,
+        "mean_ms": 56.20931818181818
+      }
+    },
+    "2": {
+      "L": {
+        "samples": 22,
+        "mean_ms": 90.5487727272727
+      },
+      "M": {
+        "samples": 23,
+        "mean_ms": 74.34715652173914
+      },
+      "Q": {
+        "samples": 22,
+        "mean_ms": 77.90682272727273
+      },
+      "H": {
+        "samples": 25,
+        "mean_ms": 59.468092
+      }
+    },
+    "3": {
+      "L": {
+        "samples": 3,
+        "mean_ms": 113.39536666666667
+      },
+      "M": {
+        "samples": 3,
+        "mean_ms": 97.496
+      },
+      "Q": {
+        "samples": 3,
+        "mean_ms": 104.57853333333333
+      },
+      "H": {
+        "samples": 3,
+        "mean_ms": 68.78996666666666
+      }
+    }
+  }
+}

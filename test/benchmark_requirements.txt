@@ -1,0 +1,10 @@
+Pillow==12.3.0
+numpy==2.5.3
+opencv-python==5.0.0.93
+zxing-cpp==3.1.1
+pyzbar==0.1.9
+qreader==3.16
+qrdet==2.5
+torch==2.14.1
+torchvision==0.29.1
+ultralytics==8.4.173

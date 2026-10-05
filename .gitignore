@@ -20,5 +20,11 @@ local.properties
 #vs code
 .vscode
 
-test
+/test/*
+!/test/benchmark_readme.py
+!/test/benchmark_requirements.txt
+!/test/benchmark_results/
+/test/benchmark_results/*
+!/test/benchmark_results/*.json
+!/test/benchmark_results/*.jsonl
 build

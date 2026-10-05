@@ -1,0 +1,24 @@
+{
+  "platform": "Windows-11-10.0.22621-SP0",
+  "cpu": "AMD Ryzen 7 6800HS with Radeon Graphics",
+  "python": "3.12.4 (tags/v3.12.4:8e8a4ba, Jun  6 2024, 19:30:16) [MSC v.1940 64 bit (AMD64)]",
+  "packages": {
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0",
+    "opencv-python": "5.0.0.93",
+    "zxing-cpp": "3.1.1",
+    "pyzbar": "0.1.9",
+    "qreader": "3.16",
+    "qrdet": "2.5",
+    "torch": "2.14.1",
+    "ultralytics": "8.4.173"
+  },
+  "input_resizer_version": "10.3.0",
+  "qreader_weights_sha256": "50a9113970a878a51206d5caabcc2c758856f751944199a2c371d872fd768af1",
+  "cli_sha256": "8c7694d592fd2ffe3fb4156d3c12fa21839efd1f426940a71019d48d1a5fd36a",
+  "seed": 1,
+  "runtime_repeats": 3,
+  "resize": "Pillow LANCZOS, preserve aspect ratio, before timing",
+  "timer": "perf_counter_ns; image loading included; CSQR-D process startup included",
+  "qreader": "small model, confidence 0.5, CPU; initialization and warm-up excluded"
+}
