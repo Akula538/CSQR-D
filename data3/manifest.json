@@ -1,0 +1,315 @@
+{
+  "version": 1,
+  "preprocessing": "manual integer crop; no resize or warp",
+  "source_count": 18,
+  "samples": 20,
+  "cases": [
+    {
+      "id": "fold00",
+      "file": "fold00.png",
+      "source": "photo_2026-10-19_15-35-48.jpg",
+      "source_sha256": "79fb8a1b4b7b69a5814e8fa760ae15dffa6caebc7ad8816b177949999ee97f73",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        1900
+      ],
+      "sha256": "19753758e3d7dc4bedc806af33a83675a947ae8a37611c6082c384f0e9e4f57d",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "Q"
+    },
+    {
+      "id": "fold01",
+      "file": "fold01.png",
+      "source": "photo_2026-10-19_15-35-49.jpg",
+      "source_sha256": "829cb53dde4c9c97e42b3a1d72de2c81aee26ceacef0ba1cd036c17cc7d3b3ae",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        1850
+      ],
+      "sha256": "962ea1008774f51d0ccffce77c5d03db2285de85d709353a8d1cbdb11ad6f47b",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "Q"
+    },
+    {
+      "id": "fold02",
+      "file": "fold02.png",
+      "source": "photo_2026-10-19_15-35-50.jpg",
+      "source_sha256": "822f8348f2f4c6034eafacfb535f1665e509a899c1e421649672818d79f33108",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        760
+      ],
+      "sha256": "5cbb77e0ccabb63fef47ea538094f2cfd3ae514a81af00621ad9d23136125b32",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold03",
+      "file": "fold03.png",
+      "source": "photo_2026-10-19_15-35-50.jpg",
+      "source_sha256": "822f8348f2f4c6034eafacfb535f1665e509a899c1e421649672818d79f33108",
+      "crop_xyxy": [
+        0,
+        760,
+        1182,
+        2560
+      ],
+      "sha256": "fbda8c70418fa867a8605d8677526e832c7d5033a0575f886f9fe1b21af59240",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "Q"
+    },
+    {
+      "id": "fold04",
+      "file": "fold04.png",
+      "source": "photo_2026-10-19_15-35-51.jpg",
+      "source_sha256": "a2f609affb73eb9d990599ba08030a1783d71f5bc5b5b81d519dd974936d21f6",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        2560
+      ],
+      "sha256": "854748848e4be6f54c798588cfc8eea6dfe41fd7006b1e4149ed9bc6e282dfd9",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "Q"
+    },
+    {
+      "id": "fold05",
+      "file": "fold05.png",
+      "source": "photo_2026-10-19_15-35-52.jpg",
+      "source_sha256": "734db7ea0cb60323c06a56e5258b5e5f79beaea9510cadf41b1919644118392f",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        2560
+      ],
+      "sha256": "b6b2a74274babed7a3f755b5d658bb3193a239527779bfc9e4dd2b284d470fc3",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "Q"
+    },
+    {
+      "id": "fold06",
+      "file": "fold06.png",
+      "source": "photo_2026-10-19_15-35-53.jpg",
+      "source_sha256": "ca71f07dda78ab6e46c9799096727e368f7844625c5f68a43e32c18747d9c0e9",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        2560
+      ],
+      "sha256": "9c99e7e2dea6270659b7c3c15632e807416b93c73094a528eb322503e8b7b0d2",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold07",
+      "file": "fold07.png",
+      "source": "photo_2026-10-19_15-35-54 (2).jpg",
+      "source_sha256": "eb66784d9dfe0c6ac0a9cfdd623472e527e43ae0390eea82a444d929b4c269fb",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        2560
+      ],
+      "sha256": "281443ddd3b4dcd30db8e719b5211528665cff479255ca6bc209d7d5ef64cc24",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "Q"
+    },
+    {
+      "id": "fold08",
+      "file": "fold08.png",
+      "source": "photo_2026-10-19_15-35-54.jpg",
+      "source_sha256": "f74a804e165e6a44c38b89165fb072ed0df5d548ab893052e81b2ecb8007b2fe",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        2560
+      ],
+      "sha256": "001c5415cc48fa0e2b0756d0d2f69e61a44f311d362aa0e363938781b3e83e0e",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "Q"
+    },
+    {
+      "id": "fold09",
+      "file": "fold09.png",
+      "source": "photo_2026-10-19_15-35-55.jpg",
+      "source_sha256": "50be105d63468adbe11f9c5c8b4c9801afd224c46e56f11b9b6c7d08d0512164",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        2560
+      ],
+      "sha256": "73a90bf6a7380446b4841b2b43bb810bb2b3560a37e5e316cc45295a8a250cc9",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold10",
+      "file": "fold10.png",
+      "source": "photo_2026-10-19_15-35-56.jpg",
+      "source_sha256": "335b84838561f8b3d5942d703650bdcd5c8d827f14d8b0f0a470bf8f785dee10",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        2560
+      ],
+      "sha256": "a1deb68003b229dca734f9a63f6a9a943c92dc884aae304cdfff83007ef7e277",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold11",
+      "file": "fold11.png",
+      "source": "photo_2026-10-19_15-35-57.jpg",
+      "source_sha256": "11e0945415724bfad38d450ea87eb21c4c1c14304071958d2d042fe962661a58",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        2560
+      ],
+      "sha256": "240f67715513a043ba390a09f04b2b76dd749c8b1f0b24981f099e9b06df1fd3",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold12",
+      "file": "fold12.png",
+      "source": "photo_2026-10-19_15-35-58 (2).jpg",
+      "source_sha256": "269c09d47069c84ffa75ac4ab455c2c99d9539289e107dd7157f41f6b68938bd",
+      "crop_xyxy": [
+        700,
+        0,
+        2560,
+        1182
+      ],
+      "sha256": "ed4706bc2ce57ad3def41beba370c0fa142ae5139e2433067bf69df628b84abd",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold13",
+      "file": "fold13.png",
+      "source": "photo_2026-10-19_15-35-58.jpg",
+      "source_sha256": "957fc11ec781c9e896d2632a59068497289fe1657735d0dd6bf64861f9dc9baf",
+      "crop_xyxy": [
+        0,
+        0,
+        1182,
+        1700
+      ],
+      "sha256": "4d2555ed568960a257ccc1021b1a34a6931e350f41884924501fb62fdcf87283",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold14",
+      "file": "fold14.png",
+      "source": "photo_2026-10-19_15-36-00.jpg",
+      "source_sha256": "06bfb6308cf0652ee1337b23ac8591961a6a03f7d66233fea058bcd65898b170",
+      "crop_xyxy": [
+        550,
+        0,
+        2560,
+        1182
+      ],
+      "sha256": "554408294bc7433f5a116696c1a35cae2a660d800a2d60e7a20954601e42d14a",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold15",
+      "file": "fold15.png",
+      "source": "photo_2026-10-19_15-36-01 (2).jpg",
+      "source_sha256": "3c915547f2fecca2ea140247384b647d873e25e32603534514056cdc9db54e2e",
+      "crop_xyxy": [
+        650,
+        0,
+        2560,
+        1182
+      ],
+      "sha256": "e6eb2dc27a38c56024b9c98fc8577c7909409934d45c956f87249646bd29c1f3",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold16",
+      "file": "fold16.png",
+      "source": "photo_2026-10-19_15-36-01.jpg",
+      "source_sha256": "dcdab849aedf60b60f9901444fd91c34377d579fb0e17646ecc4e331b06bae4c",
+      "crop_xyxy": [
+        0,
+        450,
+        1182,
+        2560
+      ],
+      "sha256": "6f073c1edbfa54d985584706c9ecd26ad47118b4b78c4ea84d55515dff659c3b",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold17",
+      "file": "fold17.png",
+      "source": "photo_2026-10-19_15-36-02 (2).jpg",
+      "source_sha256": "1e8ea70534df2730d5d741865110a842fdeee0b10ad8c00be0cf78702c049553",
+      "crop_xyxy": [
+        0,
+        0,
+        1030,
+        1182
+      ],
+      "sha256": "0104bfd52e751f84236eb87e61864fdca65db4d42f66bc58cafee65efa3099eb",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "Q"
+    },
+    {
+      "id": "fold18",
+      "file": "fold18.png",
+      "source": "photo_2026-10-19_15-36-02 (2).jpg",
+      "source_sha256": "1e8ea70534df2730d5d741865110a842fdeee0b10ad8c00be0cf78702c049553",
+      "crop_xyxy": [
+        1030,
+        0,
+        2560,
+        1182
+      ],
+      "sha256": "f1434511e6e16838074ce5b16ac0c802ad004f838118cd9152d5eaf214a9407a",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    },
+    {
+      "id": "fold19",
+      "file": "fold19.png",
+      "source": "photo_2026-10-19_15-36-02.jpg",
+      "source_sha256": "b2da0d89d5d7b8967bbdd300bf0a1c08fac8c6b170c0a40bd12e79fc97f0083b",
+      "crop_xyxy": [
+        650,
+        0,
+        2560,
+        1182
+      ],
+      "sha256": "c95c770ba7fb9dbb96987cbc6bb7077a0a037f9c5501aedaa77951a020f6f569",
+      "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
+      "ec": "L"
+    }
+  ],
+  "label_evidence": "label_evidence.json",
+  "references": "references/",
+  "notes": [
+    "20 complete single-symbol regions from 18 photographs; partially visible neighbours excluded",
+    "Integer cropping only; JPEG sources preserved; no extra resize, threshold, white padding or geometric correction"
+  ],
+  "source_directory": "../test/fold_data"
+}

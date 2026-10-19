@@ -777,6 +777,66 @@ def recognize_distribution(img, search, H = None):
     
     return size, [pattern1, pattern2]
 
+def recognize_distribution_polyline_(img, p1, p2, p3, p4, H, pol):
+    def get_pixel(p):
+        if H is not None: p = H.predict(p)
+        x, y = int(p[0]), int(p[1])
+        if x < 0 or y < 0 or x >= img.shape[1] or y >= img.shape[0]:
+            raise IndexError("pixel outside image")
+        return int(np.mean(img[y, x]) > 127)
+
+    t2, t3 = pol.p2t(p2), pol.p2t(p3)
+    dx = np.sign(t3 - t2)
+    lengths = np.r_[0, np.cumsum(np.linalg.norm(np.diff(pol.points, axis=0), axis=1))]
+    points, segment = [], 0
+    for i in range(int(abs(t3 - t2))):
+        t = t2 + dx * i
+        while segment + 2 < len(lengths) and lengths[segment + 1] < t:
+            segment += 1
+        while segment > 0 and lengths[segment] > t:
+            segment -= 1
+        length = lengths[segment + 1] - lengths[segment]
+        k = (t - lengths[segment]) / length if length > 0 else 0.0
+        p = pol.points[segment] + (pol.points[segment + 1] - pol.points[segment]) * k
+        points.append(np.array(p, dtype=int))
+    if not points: raise ValueError("No distribution scan points")
+
+    while points and not get_pixel(points[-1]): points.pop()
+    while points and not get_pixel(points[0]): points.pop(0)
+    if len(points) < 2: raise ValueError("Distribution scan is empty")
+
+    bord = [i for i in range(len(points) - 1) if get_pixel(points[i]) != get_pixel(points[i + 1])]
+    if len(bord) < 2: raise ValueError("Distribution has too few borders")
+    trashold = max(bord[i + 1] - bord[i] for i in range(len(bord) - 1)) * 0.15
+    i = 0
+    while i + 1 < len(bord):
+        if bord[i + 1] - bord[i] < trashold:
+            del bord[i:i + 2]
+        else:
+            i += 1
+    return [points[i] for i in bord]
+
+
+def recognize_distribution_polyline(img, search, H, pols):
+    pattern1 = recognize_distribution_polyline_(img, (search[0] + search[3] * 13) / 14,
+                                                    (search[1] + search[2] * 13) / 14,
+                                                    (search[4] + search[7] * 13) / 14,
+                                                    (search[5] + search[6] * 13) / 14, H, pols[0])
+    pattern2 = recognize_distribution_polyline_(img, (search[0] + search[1] * 13) / 14,
+                                                    (search[3] + search[2] * 13) / 14,
+                                                    (search[12] + search[13] * 13) / 14,
+                                                    (search[15] + search[14] * 13) / 14, H, pols[1])
+    sz1, sz2 = (len(pattern1) // 4) * 4 + 17, (len(pattern2) // 4) * 4 + 17
+    size = max(sz1, sz2)
+    if len(pattern1) % 4 != 2: pattern1 = None
+    if len(pattern2) % 4 != 2: pattern2 = None
+    if pattern1 is None and pattern2 is not None: size = sz2
+    if pattern1 is not None and pattern2 is None: size = sz1
+    if size != sz1: pattern1 = None
+    if size != sz2: pattern2 = None
+    return size, [pattern1, pattern2]
+
+
 def recognize_search_distribution(img, search, H = None):
     pattern1 = recognize_search_distribution_(img, (search[0] + search[3]) / 2,
                                                    (search[1] + search[2]) / 2, H)

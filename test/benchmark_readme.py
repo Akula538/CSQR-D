@@ -1,6 +1,7 @@
 """Reproduce the README benchmarks. Run from any working directory.
 
 python test/benchmark_readme.py --scanners CSQR-D
+python test/benchmark_readme.py --scanners CSQR-D --fresh
 python test/benchmark_readme.py --scanners ZXing-C++ ZBar OpenCV QReader
 python test/benchmark_readme.py --summarize
 Dependencies can be installed locally into test/deps.
@@ -216,6 +217,7 @@ def main():
     parser.add_argument('--repeats', type=int, default=3)
     parser.add_argument('--summarize', action='store_true')
     parser.add_argument('--update-readme', action='store_true')
+    parser.add_argument('--fresh', action='store_true', help='Replace measurements only for the selected scanners')
     args = parser.parse_args()
     if args.summarize:
         summary = summarize()
@@ -239,8 +241,15 @@ def main():
                     resize='Pillow LANCZOS, preserve aspect ratio, before timing',
                     timer='perf_counter_ns; image loading included; CSQR-D process startup included',
                     qreader='small model, confidence 0.5, CPU; initialization and warm-up excluded')
-    (OUT / 'environment.json').write_text(json.dumps(metadata, indent=2), encoding='utf-8')
+    environment = OUT / 'environment.json'
+    if args.scanners == ['CSQR-D'] and environment.exists():
+        previous = json.loads(environment.read_text(encoding='utf-8'))
+        metadata['baseline_environment'] = previous.get('baseline_environment', previous)
+    environment.write_text(json.dumps(metadata, indent=2), encoding='utf-8')
     for name in args.scanners:
+        if args.fresh:
+            for stage in ['accuracy', 'runtime', 'curved_runtime']:
+                (OUT / f'{stage}_{name}.jsonl').unlink(missing_ok=True)
         benchmark(name, manifest, args.repeats)
 
 if __name__ == '__main__':

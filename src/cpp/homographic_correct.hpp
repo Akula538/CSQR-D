@@ -13,6 +13,8 @@ class HomographyMatrix {
 public:
     HomographyMatrix() = default;
     HomographyMatrix(const Points& fr, const Points& to);
+    // Maps p to p * scale + shift.
+    HomographyMatrix(double scale, const Point& shift);
 
     Point predict(const Point& point) const;
     const cv::Matx33d& matrix() const { return H_; }

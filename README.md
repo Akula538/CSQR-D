@@ -59,7 +59,7 @@ Runtime is measured on **135 images** from the simpler `data2` dataset. Each ima
 | ZBar / pyzbar | 14.89 | 14.89 | 17.43 |
 | OpenCV | 26.28 | 27.10 | 38.58 |
 | QReader | 238.71 | 178.00 | 680.58 |
-| CSQR-D | 39.55 | 34.47 | 78.73 |
+| CSQR-D | 29.24 | 23.75 | 61.62 |
 
 ### CSQR-D runtime
 
@@ -67,10 +67,10 @@ This test measures CSQR-D on the curved-QR dataset. The table shows mean process
 
 | Deformation / EC | L | M | Q | H |
 |---|---:|---:|---:|---:|
-| 0 | 83.97 | 48.79 | 70.41 | 46.94 |
-| 1 | 72.38 | 60.41 | 74.60 | 56.21 |
-| 2 | 90.55 | 74.35 | 77.91 | 59.47 |
-| 3 | 113.40 | 97.50 | 104.58 | 68.79 |
+| 0 | 39.45 | 30.13 | 37.47 | 30.80 |
+| 1 | 47.59 | 37.58 | 38.49 | 36.94 |
+| 2 | 59.91 | 51.22 | 44.57 | 43.28 |
+| 3 | 85.71 | 62.39 | 85.81 | 41.53 |
 
 CSQR-D uses the C++ implementation in all tests. [Detailed methodology, environment and reproduction](docs/BENCHMARKS.md).
 

@@ -6,6 +6,7 @@
 #include "ImageView.h"
 #include "binarizer.hpp"
 #include "interpolation_correct.hpp"
+#include "vectorfield_correct.hpp"
 #include "qrcode/QRDetector.h"
 
 #include <opencv2/imgproc.hpp>
@@ -747,6 +748,101 @@ DistributionResult recognize_distribution(const cv::Mat& img, const Points& sear
                                             (search[3] + search[2] * 13.0) * (1.0 / 14.0),
                                             (search[12] + search[13] * 13.0) * (1.0 / 14.0),
                                             (search[15] + search[14] * 13.0) * (1.0 / 14.0), H);
+
+    int sz1 = (static_cast<int>(pattern1.size()) / 4) * 4 + 17;
+    int sz2 = (static_cast<int>(pattern2.size()) / 4) * 4 + 17;
+    int size = std::max(sz1, sz2);
+
+    std::optional<Points> p1 = pattern1;
+    std::optional<Points> p2 = pattern2;
+    if (pattern1.size() % 4 != 2)
+        p1.reset();
+    if (pattern2.size() % 4 != 2)
+        p2.reset();
+    if (!p1 && p2)
+        size = sz2;
+    if (p1 && !p2)
+        size = sz1;
+    if (size != sz1)
+        p1.reset();
+    if (size != sz2)
+        p2.reset();
+
+    return {size, {p1, p2}};
+}
+
+static Points recognize_distribution_polyline_(const cv::Mat& img, Point, Point p2, Point p3, Point, const HomographyMatrix* H, const Polyline& pol)
+{
+    const double t2 = pol.p2t(p2), t3 = pol.p2t(p3);
+    const double dx = sign(t3 - t2);
+    const int count = static_cast<int>(std::abs(t3 - t2));
+    std::vector<double> lengths(pol.points.size(), 0.0);
+    for (size_t i = 1; i < lengths.size(); ++i)
+        lengths[i] = lengths[i - 1] + norm(pol.points[i] - pol.points[i - 1]);
+
+    Points points;
+    size_t segment = 0;
+    for (int i = 0; i < count; ++i) {
+        const double t = t2 + dx * i;
+        while (segment + 2 < lengths.size() && lengths[segment + 1] < t)
+            ++segment;
+        while (segment > 0 && lengths[segment] > t)
+            --segment;
+        const double length = lengths[segment + 1] - lengths[segment];
+        const double k = length > 0.0 ? (t - lengths[segment]) / length : 0.0;
+        Point p = pol.points[segment] + (pol.points[segment + 1] - pol.points[segment]) * k;
+        points.emplace_back(static_cast<int>(p.x), static_cast<int>(p.y));
+    }
+    if (points.empty())
+        throw std::runtime_error("No distribution scan points");
+
+    while (!points.empty() && !get_pixel_binary(img, points.back(), H, false))
+        points.pop_back();
+    while (!points.empty() && !get_pixel_binary(img, points.front(), H, false))
+        points.erase(points.begin());
+    if (points.size() < 2)
+        throw std::runtime_error("Distribution scan is empty");
+
+    // Scan indices are arc lengths in unit steps; no border projections are needed.
+    std::vector<int> bord;
+    for (int i = 0; i + 1 < static_cast<int>(points.size()); ++i) {
+        if (get_pixel_binary(img, points[i], H, false) != get_pixel_binary(img, points[i + 1], H, false))
+            bord.push_back(i);
+    }
+    if (bord.size() < 2)
+        throw std::runtime_error("Distribution has too few borders");
+
+    double max_step = 0.0;
+    for (int i = 0; i + 1 < static_cast<int>(bord.size()); ++i)
+        max_step = std::max(max_step, static_cast<double>(bord[i + 1] - bord[i]));
+    const double trashold = max_step * 0.15;
+
+    int i = 0;
+    while (i + 1 < static_cast<int>(bord.size())) {
+        if (bord[i + 1] - bord[i] < trashold) {
+            bord.erase(bord.begin() + i);
+            bord.erase(bord.begin() + i);
+        } else {
+            ++i;
+        }
+    }
+    Points out;
+    for (int index : bord)
+        out.push_back(points[index]);
+    return out;
+}
+
+DistributionResult recognize_distribution_polyline(const cv::Mat& img, const Points& search, const HomographyMatrix* H, std::pair<Polyline, Polyline>& pols)
+{
+    auto pattern1 = recognize_distribution_polyline_(img, (search[0] + search[3] * 13.0) * (1.0 / 14.0),
+                                            (search[1] + search[2] * 13.0) * (1.0 / 14.0),
+                                            (search[4] + search[7] * 13.0) * (1.0 / 14.0),
+                                            (search[5] + search[6] * 13.0) * (1.0 / 14.0), H, pols.first);
+
+    auto pattern2 = recognize_distribution_polyline_(img, (search[0] + search[1] * 13.0) * (1.0 / 14.0),
+                                            (search[3] + search[2] * 13.0) * (1.0 / 14.0),
+                                            (search[12] + search[13] * 13.0) * (1.0 / 14.0),
+                                            (search[15] + search[14] * 13.0) * (1.0 / 14.0), H, pols.second);
 
     int sz1 = (static_cast<int>(pattern1.size()) / 4) * 4 + 17;
     int sz2 = (static_cast<int>(pattern2.size()) / 4) * 4 + 17;

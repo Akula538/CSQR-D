@@ -1,10 +1,10 @@
-from find_qr import find, recognize_distribution, find_qr_zxing, recognize_search_distribution, zxing_detect, zxing_find
+from find_qr import find, recognize_distribution, recognize_distribution_polyline, find_qr_zxing, recognize_search_distribution, zxing_detect, zxing_find
 from interpolation_correct import interpolation_correct_homo as correct
 from vectorfield_correct import vectorfield_correct_homo as vector_correct
-from vectorfield_correct import vectorfield_nodes
+from vectorfield_correct import vectorfield_nodes, DirectionField, constructPolylines4recdist
 from binarizer import binarize_zxing_cpp as binarize
 from decoder import decode, decode_qreader, decode_zxingcpp
-from homographic_correct import homographic_correct_perspective, find_homo
+from homographic_correct import homographic_correct_perspective, find_homo, HomographyMatrix
 from tools import *
 import interpolation_correct
 import TPS_correct
@@ -146,16 +146,31 @@ def detectAndDecode(img, img_downscaled = None, can_homo = True):
     for i in range(len(pattern_recovered)):
         for j in range(len(pattern_recovered[i])):
             pattern_recovered[i][j] = pattern_recovered[i][j] / scale
-    tps.affine(1 / scale, 0)
     show_points(img, list(qr) + list(pattern_recovered[0]) + list(pattern_recovered[1]), 4, (0, 0, 255))
     
     # corrected = vector_correct(img, qr, pattern=pattern_recovered, QRsize=size, tps=tps, square_size=6, fract=5, lines_fract=20) # 6 5 9
 
-    if size >= 25:
-        img, qr, pattern_recovered = cut_image(img, qr, pattern_recovered)
+    img, qr, pattern_recovered, shift = cut_image(img, qr, pattern_recovered, size, return_shift=True)
+    tps.affine(1 / scale, -shift)
+    df = DirectionField(img)
+    try:
+        cut_to_binary = HomographyMatrix(scale, shift * scale)
+        polylines = constructPolylines4recdist(df, qr, 30)
+        previous_size = size
+        size, pattern = recognize_distribution_polyline(img_binarized, qr, cut_to_binary, polylines)
+        for patt in search_pattern:
+            if patt is not None:
+                for i in range(len(patt)):
+                    patt[i] = patt[i] / scale - shift
+        pattern_recovered = interpolation_correct.recover_pattern_if_need(qr, size, pattern, search_pattern)
+        if size != previous_size:
+            tps = TPS_correct.fit_tps_no_alligment(qr, size) if size <= 21 else TPS_correct.fit_tps_full_qr(qr, size)
+    except Exception as e:
+        print(e)
+        return "CTF"
     # show_points(img, list(qr) + list(pattern_recovered[0]) + list(pattern_recovered[1]), 4, (0, 0, 255))
     
-    target, scr = vectorfield_nodes(img, qr, pattern=pattern_recovered, QRsize=size, tps=tps, square_size=6, fract=5, lines_fract=20) # 6 5 9
+    target, scr = vectorfield_nodes(img, qr, pattern=pattern_recovered, QRsize=size, tps=tps, square_size=6, fract=5, lines_fract=20, df=df) # 6 5 9
     
     # show_points(img, list(scr), 20, (0, 0, 255))
     

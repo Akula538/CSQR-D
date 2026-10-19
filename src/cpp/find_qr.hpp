@@ -10,6 +10,8 @@
 
 namespace qrscanner {
 
+struct Polyline;
+
 struct ZxingPattern {
     Point center;
     int size = 0;
@@ -49,6 +51,7 @@ Points sort_corrective(const std::vector<Points>& correctives, const std::vector
 Points find(const cv::Mat& img);
 
 DistributionResult recognize_distribution(const cv::Mat& img, const Points& search, const HomographyMatrix* H = nullptr);
+DistributionResult recognize_distribution_polyline(const cv::Mat& img, const Points& search, const HomographyMatrix* H, std::pair<Polyline, Polyline>& pols);
 SearchDistributionResult recognize_search_distribution(const cv::Mat& img, const Points& search, const HomographyMatrix* H = nullptr);
 
 ZxingFindResult zxing_find_with_binary(const cv::Mat& img);

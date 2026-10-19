@@ -51,6 +51,13 @@ HomographyMatrix::HomographyMatrix(const Points& fr, const Points& to)
 {
 }
 
+HomographyMatrix::HomographyMatrix(double scale, const Point& shift)
+    : H_(scale, 0.0, shift.x,
+         0.0, scale, shift.y,
+         0.0, 0.0, 1.0)
+{
+}
+
 Point HomographyMatrix::predict(const Point& point) const
 {
     cv::Vec3d a(point.x, point.y, 1.0);

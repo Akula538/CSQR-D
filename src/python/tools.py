@@ -110,17 +110,18 @@ def fucking_geom(geom: ShapelyGeom,
 
     return unique
 
-def cut_image(img, qr, pattern_recovered):
+def cut_image(img, qr, pattern_recovered, QRsize = 25, return_shift = False):
 
     x1 = min(np.column_stack(qr)[0])
     x2 = max(np.column_stack(qr)[0])
     y1 = min(np.column_stack(qr)[1])
     y2 = max(np.column_stack(qr)[1])
     
-    x1 = max(x1 - 0.3 * (x2 - x1), 0)
-    x2 = min(x2 + 0.3 * (x2 - x1), img.shape[1])
-    y1 = max(y1 - 0.3 * (y2 - y1), 0)
-    y2 = min(y2 + 0.3 * (y2 - y1), img.shape[0])
+    scale = 0.3 if QRsize >= 25 else 1.6
+    x1 = max(x1 - scale * (x2 - x1), 0)
+    x2 = min(x2 + scale * (x2 - x1), img.shape[1])
+    y1 = max(y1 - scale * (y2 - y1), 0)
+    y2 = min(y2 + scale * (y2 - y1), img.shape[0])
     
     for i in range(len(qr)):
         qr[i] = qr[i] - np.array([x1, y1])
@@ -129,4 +130,5 @@ def cut_image(img, qr, pattern_recovered):
         for j in range(len(pattern_recovered[i])):
             pattern_recovered[i][j] = pattern_recovered[i][j] - np.array([x1, y1])
 
-    return img[int(y1):int(y2), int(x1):int(x2)], qr, pattern_recovered
+    result = img[int(y1):int(y2), int(x1):int(x2)], qr, pattern_recovered
+    return result + (np.array([x1, y1]),) if return_shift else result

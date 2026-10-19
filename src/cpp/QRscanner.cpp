@@ -206,9 +206,39 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
         for (auto& p : pattern)
             p *= (1.0 / scale);
             
-    auto cut = cut_image(img, qr, pattern_recovered, distribution.size);        
+    auto cut = cut_image(img, qr, pattern_recovered, distribution.size);
     tps.affine(1.0 / scale, -cut.shift);
-    auto nodes = vectorfield_nodes(cut.img, cut.qr, cut.pattern_recovered, distribution.size, 6, 5, 20, &tps);
+    DirectionField df(cut.img);
+
+    try {
+        HomographyMatrix cut_to_binary(scale, cut.shift * scale);
+        auto pattern_polylines = constructPolylines4recdist(df, cut.qr, 30);
+        const int previous_size = distribution.size;
+        distribution = recognize_distribution_polyline(img_binarized, cut.qr, &cut_to_binary, pattern_polylines);
+
+        for (auto& pattern : search_distribution.pattern)
+            if (pattern)
+                for (auto& p : *pattern)
+                    p = p * (1.0 / scale) - cut.shift;
+
+        std::vector<Points*> pattern_ptrs(2, nullptr);
+        std::vector<Points*> search_ptrs(4, nullptr);
+        for (int i = 0; i < 2; ++i)
+            if (distribution.pattern[i])
+                pattern_ptrs[i] = &*distribution.pattern[i];
+        for (int i = 0; i < 4; ++i)
+            if (search_distribution.pattern[i])
+                search_ptrs[i] = &*search_distribution.pattern[i];
+        cut.pattern_recovered = recover_pattern_if_need(cut.qr, distribution.size, pattern_ptrs, search_ptrs);
+        if (distribution.size != previous_size)
+            tps = distribution.size <= 21 ? fit_tps_no_alligment(cut.qr, distribution.size)
+                                          : fit_tps_full_qr(cut.qr, distribution.size);
+    } catch (...) {
+        write_debug_text(options, "trace.txt", "recognize_distribution failed\n");
+        return {ScanStatus::Ctf, "CTF"};
+    }
+
+    auto nodes = vectorfield_nodes(df, cut.qr, cut.pattern_recovered, distribution.size, 6, 5, 20, &tps);
 
     TPS vector_tps;
     vector_tps.fit(nodes.first, nodes.second);

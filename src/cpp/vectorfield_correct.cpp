@@ -4,7 +4,9 @@
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <map>
+#include <stdexcept>
 #include <tuple>
 
 namespace qrscanner {
@@ -219,6 +221,68 @@ static Points calc_integral_line(DirectionField& DF, Point p, Point dir0, double
     return points;
 }
 
+const std::string& Polyline::type() const
+{
+    static const std::string name = "polyline";
+    return name;
+}
+
+double Polyline::p2t(const Point& p) const
+{
+    if (points.empty())
+        throw std::invalid_argument("Cannot project onto an empty polyline");
+
+    double best_distance_squared = std::numeric_limits<double>::infinity();
+    double best_t = 0.0;
+    double length = 0.0;
+    for (size_t i = 1; i < points.size(); ++i) {
+        const Point segment = points[i] - points[i - 1];
+        const double length_squared = segment.dot(segment);
+        if (length_squared == 0.0)
+            continue;
+
+        const double fraction = std::clamp((p - points[i - 1]).dot(segment) / length_squared, 0.0, 1.0);
+        const Point delta = p - (points[i - 1] + segment * fraction);
+        const double distance_squared = delta.dot(delta);
+        const double segment_length = std::sqrt(length_squared);
+        if (distance_squared < best_distance_squared) {
+            best_distance_squared = distance_squared;
+            best_t = length + fraction * segment_length;
+        }
+        length += segment_length;
+    }
+    return best_t;
+}
+
+Point Polyline::t2p(double t) const
+{
+    if (points.empty())
+        throw std::invalid_argument("Cannot evaluate an empty polyline");
+    if (t <= 0.0)
+        return points.front();
+
+    for (size_t i = 1; i < points.size(); ++i) {
+        const Point segment = points[i] - points[i - 1];
+        const double segment_length = norm(segment);
+        if (segment_length == 0.0)
+            continue;
+        if (t <= segment_length)
+            return points[i - 1] + segment * (t / segment_length);
+        t -= segment_length;
+    }
+    return points.back();
+}
+
+double Polyline::dist(const Point& p1, const Point& p2) const
+{
+    return p2t(p1) - p2t(p2);
+}
+
+Point Polyline::move(const Point& p, double d) const
+{
+    return t2p(p2t(p) + d);
+}
+
 Polyline constructPolyline(DirectionField& df, const Point& p, const Point& dir, int QRsize, double line_len, int n, int kernel)
 {
     Points pol1 = calc_integral_line(df, p, -dir, line_len * (6.0 / QRsize + 0.5), n * 6 / QRsize + n / 2, kernel);
@@ -228,6 +292,83 @@ Polyline constructPolyline(DirectionField& df, const Point& p, const Point& dir,
         pol1.pop_back();
     pol1.insert(pol1.end(), pol2.begin(), pol2.end());
     return {pol1};
+}
+
+static Polyline constructPolylineBetween(DirectionField& df, Point p1, Point p2, Point dir1, Point dir2, int n, int kernel)
+{
+    const double length = norm(p2 - p1);
+    if (length == 0.0 || n <= 0)
+        return {Points{p1, p2}};
+
+    Polyline pol1{calc_integral_line(df, p1, dir1, length * 2.0, n, kernel)};
+    Polyline pol2{calc_integral_line(df, p2, dir2, length * 2.0, n, kernel)};
+    const double length1 = pol1.p2t(p2), length2 = pol2.p2t(p1);
+
+    auto sample = [&](const Polyline& pol, double end) {
+        std::vector<double> lengths(pol.points.size(), 0.0);
+        for (size_t i = 1; i < lengths.size(); ++i)
+            lengths[i] = lengths[i - 1] + norm(pol.points[i] - pol.points[i - 1]);
+        Points out;
+        size_t segment = 0;
+        for (int i = 0; i <= n; ++i) {
+            const double t = end * i / n;
+            while (segment + 2 < lengths.size() && lengths[segment + 1] < t)
+                ++segment;
+            if (segment + 1 == lengths.size()) {
+                out.push_back(pol.points.back());
+                continue;
+            }
+            const double d = lengths[segment + 1] - lengths[segment];
+            const double k = d > 0.0 ? (t - lengths[segment]) / d : 0.0;
+            out.push_back(pol.points[segment] + (pol.points[segment + 1] - pol.points[segment]) * k);
+        }
+        return out;
+    };
+    Points first = sample(pol1, length1), second = sample(pol2, length2);
+    // Match common cross sections instead of unrelated fractions of arc length.
+    const Point chord = (p2 - p1) / length;
+    auto station = [&](const Points& points, double t) {
+        Point out = points.front();
+        double best = 1e100;
+        for (size_t j = 0; j + 1 < points.size(); ++j) {
+            const double a = (points[j] - p1).dot(chord), b = (points[j + 1] - p1).dot(chord);
+            const double k = b != a ? std::clamp((t - a) / (b - a), 0.0, 1.0) : 0.0;
+            const Point q = points[j] + (points[j + 1] - points[j]) * k;
+            const double d = std::abs((q - p1).dot(chord) - t);
+            if (d < best) {
+                best = d;
+                out = q;
+            }
+        }
+        return out;
+    };
+    Points a = first, b = second;
+    for (int i = 0; i <= n; ++i) {
+        first[i] = station(a, length * i / n);
+        second[n - i] = station(b, length * i / n);
+    }
+    first[0] = p1;
+    second[0] = p2;
+    Points out;
+    for (int i = 0; i <= n; ++i) {
+        const double u = static_cast<double>(i) / n;
+        const double w = u;
+        out.push_back(first[i] * (1.0 - w) + second[n - i] * w);
+    }
+    return {out};
+}
+
+std::pair<Polyline, Polyline> constructPolylines4recdist(DirectionField& df, const Points& points, int n)
+{
+    const double characteristic_size = std::max(norm(points[6] - points[3]), norm(points[14] - points[1]));
+    int kernel_size = std::max(static_cast<int>(characteristic_size * 30.0 / 300.0), 35);
+    if (kernel_size % 2 == 0)
+        ++kernel_size;
+    auto pol1 = constructPolylineBetween(df, (points[2] * 13.0 + points[1]) / 14.0, (points[7] * 13.0 + points[4]) / 14.0,
+                                        points[2] - points[3], points[7] - points[6], n, kernel_size);
+    auto pol2 = constructPolylineBetween(df, (points[2] * 13.0 + points[3]) / 14.0, (points[13] * 13.0 + points[12]) / 14.0,
+                                        points[2] - points[1], points[13] - points[14], n, kernel_size);
+    return {pol1, pol2};
 }
 
 static std::optional<Point> seg_intersection(Point p1, Point p2, Point p3, Point p4, double eps = 1e-9)
@@ -279,7 +420,7 @@ static std::vector<int> range_(int c, int f)
     return a;
 }
 
-std::pair<Points, Points> vectorfield_nodes(const cv::Mat& img,
+std::pair<Points, Points> vectorfield_nodes(DirectionField& df,
                                             const Points& points,
                                             const std::vector<Points>& pattern,
                                             int QRsize,
@@ -294,7 +435,6 @@ std::pair<Points, Points> vectorfield_nodes(const cv::Mat& img,
     if (kernel_size % 2 == 0)
         ++kernel_size;
 
-    DirectionField df(img);
     std::array<std::vector<Polyline>, 2> grade;
 
     for (int i : rg) {
@@ -341,6 +481,8 @@ std::pair<Points, Points> vectorfield_nodes(const cv::Mat& img,
                 if (norm(last - i) < norm(last - nodes[x][y]))
                     nodes[x][y] = i;
             }
+            if (tps && norm(nodes[x][y] - last) > characteristic_size * 3.0 / QRsize)
+                nodes[x][y] = last;
         }
     }
 

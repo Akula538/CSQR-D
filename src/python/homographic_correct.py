@@ -10,6 +10,9 @@ GREEN = np.array([0, 0, 255, 255])
 class HomographyMatrix():
     
     def __init__(self, fr, to):
+        if np.isscalar(fr):
+            self.H = np.array([[fr, 0, to[0]], [0, fr, to[1]], [0, 0, 1]], dtype=float)
+            return
         A = []
         B = []
         

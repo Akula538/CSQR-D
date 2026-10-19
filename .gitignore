@@ -20,11 +20,31 @@ local.properties
 #vs code
 .vscode
 
+# Keep only reusable tests and benchmark measurements.
 /test/*
+!/test/README.md
 !/test/benchmark_readme.py
 !/test/benchmark_requirements.txt
+!/test/fold_test.py
 !/test/benchmark_results/
 /test/benchmark_results/*
-!/test/benchmark_results/*.json
-!/test/benchmark_results/*.jsonl
+!/test/benchmark_results/manifest.json
+!/test/benchmark_results/manifest_data2.json
+!/test/benchmark_results/summary.json
+!/test/benchmark_results/environment.json
+!/test/benchmark_results/accuracy_*.jsonl
+!/test/benchmark_results/runtime_*.jsonl
+!/test/benchmark_results/curved_runtime_CSQR-D.jsonl
+
+# Synthetic datasets, generators and reports stay local.
+/test/*synthetic*
+/test/*wave*
+/test/render_synthetic.py
+/test/analyze_synthetic_visibility.py
+/test/test_synthetic_geometry.py
+/test/test_wave_geometry.py
+/docs/SYNTHETIC*
+
 build
+
+/src/python/__pycache__

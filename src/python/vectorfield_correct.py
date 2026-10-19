@@ -363,11 +363,46 @@ def complete_pattern(patt, p1, p2, p3, p4):
 
 class Polyline():
     def __init__(self, points):
-        self.points = points
+        self.points = np.asarray(points, dtype=float).reshape(-1, 2)
         self._type = "polyline"
-        
-        self.LineString = LineString(points)
-        
+
+        self.LineString = LineString(self.points if len(self.points) != 1 else [self.points[0], self.points[0]])
+
+    def type(self):
+        return self._type
+
+    def p2t(self, p):
+        if len(self.points) == 0:
+            raise ValueError("Cannot project onto an empty polyline")
+        best, best_t, length = float('inf'), 0.0, 0.0
+        for a, b in zip(self.points, self.points[1:]):
+            segment = b - a
+            d = segment @ segment
+            if d == 0: continue
+            k = np.clip((p - a) @ segment / d, 0.0, 1.0)
+            delta = p - (a + segment * k)
+            if delta @ delta < best:
+                best = delta @ delta
+                best_t = length + k * np.sqrt(d)
+            length += np.sqrt(d)
+        return best_t
+
+    def t2p(self, t):
+        if len(self.points) == 0:
+            raise ValueError("Cannot evaluate an empty polyline")
+        if t <= 0: return self.points[0].copy()
+        for a, b in zip(self.points, self.points[1:]):
+            length = np.linalg.norm(b - a)
+            if length == 0: continue
+            if t <= length: return a + (b - a) * (t / length)
+            t -= length
+        return self.points[-1].copy()
+
+    def dist(self, p1, p2):
+        return self.p2t(p1) - self.p2t(p2)
+
+    def move(self, p, d):
+        return self.t2p(self.p2t(p) + d)
 
 def PolylineIntersection(cur1 : Polyline, cur2 : Polyline):
     
@@ -439,6 +474,62 @@ def constructPolyline(df, p, dir, QRsize, line_len, n, kernel = 35):
     pol1.pop()
     
     return Polyline(pol1 + pol2)
+
+
+def constructPolylineBetween(df, p1, p2, dir1, dir2, n, kernel):
+    length = np.linalg.norm(p2 - p1)
+    if length == 0 or n <= 0:
+        return Polyline([p1, p2])
+
+    pol1 = Polyline(calc_integral_line(df, p1, dir1, length * 2, n, kernel))
+    pol2 = Polyline(calc_integral_line(df, p2, dir2, length * 2, n, kernel))
+
+    def sample(pol, end):
+        lengths = np.r_[0, np.cumsum(np.linalg.norm(np.diff(pol.points, axis=0), axis=1))]
+        out, segment = [], 0
+        for i in range(n + 1):
+            t = end * i / n
+            while segment + 2 < len(lengths) and lengths[segment + 1] < t:
+                segment += 1
+            if segment + 1 == len(lengths):
+                out.append(pol.points[-1])
+                continue
+            d = lengths[segment + 1] - lengths[segment]
+            k = (t - lengths[segment]) / d if d > 0 else 0.0
+            out.append(pol.points[segment] + (pol.points[segment + 1] - pol.points[segment]) * k)
+        return np.array(out)
+
+    first, second = sample(pol1, pol1.p2t(p2)), sample(pol2, pol2.p2t(p1))
+    chord = (p2 - p1) / length
+
+    def station(points, t):
+        out, best = points[0], 1e100
+        for p, q in zip(points, points[1:]):
+            a, b = (p - p1) @ chord, (q - p1) @ chord
+            k = np.clip((t - a) / (b - a), 0.0, 1.0) if b != a else 0.0
+            point = p + (q - p) * k
+            d = abs((point - p1) @ chord - t)
+            if d < best:
+                best, out = d, point
+        return out
+
+    a, b = first.copy(), second.copy()
+    for i in range(n + 1):
+        first[i] = station(a, length * i / n)
+        second[n - i] = station(b, length * i / n)
+    first[0], second[0] = p1, p2
+    return Polyline([first[i] * (1 - i / n) + second[n - i] * (i / n) for i in range(n + 1)])
+
+
+def constructPolylines4recdist(df, points, n):
+    characteristic_size = max(np.linalg.norm(points[6] - points[3]), np.linalg.norm(points[14] - points[1]))
+    kernel = max(int(characteristic_size * 30 / 300), 35)
+    if kernel % 2 == 0: kernel += 1
+    pol1 = constructPolylineBetween(df, (points[2] * 13 + points[1]) / 14, (points[7] * 13 + points[4]) / 14,
+                                   points[2] - points[3], points[7] - points[6], n, kernel)
+    pol2 = constructPolylineBetween(df, (points[2] * 13 + points[3]) / 14, (points[13] * 13 + points[12]) / 14,
+                                   points[2] - points[1], points[13] - points[14], n, kernel)
+    return pol1, pol2
     
 
 def vectorfield_correct_homo(img, points, pattern = [None, None], QRsize = 25, square_size = 10, fract = 1, lines_fract = 5, tps = None):
@@ -635,7 +726,7 @@ def vectorfield_correct_homo(img, points, pattern = [None, None], QRsize = 25, s
     return corrected
 
 
-def vectorfield_nodes(img, points, pattern = [None, None], QRsize = 25, square_size = 10, fract = 1, lines_fract = 5, tps = None):
+def vectorfield_nodes(img, points, pattern = [None, None], QRsize = 25, square_size = 10, fract = 1, lines_fract = 5, tps = None, df = None):
     
     start_time = time.time()
     
@@ -668,7 +759,7 @@ def vectorfield_nodes(img, points, pattern = [None, None], QRsize = 25, square_s
     
     # show_points(img, list(pattern[0]) + list(pattern[1]))
 
-    df = DirectionField(img)
+    if df is None: df = DirectionField(img)
     # df.initGrid(kernel_size)
     
     grade = [[], []]
@@ -753,6 +844,9 @@ def vectorfield_nodes(img, points, pattern = [None, None], QRsize = 25, square_s
             for i in p:
                 if np.linalg.norm(last - i) < np.linalg.norm(last - nodes[x][y]):
                     nodes[x][y] = i
+
+            if tps is not None and np.linalg.norm(nodes[x][y] - last) > characteristic_size * 3 / QRsize:
+                nodes[x][y] = last
 
     print("ready in", time.time() - start_time)
 

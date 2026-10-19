@@ -8,6 +8,7 @@
 #include <array>
 #include <map>
 #include <optional>
+#include <string>
 #include <tuple>
 #include <utility>
 
@@ -26,12 +27,19 @@ private:
 
 struct Polyline {
     Points points;
+
+    const std::string& type() const;
+    double p2t(const Point& p) const;
+    Point t2p(double t) const;
+    double dist(const Point& p1, const Point& p2) const;
+    Point move(const Point& p, double d) const;
 };
 
 Polyline constructPolyline(DirectionField& df, const Point& p, const Point& dir, int QRsize, double line_len, int n, int kernel = 35);
 std::vector<Point> PolylineIntersection(const Polyline& cur1, const Polyline& cur2);
+std::pair<Polyline, Polyline> constructPolylines4recdist(DirectionField& df, const Points& points, int n);
 
-std::pair<Points, Points> vectorfield_nodes(const cv::Mat& img,
+std::pair<Points, Points> vectorfield_nodes(DirectionField& df,
                                             const Points& points,
                                             const std::vector<Points>& pattern,
                                             int QRsize = 25,
