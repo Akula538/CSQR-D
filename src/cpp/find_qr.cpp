@@ -494,12 +494,15 @@ Points sort_corrective(const std::vector<Points>& correctives, const std::vector
     if (correctives.empty())
         throw std::runtime_error("No corrective pattern candidates");
 
-    Points corrective = correctives[0];
+    Points corrective;
     Point predicted = search[1][3] + search[2][1] - search[0][2];
     for (const auto& c : correctives) {
-        if (norm(predicted - center(c)) < norm(predicted - center(corrective)))
+        if (c.size() == 4 && (corrective.empty() ||
+            norm(predicted - center(c)) < norm(predicted - center(corrective))))
             corrective = c;
     }
+    if (corrective.empty())
+        throw std::runtime_error("No quadrilateral corrective pattern candidates");
 
     int zero = 0;
     for (int i = 0; i < 4; ++i) {
@@ -601,8 +604,11 @@ Points find(const cv::Mat& img)
 
     auto colors = get_colors(contours, hierarchy);
     std::vector<Points> search_contours;
-    for (int idx : find_search(contours, hierarchy, colors))
-        search_contours.push_back(clockwise(to_points_d(approxQuadr(contours[idx]))));
+    for (int idx : find_search(contours, hierarchy, colors)) {
+        auto quad = approxQuadr(contours[idx]);
+        if (quad.size() == 4)
+            search_contours.push_back(clockwise(to_points_d(quad)));
+    }
 
     std::vector<double> search_areas;
     for (const auto& c : search_contours)
@@ -1035,13 +1041,15 @@ std::pair<Points, cv::Mat> find_qr_zxing(const cv::Mat& orig, const ZxingFindRes
     cv::threshold(gray, binary, 127, 255, cv::THRESH_BINARY);
 
     std::vector<Points> search_contours;
+    std::vector<double> pret_sizes;
     for (const auto& pret : prets) {
         Point c(static_cast<int>(pret.center.x), static_cast<int>(pret.center.y));
-        if (!pret.corners.empty()) {
+        if (pret.corners.size() == 4) {
             Points cont;
             for (const auto& p : pret.corners)
                 cont.push_back((p - c) * (7.0 / 6.0) + c);
             search_contours.push_back(cont);
+            pret_sizes.push_back(pret.size);
         } else {
             auto window = findContoursWindow(binary, c, pret.size);
             auto colors = get_colors(window.contours, window.hierarchy);
@@ -1057,8 +1065,11 @@ std::pair<Points, cv::Mat> find_qr_zxing(const cv::Mat& orig, const ZxingFindRes
                     Points cont;
                     for (const auto& p : to_points_d(best))
                         cont.push_back((p - c) * (7.0 / (7.0 - lvl * 2.0)) + c);
-                    search_contours.push_back(cont);
-                    break;
+                    if (cont.size() == 4) {
+                        search_contours.push_back(cont);
+                        pret_sizes.push_back(pret.size);
+                        break;
+                    }
                 }
             }
         }
@@ -1074,16 +1085,12 @@ std::pair<Points, cv::Mat> find_qr_zxing(const cv::Mat& orig, const ZxingFindRes
     for (const auto& s : search_contours)
         search_areas.push_back(cv::contourArea(to_cv_points_i(s)));
 
-    std::vector<double> pret_sizes;
-    for (const auto& p : prets)
-        pret_sizes.push_back(static_cast<double>(p.size));
-
     auto [all_search, all_indexes] = disp_evristic_sort(search_contours, pret_sizes);
     auto search = all_search.at(0);
     auto indexes = all_indexes.at(0);
 
     const double search_area = (search_areas[indexes[0]] + search_areas[indexes[1]] + search_areas[indexes[2]]) / 3.0;
-    int search_module = std::max({prets[indexes[0]].size, prets[indexes[1]].size, prets[indexes[2]].size});
+    int search_module = static_cast<int>(std::max({pret_sizes[indexes[0]], pret_sizes[indexes[1]], pret_sizes[indexes[2]]}));
 
     search = sort_search_dir(search);
 

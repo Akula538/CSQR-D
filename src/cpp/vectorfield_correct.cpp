@@ -15,25 +15,43 @@ DirectionField::DirectionField(const cv::Mat& img)
 {
     cv::Mat gray;
     if (img.channels() == 1)
-        gray = img.clone();
+        gray = img;
     else
         cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
 
-    cv::GaussianBlur(gray, gray, cv::Size(1, 1), 0);
     cv::Mat sobel_x, sobel_y;
-    cv::Sobel(gray, sobel_x, CV_64F, 1, 0, 7);
-    cv::Sobel(gray, sobel_y, CV_64F, 0, 1, 7);
+    cv::Sobel(gray, sobel_x, CV_32F, 1, 0, 7);
+    cv::Sobel(gray, sobel_y, CV_32F, 0, 1, 7);
     cv::magnitude(sobel_x, sobel_y, magnitude_);
     cv::phase(sobel_x, sobel_y, orientation_, false);
 }
 
-static double percentile85(const std::vector<double>& values)
+static float percentile85(std::vector<float>& v)
 {
-    if (values.empty())
+    if (v.empty())
         return 0.0;
-    std::vector<double> v = values;
     size_t idx = static_cast<size_t>(std::floor(0.85 * (v.size() - 1)));
-    std::nth_element(v.begin(), v.begin() + idx, v.end());
+    // Narrow the order statistic to one magnitude bucket, then select the
+    // exact float within it. This preserves the percentile (no quantization
+    // of the threshold), while avoiding partitioning an entire large window.
+    std::array<size_t, 1024> counts{};
+    auto bucket = [](float value) {
+        return value >= 262144.f ? 1023 : static_cast<int>(value * (1.f / 256.f));
+    };
+    for (float value : v)
+        ++counts[bucket(value)];
+    size_t before = 0;
+    int selected = 0;
+    while (before + counts[selected] <= idx) {
+        before += counts[selected];
+        ++selected;
+    }
+    size_t kept = 0;
+    for (float value : v)
+        if (bucket(value) == selected)
+            v[kept++] = value;
+    idx -= before;
+    std::nth_element(v.begin(), v.begin() + idx, v.begin() + kept);
     return v[idx];
 }
 
@@ -58,14 +76,13 @@ static std::vector<double> convolve_wrap(const std::vector<double>& src, const s
     const int k = static_cast<int>(kernel.size());
     const int half = k / 2;
     std::vector<double> out(n, 0.0);
+    std::vector<double> padded(n + k - 1);
+    for (int i = 0; i < static_cast<int>(padded.size()); ++i)
+        padded[i] = src[(i - half + n) % n];
     for (int i = 0; i < n; ++i) {
         double s = 0.0;
-        for (int j = 0; j < k; ++j) {
-            int idx = (i + j - half) % n;
-            if (idx < 0)
-                idx += n;
-            s += src[idx] * kernel[j];
-        }
+        for (int j = 0; j < k; ++j)
+            s += padded[i + j] * kernel[j];
         out[i] = s;
     }
     return out;
@@ -93,9 +110,10 @@ std::pair<std::optional<double>, std::optional<double>> DirectionField::get(doub
     const int x2 = std::min(xm - 1, x - kernel / 2 + kernel);
     const int y2 = std::min(ym - 1, y - kernel / 2 + kernel);
 
-    std::vector<double> mags;
+    std::vector<float> mags;
+    mags.reserve(static_cast<size_t>(std::max(0, x2 - x1)) * std::max(0, y2 - y1));
     for (int yy = y1; yy < y2; ++yy) {
-        const double* row = magnitude_.ptr<double>(yy);
+        const float* row = magnitude_.ptr<float>(yy);
         for (int xx = x1; xx < x2; ++xx)
             mags.push_back(row[xx]);
     }
@@ -103,20 +121,24 @@ std::pair<std::optional<double>, std::optional<double>> DirectionField::get(doub
 
     std::vector<double> hist(180, 0.0);
     for (int yy = y1; yy < y2; ++yy) {
-        const double* mag = magnitude_.ptr<double>(yy);
-        const double* ori = orientation_.ptr<double>(yy);
+        const float* mag = magnitude_.ptr<float>(yy);
+        const float* ori = orientation_.ptr<float>(yy);
         for (int xx = x1; xx < x2; ++xx) {
             if (mag[xx] <= threshold)
                 continue;
-            double deg = std::fmod(ori[xx] * 180.0 / CV_PI, 180.0);
-            if (deg < 0)
-                deg += 180.0;
+            // cv::phase is in [0, 2*pi]; avoid fmod in every local window.
+            double deg = ori[xx] * 180.0 / CV_PI;
+            if (deg >= 180.0)
+                deg -= 180.0;
+            if (deg >= 180.0)
+                deg -= 180.0;
             int bin = std::min(179, std::max(0, static_cast<int>(std::floor(deg))));
             hist[bin] += mag[xx];
         }
     }
 
-    auto smooth = convolve_wrap(hist, gaussian_kernel(2.0));
+    static const auto smoothing_kernel = gaussian_kernel(2.0);
+    auto smooth = convolve_wrap(hist, smoothing_kernel);
     const double max_val = *std::max_element(smooth.begin(), smooth.end());
     if (max_val <= 0.0) {
         cache_[key] = {std::nullopt, std::nullopt};

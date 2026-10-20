@@ -45,14 +45,18 @@ def prepare():
             row = dict(source=source.relative_to(ROOT).as_posix(), ec=match[1], deformation=int(match[2]),
                        original_size=list(original.size), sha256=hashlib.sha256(source.read_bytes()).hexdigest())
             old = previous.get(row['source'], {})
-            cached = old.get('sha256') == row['sha256'] and all((OUT / f'inputs_{side}' / source.name).exists() for side in (2000, 1000))
+            cached = (old.get('sha256') == row['sha256']
+                      and old.get('resizer_version') == PIL.__version__
+                      and all((OUT / f'inputs_{side}' / source.name).exists()
+                              and hashlib.sha256((OUT / f'inputs_{side}' / source.name).read_bytes()).hexdigest()
+                                  == old.get(f'sha256_{side}') for side in (2000, 1000)))
             row['resizer_version'] = old.get('resizer_version', PIL.__version__) if cached else PIL.__version__
             for side in (2000, 1000):
                 destination = OUT / f'inputs_{side}' / source.name
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 scale = min(1, side / max(original.size))
                 size = tuple(round(v * scale) for v in original.size)
-                if not destination.exists() or previous.get(row['source'], {}).get('sha256') != row['sha256']:
+                if not cached:
                     original.resize(size, Image.Resampling.LANCZOS).save(destination)
                 row[f'size_{side}'] = list(size)
                 row[f'sha256_{side}'] = hashlib.sha256(destination.read_bytes()).hexdigest()

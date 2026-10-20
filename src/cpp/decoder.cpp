@@ -5,6 +5,9 @@
 #include "ImageView.h"
 #include "ReadBarcode.h"
 #include "ReaderOptions.h"
+#include "BitMatrix.h"
+#include "DecoderResult.h"
+#include "qrcode/QRDecoder.h"
 
 #include <opencv2/objdetect.hpp>
 #include <opencv2/imgproc.hpp>
@@ -110,6 +113,41 @@ std::optional<std::string> decode_zxingcpp(const cv::Mat& img)
     return std::nullopt;
 }
 
+std::optional<std::string> decode_qr_grid(const cv::Mat& img, int dimension, int module_size)
+{
+    if (img.type() != CV_8UC1 || dimension < 21 || dimension > 177 ||
+        (dimension - 21) % 4 || module_size < 2 ||
+        img.rows != (dimension + 4) * module_size || img.cols != img.rows)
+        return std::nullopt;
+
+    // Geometry has already been recovered by TPS. Sample the known module
+    // centers directly so residual finder distortion cannot prevent decoding.
+    cv::Mat smooth;
+    cv::blur(img, smooth, cv::Size(3, 3));
+    for (int method = 0; method < 2; ++method) {
+        cv::Mat binary;
+        if (method == 0)
+            cv::adaptiveThreshold(smooth, binary, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C,
+                                  cv::THRESH_BINARY, module_size * 5 + 1, 5);
+        else
+            cv::threshold(smooth, binary, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+        for (int dy : {0, -1, 1}) {
+            for (int dx : {0, -1, 1}) {
+                ZXing::BitMatrix bits(dimension, dimension);
+                for (int y = 0; y < dimension; ++y) {
+                    const auto* row = binary.ptr<uchar>((y + 2) * module_size + module_size / 2 + dy);
+                    for (int x = 0; x < dimension; ++x)
+                        bits.set(x, y, row[(x + 2) * module_size + module_size / 2 + dx] == 0);
+                }
+                auto decoded = ZXing::QRCode::Decode(bits);
+                if (decoded.isValid())
+                    return decoded.content().text(ZXing::TextMode::HRI);
+            }
+        }
+    }
+    return std::nullopt;
+}
+
 static std::optional<std::string> try_decode(const cv::Mat& img)
 {
     auto result = decode_zxingcpp(img);
@@ -175,10 +213,7 @@ std::optional<std::string> decode_qreader(const cv::Mat& img)
     // cv::Mat cropped = croplocate_cv2(img);
     // cv::imwrite("debug/cropped.png", cropped);
 
-    cv::Mat inverted;
-    cv::bitwise_not(img, inverted);
-    if (auto r = try_decode(inverted); r)
-        return r;
+    // decode_zxingcpp already tries both polarities.
 
     // cv::Mat gray;
     // if (img.channels() == 1) {

@@ -25,6 +25,8 @@ class TPS():
         """
         ctrl_pts = np.asarray(from_pts, dtype=float)
         target_pts = np.asarray(to_pts, dtype=float)
+        self.scale = 1.0
+        self.shift = 0.0
         if ctrl_pts.ndim != 2 or ctrl_pts.shape[1] != 2:
             raise ValueError('ctrl_pts must be (N,2)')
         N = ctrl_pts.shape[0]
@@ -72,7 +74,7 @@ class TPS():
     
     def affine(self, scale, shift):
         self.scale *= scale
-        self.shift += shift
+        self.shift = self.shift * scale + shift
 
 
     def warp_image_tps(self, src_img, out_shape, scale = 1, margins = 0, order=1, cval=255):
@@ -97,7 +99,30 @@ class TPS():
         xv, yv = np.meshgrid(xs, ys)
         grid = np.column_stack([xv.ravel(), yv.ravel()])  # (M,2) with (x,y)
         grid = (grid - margins) / scale
-        src_coords = self.tps_transform(grid)
+        centers = self.ctrl_pts * scale + margins
+        # Reuse radial kernels at repeated lattice distances, as in C++.
+        lattice = (scale > 0 and np.isfinite(centers).all()
+                   and np.max(np.abs(centers)) <= 8192
+                   and np.max(np.abs(centers - np.rint(centers))) <= 1e-9)
+        if lattice:
+            centers = np.rint(centers).astype(int)
+            dx = np.abs(xs[:, None] - centers[None, :, 0])
+            dy = np.abs(ys[:, None] - centers[None, :, 1])
+            lattice = (dx.max() + 1) * (dy.max() + 1) <= 4 * 1024 * 1024
+        if lattice:
+            kx = np.arange(dx.max() + 1) / scale
+            ky = np.arange(dy.max() + 1) / scale
+            kernels = self._tps_kernel(np.sqrt(ky[:, None]**2 + kx[None, :]**2))
+            n = len(centers)
+            affine = self.params[n:]
+            src_coords = (affine[0] + grid[:, :1] * affine[1]
+                          + grid[:, 1:] * affine[2])
+            for i in range(n):
+                u = kernels[dy[:, i, None], dx[None, :, i]].reshape(-1, 1)
+                src_coords += u * self.params[i]
+            src_coords = src_coords * self.scale + self.shift
+        else:
+            src_coords = self.tps_transform(grid)
         # src_coords are (x_src, y_src) in image coordinate (col,row)
         x_src = src_coords[:, 0].reshape((h_out, w_out))
         y_src = src_coords[:, 1].reshape((h_out, w_out))

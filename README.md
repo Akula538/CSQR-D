@@ -6,7 +6,7 @@ QR code detection and decoding for QR codes placed on arbitrary smooth non-plana
 
 CSQR-D reconstructs the geometry of a curved QR code, rectifies the image, and then uses conventional QR decoding to recover the encoded data.
 
-On the current benchmark dataset, the C++ implementation of CSQR-D decodes **163 of 169 images (96.45%)**. Detailed results and measurement conditions are provided below.
+On the current benchmark dataset, the C++ implementation of CSQR-D decodes **166 of 169 images (98.22%)**. Detailed results and measurement conditions are provided below.
 
 ![Curved QR geometric correction](docs/images/Original_Corrected.png)
 
@@ -43,11 +43,13 @@ Recognition rate is the fraction of images successfully decoded at each deformat
 
 | Deformation | Samples | ZXing-C++ | ZBar / pyzbar | OpenCV | QReader | CSQR-D |
 |---|---:|---:|---:|---:|---:|---:|
-| 0 | 12 | 58.33% | 50.00% | 33.33% | 75.00% | 100.00% |
+| 0 | 12 | 58.33% | 50.00% | 33.33% | 66.67% | 100.00% |
 | 1 | 53 | 37.74% | 16.98% | 13.21% | 33.96% | 100.00% |
-| 2 | 92 | 9.78% | 6.52% | 0.00% | 6.52% | 93.48% |
+| 2 | 92 | 9.78% | 6.52% | 0.00% | 6.52% | 96.74% |
 | 3 | 12 | 0.00% | 0.00% | 0.00% | 0.00% | 100.00% |
-| **Overall** | 169 | 21.30% | 12.43% | 6.51% | 19.53% | 96.45% |
+| **Overall** | 169 | 21.30% | 12.43% | 6.51% | 18.93% | 98.22% |
+
+Additional real-image sets, evaluated at their original resolutions: **14/20** in `data3` (folds, exact payload match) and **41/68** in `data4`.
 
 ### Runtime comparison
 
@@ -55,11 +57,11 @@ Runtime is measured on **135 images** from the simpler `data2` dataset. Each ima
 
 | Scanner | Mean (ms) | Median (ms) | P95 (ms) |
 |---|---:|---:|---:|
-| ZXing-C++ | 8.70 | 8.55 | 11.27 |
-| ZBar / pyzbar | 14.89 | 14.89 | 17.43 |
-| OpenCV | 26.28 | 27.10 | 38.58 |
-| QReader | 238.71 | 178.00 | 680.58 |
-| CSQR-D | 39.55 | 34.47 | 78.73 |
+| ZXing-C++ | 8.27 | 8.33 | 9.81 |
+| ZBar / pyzbar | 14.81 | 14.97 | 17.62 |
+| OpenCV | 27.24 | 28.62 | 39.18 |
+| QReader | 248.83 | 183.06 | 718.41 |
+| CSQR-D | 27.54 | 22.49 | 56.06 |
 
 ### CSQR-D runtime
 
@@ -67,10 +69,10 @@ This test measures CSQR-D on the curved-QR dataset. The table shows mean process
 
 | Deformation / EC | L | M | Q | H |
 |---|---:|---:|---:|---:|
-| 0 | 83.97 | 48.79 | 70.41 | 46.94 |
-| 1 | 72.38 | 60.41 | 74.60 | 56.21 |
-| 2 | 90.55 | 74.35 | 77.91 | 59.47 |
-| 3 | 113.40 | 97.50 | 104.58 | 68.79 |
+| 0 | 32.59 | 23.80 | 26.42 | 24.92 |
+| 1 | 29.85 | 26.17 | 26.52 | 26.54 |
+| 2 | 32.80 | 34.49 | 26.85 | 31.78 |
+| 3 | 57.63 | 36.04 | 27.41 | 29.00 |
 
 CSQR-D uses the C++ implementation in all tests. [Detailed methodology, environment and reproduction](docs/BENCHMARKS.md).
 

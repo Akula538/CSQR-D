@@ -2,7 +2,6 @@ from __future__ import annotations
 import cv2
 from PIL import Image
 import numpy as np
-from pyzbar.pyzbar import decode as pyzbar_decode
 from random import random
 from time import time
 import zxingcpp
@@ -118,6 +117,7 @@ def qreader_style_global_decode(
     return None
 
 def decode_pyzbar(img): #0.0012s
+    from pyzbar.pyzbar import decode as pyzbar_decode
     results = pyzbar_decode(img)
     return results[0].data.decode('utf-8') if results else None
 
@@ -136,9 +136,12 @@ def decode_cv2(img): #0.007s
     
     return data or None
 
-from qreader import QReader
-qreader = QReader(model_size="n")
+qreader = None
 def decode_qreader(img): #0.46
+    global qreader
+    if qreader is None:
+        from qreader import QReader
+        qreader = QReader(model_size="n")
     img = np.array(img)
     try:
         return qreader.detect_and_decode(image=img)[0]
@@ -146,11 +149,82 @@ def decode_qreader(img): #0.46
         return None
 
 def decode_zxingcpp(img):
-    try:
-        result = zxingcpp.read_barcode(img).text
-        return result
-    except:
+    result = zxingcpp.read_barcode(np.asarray(img), formats=zxingcpp.BarcodeFormat.QRCode,
+                                  try_rotate=True, try_downscale=True, try_invert=True,
+                                  text_mode=zxingcpp.TextMode.HRI)
+    return result.text if result is not None and result.valid else None
+
+
+def decode_variants(img):
+    """The inexpensive grayscale preprocessing used by the C++ scanner."""
+    gray = np.asarray(img)
+    if gray.dtype != np.uint8 or gray.size == 0:
         return None
+    if gray.ndim == 3:
+        gray = cv2.cvtColor(gray, cv2.COLOR_BGR2GRAY)
+    for index in range(2):
+        image = gray if index == 0 else cv2.filter2D(gray, -1, _SHARPEN_KERNEL)
+        if index:
+            result = decode_zxingcpp(image)
+            if result is not None:
+                return result
+        binary = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+        result = decode_zxingcpp(binary)
+        if result is not None:
+            return result
+        for kernel in (5, 7):
+            result = decode_zxingcpp(cv2.GaussianBlur(image, (kernel, kernel), 0))
+            if result is not None:
+                return result
+    return None
+
+
+def _decode_modules(modules):
+    # Python bindings expose the pure-image reader, not QRCode::Decode(bits).
+    # Restore only fixed finder/separator/timing cells (never payload, format,
+    # version or alignment cells) so pure extraction reads this exact grid.
+    modules = modules.copy()
+    n = len(modules)
+    finder = np.full((7, 7), 0, dtype=np.uint8)
+    finder[1:6, 1:6] = 255
+    finder[2:5, 2:5] = 0
+    for y, x in ((0, 0), (0, n - 8), (n - 8, 0)):
+        modules[y:y + 8, x:x + 8] = 255
+    modules[:7, :7] = finder
+    modules[:7, n - 7:] = finder
+    modules[n - 7:, :7] = finder
+    timing = np.where(np.arange(8, n - 8) % 2 == 0, 0, 255).astype(np.uint8)
+    modules[6, 8:n - 8] = timing
+    modules[8:n - 8, 6] = timing
+    image = np.repeat(np.repeat(np.pad(modules, 4, constant_values=255), 3, axis=0), 3, axis=1)
+    result = zxingcpp.read_barcode(image, formats=zxingcpp.BarcodeFormat.QRCode,
+                                  is_pure=True, try_rotate=False, try_downscale=False,
+                                  try_invert=False, binarizer=zxingcpp.Binarizer.BoolCast,
+                                  text_mode=zxingcpp.TextMode.HRI)
+    return result.text if result is not None and result.valid else None
+
+
+def decode_qr_grid(img, dimension, module_size=6):
+    """Read known module centers, with the C++ thresholds and sampling phases."""
+    gray = np.asarray(img)
+    if (gray.dtype != np.uint8 or gray.ndim != 2 or dimension < 21 or dimension > 177
+            or (dimension - 21) % 4 or module_size < 2
+            or gray.shape != ((dimension + 4) * module_size,) * 2):
+        return None
+    smooth = cv2.blur(gray, (3, 3))
+    centers = (np.arange(dimension) + 2) * module_size + module_size // 2
+    for method in range(2):
+        if method == 0:
+            binary = cv2.adaptiveThreshold(smooth, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                          cv2.THRESH_BINARY, module_size * 5 + 1, 5)
+        else:
+            binary = cv2.threshold(smooth, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+        for dy in (0, -1, 1):
+            for dx in (0, -1, 1):
+                result = _decode_modules(binary[np.ix_(centers + dy, centers + dx)])
+                if result is not None:
+                    return result
+    return None
 
 # log = [0, 0, 0]
 def decode(img):

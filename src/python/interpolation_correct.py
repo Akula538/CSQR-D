@@ -469,6 +469,7 @@ def averageCol(img, pol):
 
 def recover_pattern_if_need(points, QRsize, pattern = [None, None], search_pattern = [None, None, None, None]):
     pattern = copy.deepcopy(pattern)
+    search_pattern = [None if line is None else list(line) for line in search_pattern]
     if pattern[0] is None:
         cur1 = Curve(points[3], points[2], points[6])
         cub1 = constructCubic(cur1, points[3], [points[3], points[2], points[7], points[6]], [0, 7, QRsize - 7, QRsize])

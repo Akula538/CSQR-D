@@ -104,7 +104,7 @@ CutImageResult cut_image(const cv::Mat& img, const Points& qr, const std::vector
     y1 = std::max(y1 - scale * (y2 - y1), 0.0);
     y2 = std::min(y2 + scale * (y2 - y1), static_cast<double>(img.rows));
 
-    const Point shift(x1, y1);
+    const Point shift(static_cast<int>(x1), static_cast<int>(y1));
 
     CutImageResult result;
     result.qr.reserve(qr.size());

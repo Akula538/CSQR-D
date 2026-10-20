@@ -1,215 +1,159 @@
-from find_qr import find, recognize_distribution, recognize_distribution_polyline, find_qr_zxing, recognize_search_distribution, zxing_detect, zxing_find
-from interpolation_correct import interpolation_correct_homo as correct
-from vectorfield_correct import vectorfield_correct_homo as vector_correct
-from vectorfield_correct import vectorfield_nodes, DirectionField, constructPolylines4recdist
-from binarizer import binarize_zxing_cpp as binarize
-from decoder import decode, decode_qreader, decode_zxingcpp
-from homographic_correct import homographic_correct_perspective, find_homo, HomographyMatrix
-from tools import *
-import interpolation_correct
-import TPS_correct
+"""Headless Python implementation of the C++ scanner recovery pipeline."""
+from pathlib import Path
+
 import cv2
+import numpy as np
 from PIL import Image
-from random import random as rnd
 
-def detectAndDecode(img, img_downscaled = None, can_homo = True):
-    # img = np.array(img)
-    # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-    # height, weight, _ = img.shape
-    # scale_ = min(2000 / weight, 2000 / height)
-    # img = cv2.resize(img, (int(weight * scale_), int(height * scale_)))
-    
-    # height, weight, _ = img.shape
-    # scale = min(1000 / weight, 1000 / height)
-    # img_downscaled = cv2.resize(img, (int(weight * scale), int(height * scale)))
-    
-    # weight, height = img.size
-    # scale_ = min(2000 / weight, 2000 / height)
-    # img = img.resize((int(weight * scale_), int(height * scale_)))
-    
-    
-    if img_downscaled is None:
-        weight, height = img.size
-        scale = min(1000 / weight, 1000 / height)
-        img_downscaled = img.resize((int(weight * scale), int(height * scale)))
-    else:
-        scale = 1/2
+from binarizer import binarize_zxing_cpp
+from decoder import decode_qr_grid, decode_variants, decode_zxingcpp
+from find_qr import (find, find_qr_zxing, recognize_distribution,
+                     recognize_distribution_polyline, recognize_search_distribution, zxing_find)
+from homographic_correct import HomographyMatrix
+from interpolation_correct import recover_pattern_if_need
+from TPS_correct import (TPS, fit_tps_alligment_center, fit_tps_full_qr,
+                         fit_tps_no_alligment, tps_correct)
+from tools import cut_image
+from vectorfield_correct import DirectionField, constructPolylines4recdist, vectorfield_nodes
 
-    img = np.array(img)
-    img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-    img_downscaled = np.array(img_downscaled)
-    img_downscaled = cv2.cvtColor(img_downscaled, cv2.COLOR_RGB2GRAY)
-    
-    
-    # show_points(img_downscaled)
-    
-    # detector = cv2.QRCodeDetector()
-    # found, pts = detector.detectCurved(img_downscaled)
-    # if not found:
-    #     return "CTF"
-    
-    zxing_qr = zxing_find(img_downscaled)
-    
-    if rnd() > 0.05 and len(zxing_qr) < 2:
-        
-        if rnd() < 0.08:
-            result = decode(img_downscaled)
-            if result is not None:
-                return result
-        
-        print("detect CTF")
-        return "CTF"
-    
-    # img = binarize(img)
-    # print("fsfsd")
-    # show_points(img)
-    
-    result = decode(img_downscaled)
-    if result is not None:
-        return result
-    if rnd() < 0.025 or True:
-        result = decode_qreader(img_downscaled)
+
+def _gray(image):
+    if isinstance(image, Image.Image):
+        return cv2.cvtColor(np.asarray(image.convert("RGB")), cv2.COLOR_RGB2GRAY)
+    array = np.asarray(image)
+    if array.ndim == 2:
+        return array.copy()
+    return cv2.cvtColor(array, cv2.COLOR_BGRA2GRAY if array.shape[2] == 4 else cv2.COLOR_BGR2GRAY)
+
+
+def _decode_rectified(image, size):
+    for decoder in (lambda value: decode_qr_grid(value, size), decode_zxingcpp, decode_variants):
+        result = decoder(image)
         if result is not None:
             return result
-            
+    return None
+
+
+def _scan_once(gray, detection_side, supplied=None, debug=None):
+    height, width = gray.shape
+    if supplied is None:
+        scale = detection_side / max(width, height)
+        small = cv2.resize(gray, (max(1, int(width * scale)), max(1, int(height * scale))),
+                           interpolation=cv2.INTER_AREA if scale < 1 else cv2.INTER_CUBIC)
+    else:
+        small = _gray(supplied)
+        scale = max(small.shape) / max(gray.shape)
+        if abs(width * scale - small.shape[1]) > 1 or abs(height * scale - small.shape[0]) > 1:
+            raise ValueError("The supplied image must preserve the original aspect ratio")
+    result = decode_zxingcpp(small)
+    if result is not None:
+        return result
+    patterns = zxing_find(small)
+
+    def original_variants():
+        return decode_variants(small) if len(patterns) >= 2 else None
+
     try:
-        qr, img_binarized = find_qr_zxing(img_downscaled, zxing_qr)
-    # try:pass
-    except:
-        print("zxing CTF")
+        qr, binary = find_qr_zxing(small, patterns)
+    except (ValueError, IndexError, RuntimeError, cv2.error):
         try:
-            img_binarized = binarize(img_downscaled)
-            qr = find(img_binarized)
-        except:
-            return "CTF"
-        
-    show_points(img_binarized, qr)
-    print(list(qr))
-            
+            qr, binary = find_qr_zxing(cv2.bitwise_not(small))
+            gray = cv2.bitwise_not(gray)
+        except (ValueError, IndexError, RuntimeError, cv2.error):
+            try:
+                binary = binarize_zxing_cpp(small)
+                qr = find(binary)
+            except (ValueError, IndexError, RuntimeError, cv2.error):
+                return original_variants() or "CTF"
+    qr = np.asarray(qr, dtype=float)
     try:
-        size, pattern = recognize_distribution(img_binarized, qr)
-        
-        search_pattern = recognize_search_distribution(img_binarized, qr)
-        
-        pattern_recovered = interpolation_correct.recover_pattern_if_need(qr, size, pattern, search_pattern)
-    # try: pass
-    except Exception as e:
-        print(e)
-        return "CTF"
-    
-    if size <= 21:
-        tps = TPS_correct.fit_tps_no_alligment(qr, size)
-        
-        corrected = TPS_correct.tps_correct(img_downscaled, tps, size, square_size=6)
-        
-        cv2.imwrite("corrected.png", corrected)
-        
-        # result = decode_zxingcpp(corrected)
-        # if result: return result
-        # result = decode_qreader(corrected)
-        # if result: return result
-        
-    
-    if size >= 25:
-        tps = TPS_correct.fit_tps_full_qr(qr, size)
-        
-        corrected = TPS_correct.tps_correct(img_downscaled, tps, size, square_size=6)
-        
-        cv2.imwrite("corrected.png", corrected)
-        
-        result = decode_zxingcpp(corrected)
-        if result: return result
-        result = decode_qreader(corrected)
-        if result: return result
-    
-    tps1 = TPS_correct.fit_tps_alligment_center(qr, size)
-    
-    corrected = TPS_correct.tps_correct(img_downscaled, tps1, size, square_size=6)
-    
-    cv2.imwrite("corrected.png", corrected)
-    
-    result = decode_zxingcpp(corrected)
-    if result: return result
-    
-    result = decode_qreader(corrected)
-    if result: return result
-    
-    # corrected = correct(img_downscaled, qr, pattern, QRsize=size, square_size=6, fract=5) # 6 5
+        size, pattern = recognize_distribution(binary, qr)
+        if not 21 <= size <= 177:
+            raise ValueError("Invalid QR dimension")
+        search_pattern = recognize_search_distribution(binary, qr)
+        recovered = recover_pattern_if_need(qr, size, pattern, search_pattern)
+    except (ValueError, IndexError, RuntimeError, cv2.error, ZeroDivisionError):
+        return original_variants() or "CTF"
 
-    # return result
-    
-    # show_points(img_binarized, list(qr) + list(pattern_recovered[0]) + list(pattern_recovered[1]), 4, (0, 0, 255))
-        
-    for i in range(len(qr)):
-        qr[i] = qr[i] / scale
-    
-    for i in range(len(pattern_recovered)):
-        for j in range(len(pattern_recovered[i])):
-            pattern_recovered[i][j] = pattern_recovered[i][j] / scale
-    show_points(img, list(qr) + list(pattern_recovered[0]) + list(pattern_recovered[1]), 4, (0, 0, 255))
-    
-    # corrected = vector_correct(img, qr, pattern=pattern_recovered, QRsize=size, tps=tps, square_size=6, fract=5, lines_fract=20) # 6 5 9
+    tps = fit_tps_no_alligment(qr, size) if size <= 21 else fit_tps_full_qr(qr, size)
 
-    img, qr, pattern_recovered, shift = cut_image(img, qr, pattern_recovered, size, return_shift=True)
+    def corrected_decode(transform, source, dimension, name):
+        corrected = tps_correct(source, transform, dimension, square_size=6)
+        if debug is not None:
+            cv2.imwrite(str(debug / name), corrected)
+        return _decode_rectified(corrected, dimension)
+
+    result = corrected_decode(tps, small, size, "corrected_full_tps.png")
+    if result is not None:
+        return result
+    result = original_variants()
+    if result is not None:
+        return result
+    result = corrected_decode(fit_tps_alligment_center(qr, size), small, size, "corrected_alignment_tps.png")
+    if result is not None:
+        return result
+
+    qr /= scale
+    recovered = [[np.asarray(point) / scale for point in line] for line in recovered]
+    crop, qr, recovered, shift = cut_image(gray, qr, recovered, size, return_shift=True)
     tps.affine(1 / scale, -shift)
-    df = DirectionField(img)
+    field = DirectionField(crop)
     try:
-        cut_to_binary = HomographyMatrix(scale, shift * scale)
-        polylines = constructPolylines4recdist(df, qr, 30)
+        lookup = HomographyMatrix(scale, shift * scale)
+        polylines = constructPolylines4recdist(field, qr, 30)
         previous_size = size
-        size, pattern = recognize_distribution_polyline(img_binarized, qr, cut_to_binary, polylines)
-        for patt in search_pattern:
-            if patt is not None:
-                for i in range(len(patt)):
-                    patt[i] = patt[i] / scale - shift
-        pattern_recovered = interpolation_correct.recover_pattern_if_need(qr, size, pattern, search_pattern)
+        size, pattern = recognize_distribution_polyline(binary, qr, lookup, polylines)
+        if not 21 <= size <= 177:
+            raise ValueError("Invalid QR dimension")
+        search_pattern = [None if line is None else np.asarray(line) / scale - shift
+                          for line in search_pattern]
+        recovered = recover_pattern_if_need(qr, size, pattern, search_pattern)
         if size != previous_size:
-            tps = TPS_correct.fit_tps_no_alligment(qr, size) if size <= 21 else TPS_correct.fit_tps_full_qr(qr, size)
-    except Exception as e:
-        print(e)
+            tps = fit_tps_no_alligment(qr, size) if size <= 21 else fit_tps_full_qr(qr, size)
+    except (ValueError, IndexError, RuntimeError, cv2.error, ZeroDivisionError):
         return "CTF"
-    # show_points(img, list(qr) + list(pattern_recovered[0]) + list(pattern_recovered[1]), 4, (0, 0, 255))
-    
-    target, scr = vectorfield_nodes(img, qr, pattern=pattern_recovered, QRsize=size, tps=tps, square_size=6, fract=5, lines_fract=20, df=df) # 6 5 9
-    
-    # show_points(img, list(scr), 20, (0, 0, 255))
-    
-    tps = TPS_correct.TPS()
-    tps.fit(target, scr)
-    
-    # img = cv2.imread("marked.png")
-    corrected = TPS_correct.tps_correct(img, tps, size, square_size=6)
-    
-    cv2.imwrite("corrected.png", corrected)
-        
-    result = decode_zxingcpp(corrected)
-    if result: return result
-    result = decode_qreader(corrected)
-    if result: return result
-        
-        
-    return result
+
+    for spacing, steps in ((5, 20), (3, max(40, 2 * size))):
+        target, source = vectorfield_nodes(crop, qr, pattern=recovered, QRsize=size, tps=tps,
+                                           square_size=6, fract=spacing, lines_fract=steps, df=field)
+        transform = TPS()
+        transform.fit(target, source)
+        result = corrected_decode(transform, crop, size, f"corrected_vector_{spacing}_tps.png")
+        if result is not None:
+            return result
+    return None
+
+
+def detectAndDecode(img, img_downscaled=None, can_homo=True, *, debug_output_dir=None):
+    """Accept a PIL RGB image or an OpenCV BGR/grayscale uint8 array.
+
+    Return a decoded string, "CTF" for failed geometry, or None when a
+    recovered grid cannot be decoded. Debug images are written only on request.
+    can_homo is retained for compatibility with existing callers.
+    """
+    gray = _gray(img)
+    if gray.size == 0:
+        return "CTF"
+    if gray.dtype != np.uint8:
+        raise ValueError("Expected a uint8 image")
+    debug = Path(debug_output_dir) if debug_output_dir is not None else None
+    if debug is not None:
+        debug.mkdir(parents=True, exist_ok=True)
+    for side in (1000, 1500):
+        try:
+            result = _scan_once(gray, side, img_downscaled if side == 1000 else None, debug)
+        except (ValueError, IndexError, RuntimeError, cv2.error, ZeroDivisionError, np.linalg.LinAlgError):
+            result = "CTF"
+        if result != "CTF":
+            return result
+    return "CTF"
 
 
 if __name__ == "__main__":
-    # img = Image.open("data/v2/M/big/img0102_v2_M_big_d2.png")
-    # img = Image.open("data/v2/M/big/img0114_v2_M_big_d2.png")
-    # img = Image.open("data/v2/L/big/img0046_v2_L_big_d3.png")
-    img = Image.open("data_orig/v2/L/small/img0081_v2_L_small_d1.png")
-    # img = Image.open("data/v2/H/small/img0039_v2_H_small_d1.png")
-    # img = Image.open("data_orig/v2/M/big/img0090_v2_M_big_d2.png")
-    # img = Image.open("data_orig/v2/M/small/img0120_v2_M_small_d2.png")
-    # img = Image.open("data_orig/v2/L/small/img0079_v2_L_small_d2.png")
-    # img = Image.open("data2/test/150.png")
-    
-    # img = Image.open("corrected.png")
-    
-    
-    img = Image.open("C:/Users/user/Downloads/qrlog2.png")
-    
-    
-    
-    print(detectAndDecode(img, can_homo=False))
-    # print(detectAndDecode_TPS(img))
-    
-    # corrected.save("corrected.png")
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("image", type=Path)
+    parser.add_argument("--debug-output", type=Path)
+    arguments = parser.parse_args()
+    with Image.open(arguments.image) as image:
+        print(detectAndDecode(image, debug_output_dir=arguments.debug_output))

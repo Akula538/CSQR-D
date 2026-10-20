@@ -28,50 +28,20 @@ def upsample(gray, scale=2):
     return gray_up
 
 class DirectionField():
-    def __init__(self, img, show_flag = False):
-        if len(img.shape) == 3:
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        gray = img.copy()
-        
-        gray = cv2.GaussianBlur(gray, (1, 1), 0)
-        # show_points(gray, [])
-            
-        sobel_x = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=7)
-        sobel_y = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=7)
-        
-        self.magnitude = np.sqrt(sobel_x**2 + sobel_y**2)
-        self.orientation = np.arctan2(sobel_y, sobel_x)
-        
+    def __init__(self, img, show_flag=False):
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if img.ndim == 3 else img
+        sobel_x = cv2.Sobel(gray, cv2.CV_32F, 1, 0, ksize=7)
+        sobel_y = cv2.Sobel(gray, cv2.CV_32F, 0, 1, ksize=7)
+        self.magnitude = cv2.magnitude(sobel_x, sobel_y)
+        self.orientation = cv2.phase(sobel_x, sobel_y, angleInDegrees=False)
         self.show_flag = show_flag
-        
         self.cache = {}
         self.lucky = []
         self.dislucky = []
-        
-        # if gray.dtype == np.uint8:
-        #     gray_f = gray.astype(np.float32) / 255.0
-        # else:
-        #     gray_f = gray.astype(np.float32)
-            
-        # sobel_kernel = 3
-        # Ix = cv2.Sobel(gray_f, cv2.CV_32F, 1, 0, ksize=sobel_kernel)
-        # Iy = cv2.Sobel(gray_f, cv2.CV_32F, 0, 1, ksize=sobel_kernel)
+        offsets = np.arange(-6, 7, dtype=float)
+        self.smoothing_kernel = np.exp(-(offsets * offsets) / 8)
+        self.smoothing_kernel /= self.smoothing_kernel.sum()
 
-        # Jxx = Ix * Ix
-        # Jyy = Iy * Iy
-        # Jxy = Ix * Iy
-
-        # tensor_sigma = 4
-        # Jxx = cv2.GaussianBlur(Jxx, ksize=(0, 0), sigmaX=tensor_sigma)
-        # Jyy = cv2.GaussianBlur(Jyy, ksize=(0, 0), sigmaX=tensor_sigma)
-        # Jxy = cv2.GaussianBlur(Jxy, ksize=(0, 0), sigmaX=tensor_sigma)
-
-        # self.tensor_orientation = 0.5 * np.arctan2(2.0 * Jxy, (Jxx - Jyy + 1e-12))  # radians in (-pi/2, pi/2)
-
-        # numer = np.sqrt((Jxx - Jyy)**2 + 4.0 * (Jxy**2))
-        # denom = (Jxx + Jyy) + 1e-12
-        # self.coherence = (numer / denom).astype(np.float32)  # in [0,1] roughly
-    
     def initGrid(self, kernel = 35):
         # kernel //= 1
         ym, xm = self.magnitude.shape
@@ -89,115 +59,42 @@ class DirectionField():
         self.kernel = kernel
     
     
-    def get(self, x, y, kernel = 35):
-        x = int(x)
-        y = int(y)
-        kernel = int(kernel)
-        
-        if (x, y, kernel) in self.cache:
-            return self.cache[(x, y, kernel)]
-        
-        ym, xm = self.magnitude.shape
-        
-        x1 = max(0, x - kernel // 2)
-        y1 = max(0, y - kernel // 2)
-        x2 = min(xm - 1, x - kernel // 2 + kernel)
-        y2 = min(ym - 1, y - kernel // 2 + kernel)
-        
-        roi_magnitude = self.magnitude[y1:y2, x1:x2]
-        roi_orientation = self.orientation[y1:y2, x1:x2]
-        
-        # roi_magnitude = self.coherence[y1:y2, x1:x2]
-        # roi_orientation = self.tensor_orientation[y1:y2, x1:x2]
-        
-        threshold = np.percentile(roi_magnitude, 85)
-        # threshold = 0.3
-        
-        mask = roi_magnitude > threshold
-        
-        strong_orientations = roi_orientation[mask]
-        strong_magnitudes = roi_magnitude[mask]
-        
-        line_orientations = (np.degrees(strong_orientations) + 45) % 180 - 45
-        
-        hist_counts, bins = np.histogram(line_orientations, bins=180, range=(-45, 135), weights=strong_magnitudes)
-        bins_centers = bins[:-1]
-        
-        sigma = 2.0
-        kernel_size = int(2 * 3 * sigma) + 1
-        xx = np.arange(-kernel_size//2, kernel_size//2 + 1)
-        gaussian_kernel = np.exp(-xx**2 / (2 * sigma**2))
-        gaussian_kernel = gaussian_kernel / gaussian_kernel.sum()
+    def get(self, x, y, kernel=35):
+        x, y, kernel = int(x), int(y), int(kernel)
+        key = x, y, kernel
+        if key in self.cache:
+            return self.cache[key]
+        height, width = self.magnitude.shape
+        x1, y1 = max(0, x - kernel // 2), max(0, y - kernel // 2)
+        x2, y2 = min(width - 1, x - kernel // 2 + kernel), min(height - 1, y - kernel // 2 + kernel)
+        if x2 <= x1 or y2 <= y1:
+            self.cache[key] = (None, None)
+            return self.cache[key]
+        magnitude = self.magnitude[y1:y2, x1:x2]
+        values = magnitude.ravel()
+        rank = int(np.floor(.85 * (values.size - 1)))
+        threshold = np.partition(values, rank)[rank]
+        mask = magnitude > threshold
+        angles = self.orientation[y1:y2, x1:x2][mask].astype(float) * 180 / np.pi
+        angles %= 180
+        bins = np.clip(np.floor(angles).astype(int), 0, 179)
+        histogram = np.bincount(bins, weights=magnitude[mask], minlength=180)
+        smooth = convolve1d(histogram, self.smoothing_kernel, mode="wrap")
+        maximum = smooth.max()
+        if maximum <= 0:
+            self.cache[key] = (None, None)
+            return self.cache[key]
+        candidates = np.flatnonzero((smooth >= .1 * maximum)
+                                   & (smooth >= np.roll(smooth, 1))
+                                   & (smooth >= np.roll(smooth, -1)))
+        selected = []
+        for peak in sorted(candidates, key=lambda i: -smooth[i]):
+            if all(min(abs(int(peak) - old), 180 - abs(int(peak) - old)) >= 25 for old in selected):
+                selected.append(int(peak))
+        result = (selected[0], selected[1] if len(selected) > 1 else None) if selected else (None, None)
+        self.cache[key] = result
+        return result
 
-        smoothed_counts = convolve1d(hist_counts, gaussian_kernel, mode='wrap')
-        
-        # print(smoothed_counts)
-        
-        #========================================
-        if self.show_flag:
-            import matplotlib.pyplot as plt
-            
-            plt.figure(figsize=(14, 6))
-
-            # Исходная гистограмма
-            # plt.subplot(1, 2, 1)
-            plt.bar(bins_centers, hist_counts, width=1, alpha=0.7, edgecolor='black')
-            plt.xlabel('Направление градиента (градусы)')
-            # plt.ylabel('Количество точек')
-            # plt.title('Исходная гистограмма направлений')
-            plt.grid(True, alpha=0.3)
-            plt.xlim(-45, 135)
-
-            # Сглаженная гистограмма
-            # plt.subplot(1, 2, 2)
-            # plt.bar(bins_centers, smoothed_counts, width=1, alpha=0.7, color='red', edgecolor='black')
-            # plt.plot(bins_centers, smoothed_counts, 'k-', linewidth=2, label='Сглаженная кривая')
-            # plt.xlabel('Направление градиента (градусы)')
-            # plt.ylabel('Количество точек (сглаженное)')
-            # plt.title(f'Сглаженная гистограмма (σ={sigma})')
-            # plt.grid(True, alpha=0.3)
-            # plt.xlim(0, 180)
-            # plt.legend()
-
-            plt.tight_layout()
-            plt.show()
-        
-        #========================================
-        
-        pad = 45
-        extended = np.concatenate([smoothed_counts[-pad:], smoothed_counts, smoothed_counts[:pad]])
-        
-        peaks_ext, props = find_peaks(extended,
-                               height=0.1*np.max(smoothed_counts),
-                               distance=25)
-        N = len(smoothed_counts)
-        peaks_in_center = [p - pad for p in peaks_ext if pad <= p < pad + N]
-        
-        if len(peaks_in_center) < 1:
-            return None, None
-        
-        peaks = [(smoothed_counts[i], bins_centers[i]) for i in peaks_in_center]
-
-        peaks.sort()
-        
-        def circ_dist(a, b):
-            d = abs(a - b) % 180.0
-            return min(d, 180.0 - d)
-
-        if len(peaks) >= 2:
-            h1, a1 = peaks[-1]
-            h2, a2 = peaks[-2]
-            if circ_dist(a1, a2) < 25:
-                peaks.pop()
-        
-        # print(peaks)
-        if len(peaks) == 1:
-            self.cache[(x, y, kernel)] = (peaks[-1][1], None)
-            return peaks[-1][1], None
-        else:
-            self.cache[(x, y, kernel)] = (peaks[-1][1], peaks[-2][1])
-            return peaks[-1][1], peaks[-2][1]
-    
     def getBiliniar(self, x, y):
         def circ_dist(a, b):
             d = abs(a - b) % 180.0
@@ -726,141 +623,43 @@ def vectorfield_correct_homo(img, points, pattern = [None, None], QRsize = 25, s
     return corrected
 
 
-def vectorfield_nodes(img, points, pattern = [None, None], QRsize = 25, square_size = 10, fract = 1, lines_fract = 5, tps = None, df = None):
-    
-    start_time = time.time()
-    
-    def range_(c, f = fract):
-        a = [i for i in range(0, c - 1, f)]
-        a.append(c - 1)
-        return a
-
-    paint = np.array(img)
-
+def vectorfield_nodes(img, points, pattern=(None, None), QRsize=25,
+                      square_size=10, fract=1, lines_fract=5, tps=None, df=None):
+    rg = list(range(0, QRsize, fract)) + [QRsize]
     characteristic_size = max(np.linalg.norm(points[6] - points[3]),
                               np.linalg.norm(points[14] - points[1]))
-    kernel_size = max(characteristic_size * 30 // 300, 35)
-    if kernel_size % 2 == 0: kernel_size += 1
-    print(characteristic_size, kernel_size)
-    
-    
-    # points = data.predsetP2sq4_better
-    # points = data.predsetP1sq4
-    
-    points_mark = list(points[:])
-    if pattern[0] is not None: points_mark += list(pattern[0])
-    if pattern[1] is not None: points_mark += list(pattern[1])
-    points_show = []
-
-    # pattern_comp = [complete_pattern(pattern[0], points[3], points[2], points[7], points[6]),
-                    # complete_pattern(pattern[1], points[1], points[2], points[13], points[14])]
-    
-    pattern_comp = pattern
-    
-    # show_points(img, list(pattern[0]) + list(pattern[1]))
-
-    if df is None: df = DirectionField(img)
-    # df.initGrid(kernel_size)
-    
+    kernel_size = max(int(characteristic_size * 30 / 300), 35)
+    if kernel_size % 2 == 0:
+        kernel_size += 1
+    if df is None:
+        df = DirectionField(img)
     grade = [[], []]
-
-    for i in range_(QRsize + 1):
-
-        if np.linalg.norm(pattern_comp[1][i] - points[2]) <\
-           np.linalg.norm(pattern_comp[1][i] - points[13]):
-            dist1 = points[2] - points[3]
-        else:
-            dist1 = points[13] - points[12]
-            
-        grade[1].append(constructPolyline(df, pattern_comp[1][i], dist1,
-            QRsize, np.linalg.norm(points[6] - points[3]), lines_fract, kernel_size))
-        
-        if np.linalg.norm(pattern_comp[0][i] - points[2]) <\
-           np.linalg.norm(pattern_comp[0][i] - points[7]):
-            dist2 = points[2] - points[1]
-        else:
-            dist2 = points[7] - points[4]
-        
-        grade[0].append(constructPolyline(df, pattern_comp[0][i], dist2,
-            QRsize, np.linalg.norm(points[14] - points[1]), lines_fract, kernel_size))
-        
-        # points_show += grade[0][-1].points
-        # points_show += grade[1][-1].points
-        
-        zp = grade[0][-1].points
-        zp = np.array(zp, dtype=np.int32)
-        zp = zp.reshape((-1, 1, 2))
-        cv2.polylines(paint, [zp], False, (255, 0, 0), 5)
-        zp = grade[1][-1].points
-        zp = np.array(zp, dtype=np.int32)
-        zp = zp.reshape((-1, 1, 2))
-        cv2.polylines(paint, [zp], False, (255, 0, 0), 5)
-
-    # cv2.imshow('Points', paint)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-    # show_points(img, df.lucky)
-    # show_points(img, df.dislucky)
-    cv2.imwrite("marked.png", paint)
-    
-    # show_points(img, points_show, 3)
-    # print(pattern[0])
-    # print(pattern[1])
-    
-    rg = range_(QRsize + 1)
-    
-    nodes = [[None for y in range_(QRsize + 1)] for x in range_(QRsize + 1)]
-    predicted_last = [[None for y in range_(QRsize + 1)] for x in range_(QRsize + 1)]
-    if tps is not None:
-        pts = []
-        for x in range_(QRsize + 1):
-            for y in range_(QRsize + 1):
-                pts.append([x, y])
-        pts = tps.tps_transform(pts)
-        for x in range(len(rg)):
-            for y in range(len(rg)):
-                predicted_last[x][y] = pts[x * len(rg) + y]
-        
-        # show_points(img, pts)
-    
+    for i in rg:
+        dist1 = (points[2] - points[3] if np.linalg.norm(pattern[1][i] - points[2])
+                 < np.linalg.norm(pattern[1][i] - points[13]) else points[13] - points[12])
+        grade[1].append(constructPolyline(df, pattern[1][i], dist1, QRsize,
+                                         np.linalg.norm(points[6] - points[3]), lines_fract, kernel_size))
+        dist2 = (points[2] - points[1] if np.linalg.norm(pattern[0][i] - points[2])
+                 < np.linalg.norm(pattern[0][i] - points[7]) else points[7] - points[4])
+        grade[0].append(constructPolyline(df, pattern[0][i], dist2, QRsize,
+                                         np.linalg.norm(points[14] - points[1]), lines_fract, kernel_size))
+    target = np.asarray([(x, y) for x in rg for y in rg])
+    prediction = None if tps is None else tps.tps_transform(target).reshape(len(rg), len(rg), 2)
+    nodes = np.empty((len(rg), len(rg), 2))
     for x in range(len(rg)):
         for y in range(len(rg)):
-            if predicted_last[x][y] is not None:
-                last = predicted_last[x][y]
+            if prediction is not None:
+                last = prediction[x, y]
             elif x == 0 and y == 0:
                 last = points[0]
-            elif x == 0:
-                last = nodes[x][y - 1]
             else:
-                last = nodes[x - 1][y]
-            
-            p = PolylineIntersection(grade[0][x], grade[1][y])
-            
-            if p == []:
-                nodes[x][y] = last
-                continue
-            
-            nodes[x][y] = p[0]
-            for i in p:
-                if np.linalg.norm(last - i) < np.linalg.norm(last - nodes[x][y]):
-                    nodes[x][y] = i
-
-            if tps is not None and np.linalg.norm(nodes[x][y] - last) > characteristic_size * 3 / QRsize:
-                nodes[x][y] = last
-
-    print("ready in", time.time() - start_time)
-
-    pts = []
-    for x in range_(QRsize + 1):
-        for y in range_(QRsize + 1):
-            pts.append([x, y])
-    nodes = np.asarray(nodes)
-    nodes = np.concatenate(nodes)
-    
-    return pts, nodes
-
-
-
+                last = nodes[x, y - 1] if x == 0 else nodes[x - 1, y]
+            intersections = PolylineIntersection(grade[0][x], grade[1][y])
+            node = min(intersections, key=lambda point: np.linalg.norm(point - last)) if intersections else last
+            if tps is not None and np.linalg.norm(node - last) > characteristic_size * 3 / QRsize:
+                node = last
+            nodes[x, y] = node
+    return target, nodes.reshape(-1, 2)
 
 
 if __name__ == "__main__":

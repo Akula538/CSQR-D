@@ -13,7 +13,6 @@
 
 #include <filesystem>
 #include <fstream>
-#include <random>
 #include <stdexcept>
 
 namespace qrscanner {
@@ -30,16 +29,6 @@ static cv::Mat to_gray(const cv::Mat& img)
     else
         gray = img.clone();
     return gray;
-}
-
-static cv::Mat gray_to_bgr_if_needed(const cv::Mat& img)
-{
-    if (img.channels() == 1) {
-        cv::Mat bgr;
-        cv::cvtColor(img, bgr, cv::COLOR_GRAY2BGR);
-        return bgr;
-    }
-    return img;
 }
 
 static void write_debug(const ScanOptions& options, const std::string& name, const cv::Mat& img)
@@ -64,31 +53,29 @@ static ScanResult decoded_result(const std::string& text)
     return {ScanStatus::Decoded, text};
 }
 
-ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
+static ScanResult scan_once(const cv::Mat& input, const ScanOptions& options, int detection_side)
 {
     if (input.empty())
         return {ScanStatus::Ctf, "CTF"};
 
-    if (options.debug_output_dir) {
-        std::filesystem::create_directories(*options.debug_output_dir);
-        std::ofstream(std::filesystem::path(*options.debug_output_dir) / "trace.txt", std::ios::trunc);
-    }
-
-    // std::mt19937 rng(options.random_seed.value_or(std::random_device{}()));
-    // std::uniform_real_distribution<double> rnd(0.0, 1.0);
+    write_debug_text(options, "trace.txt", "detection side: " + std::to_string(detection_side) + "\n");
 
     const int width = input.cols;
     const int height = input.rows;
-    const double scale = std::min(1000.0 / width, 1000.0 / height);
+    const double scale = std::min(double(detection_side) / width, double(detection_side) / height);
 
     cv::Mat img = to_gray(input);
     cv::Mat img_downscaled;
     cv::resize(img,
                img_downscaled,
-               cv::Size(static_cast<int>(width * scale), static_cast<int>(height * scale)),
+               cv::Size(std::max(1, static_cast<int>(width * scale)), std::max(1, static_cast<int>(height * scale))),
                0,
                0,
                scale < 1.0 ? cv::INTER_AREA : cv::INTER_CUBIC);
+
+    auto result = decode_zxingcpp(img_downscaled);
+    if (result)
+        return decoded_result(*result);
 
     ZxingFindResult zxing_qr = zxing_find_with_binary(img_downscaled);
     write_debug(options, "zxing_binary.png", zxing_qr.binary);
@@ -101,27 +88,9 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
         }
     }
 
-    // if (rnd(rng) > 0.05 && zxing_qr.patterns.size() < 2) {
-    //     if (rnd(rng) < 0.08) {
-    //         auto result = decode(img_downscaled);
-    //         if (result)
-    //             return decoded_result(*result);
-    //     }
-    //     write_debug_text(options, "trace.txt", "early CTF: zxing patterns < 3\n");
-    //     return {ScanStatus::Ctf, "CTF"};
-    // }
-
-    // return {ScanStatus::None, ""};
-
-    auto result = decode_zxingcpp(img_downscaled);
-    if (result)
-        return decoded_result(*result);
-
-    if (zxing_qr.patterns.size() >= 2) {
-        result = decode_qreader(img_downscaled);
-        if (result)
-            return decoded_result(*result);
-    }
+    auto decode_original_variants = [&]() -> std::optional<std::string> {
+        return zxing_qr.patterns.size() >= 2 ? decode_qreader(img_downscaled) : std::nullopt;
+    };
 
     Points qr;
     cv::Mat img_binarized;
@@ -144,6 +113,8 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
                 img_binarized = binarize_zxing_cpp(img_downscaled);
                 qr = find(img_binarized);
             } catch (...) {
+                if (auto decoded = decode_original_variants())
+                    return decoded_result(*decoded);
                 write_debug_text(options, "trace.txt", "find_qr fallback failed\n");
                 return {ScanStatus::Ctf, "CTF"};
             }
@@ -155,6 +126,8 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
     std::vector<Points> pattern_recovered;
     try {
         distribution = recognize_distribution(img_binarized, qr);
+        if (distribution.size < 21 || distribution.size > 177)
+            throw std::runtime_error("Invalid QR dimension");
         search_distribution = recognize_search_distribution(img_binarized, qr);
 
         std::vector<Points*> pattern_ptrs(2, nullptr);
@@ -167,11 +140,15 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
                 search_ptrs[i] = &*search_distribution.pattern[i];
         pattern_recovered = recover_pattern_if_need(qr, distribution.size, pattern_ptrs, search_ptrs);
     } catch (...) {
+        if (auto decoded = decode_original_variants())
+            return decoded_result(*decoded);
         write_debug_text(options, "trace.txt", "recognize_distribution failed\n");
         return {ScanStatus::Ctf, "CTF"};
     }
 
     TPS tps;
+    write_debug_text(options, "trace.txt", "grid size: " + std::to_string(distribution.size) +
+                     " landmarks: " + std::to_string(qr.size()) + "\n");
     if (distribution.size <= 21){
         tps = fit_tps_no_alligment(qr, distribution.size);
     }
@@ -182,6 +159,9 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
     cv::Mat corrected = tps_correct(img_downscaled, tps, distribution.size, 6);
     write_debug(options, "corrected_full_tps.png", corrected);
 
+    result = decode_qr_grid(corrected, distribution.size);
+    if (result)
+        return decoded_result(*result);
     result = decode_zxingcpp(corrected);
     if (result)
         return decoded_result(*result);
@@ -189,10 +169,19 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
     if (result)
         return decoded_result(*result);
 
+    // High-resolution preprocessing is useful for some noisy images but
+    // wasteful when the cheap first geometric correction already decodes.
+    result = decode_original_variants();
+    if (result)
+        return decoded_result(*result);
+
     TPS tps1 = fit_tps_alligment_center(qr, distribution.size);
     corrected = tps_correct(img_downscaled, tps1, distribution.size, 6);
     write_debug(options, "corrected_alignment_tps.png", corrected);
 
+    result = decode_qr_grid(corrected, distribution.size);
+    if (result)
+        return decoded_result(*result);
     result = decode_zxingcpp(corrected);
     if (result)
         return decoded_result(*result);
@@ -215,6 +204,8 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
         auto pattern_polylines = constructPolylines4recdist(df, cut.qr, 30);
         const int previous_size = distribution.size;
         distribution = recognize_distribution_polyline(img_binarized, cut.qr, &cut_to_binary, pattern_polylines);
+        if (distribution.size < 21 || distribution.size > 177)
+            throw std::runtime_error("Invalid QR dimension");
 
         for (auto& pattern : search_distribution.pattern)
             if (pattern)
@@ -238,21 +229,49 @@ ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
         return {ScanStatus::Ctf, "CTF"};
     }
 
-    auto nodes = vectorfield_nodes(df, cut.qr, cut.pattern_recovered, distribution.size, 6, 5, 20, &tps);
+    for (const auto& settings : {std::pair<int, int>{5, 20}, {3, std::max(40, 2 * distribution.size)}}) {
+        auto nodes = vectorfield_nodes(df, cut.qr, cut.pattern_recovered, distribution.size, 6,
+                                      settings.first, settings.second, &tps);
 
-    TPS vector_tps;
-    vector_tps.fit(nodes.first, nodes.second);
-    corrected = tps_correct(cut.img, vector_tps, distribution.size, 6);
-    write_debug(options, "corrected_vector_tps.png", corrected);
+        TPS vector_tps;
+        vector_tps.fit(nodes.first, nodes.second);
+        corrected = tps_correct(cut.img, vector_tps, distribution.size, 6);
+        write_debug(options, settings.first == 5 ? "corrected_vector_tps.png" : "corrected_vector_fine_tps.png", corrected);
 
-    result = decode_zxingcpp(corrected);
-    if (result)
-        return decoded_result(*result);
-    result = decode_qreader(corrected);
-    if (result)
-        return decoded_result(*result);
+        result = decode_qr_grid(corrected, distribution.size);
+        if (result)
+            return decoded_result(*result);
+        result = decode_zxingcpp(corrected);
+        if (result)
+            return decoded_result(*result);
+        result = decode_qreader(corrected);
+        if (result)
+            return decoded_result(*result);
+    }
 
     return {ScanStatus::None, ""};
+}
+
+ScanResult detectAndDecode(const cv::Mat& input, const ScanOptions& options)
+{
+    if (options.debug_output_dir) {
+        std::filesystem::create_directories(*options.debug_output_dir);
+        std::ofstream(std::filesystem::path(*options.debug_output_dir) / "trace.txt", std::ios::trunc);
+    }
+    auto run = [&](int side) {
+        try {
+            return scan_once(input, options, side);
+        } catch (const std::exception& e) {
+            write_debug_text(options, "trace.txt", std::string("geometry error: ") + e.what() + "\n");
+            return ScanResult{ScanStatus::Ctf, "CTF"};
+        }
+    };
+    auto result = run(1000);
+    // A failed localization/timing scan is often a sampling-resolution issue.
+    // Keep the ordinary path cheap; retry only when no usable grid was found.
+    if (!input.empty() && result.status == ScanStatus::Ctf)
+        result = run(1500);
+    return result;
 }
 
 } // namespace qrscanner

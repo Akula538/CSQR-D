@@ -26,6 +26,9 @@ local.properties
 !/test/benchmark_readme.py
 !/test/benchmark_requirements.txt
 !/test/fold_test.py
+!/test/compare_scanners.py
+!/test/test_geometry.py
+!/test/python_scanner_test.py
 !/test/benchmark_results/
 /test/benchmark_results/*
 !/test/benchmark_results/manifest.json
@@ -35,6 +38,8 @@ local.properties
 !/test/benchmark_results/accuracy_*.jsonl
 !/test/benchmark_results/runtime_*.jsonl
 !/test/benchmark_results/curved_runtime_CSQR-D.jsonl
+!/test/benchmark_results/scanner_improvements.json
+!/test/benchmark_results/python_scanner_results.json
 
 # Synthetic datasets, generators and reports stay local.
 /test/*synthetic*
@@ -44,6 +49,8 @@ local.properties
 /test/test_synthetic_geometry.py
 /test/test_wave_geometry.py
 /docs/SYNTHETIC*
+/docs/SCANNER_IMPROVEMENTS.md
+/docs/SCANNER_IMPROVEMENTS.ru.md
 
 build
 

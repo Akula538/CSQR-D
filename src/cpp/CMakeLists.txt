@@ -98,3 +98,11 @@ target_link_libraries(
     PRIVATE
         qrscanner_cpp
 )
+
+option(CSQR_BUILD_TESTS "Build scanner geometry and grid-decoder checks" OFF)
+if(CSQR_BUILD_TESTS)
+    enable_testing()
+    add_executable(scanner_checks scanner_checks.cpp)
+    target_link_libraries(scanner_checks PRIVATE qrscanner_cpp)
+    add_test(NAME scanner_checks COMMAND scanner_checks)
+endif()

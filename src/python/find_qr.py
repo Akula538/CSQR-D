@@ -468,6 +468,9 @@ def sort_search_dir(search):
 
 
 def sort_corrective(correctives, search):
+    correctives = [c for c in correctives if len(c) == 4]
+    if not correctives:
+        raise RuntimeError("No quadrilateral corrective pattern candidates")
     corrective = correctives[0]
     predicted = search[1][3] + search[2][1] - search[0][2]
     for c in correctives:
@@ -606,6 +609,7 @@ def find(img):
     #===============================
     
     search_contours = [approxQuadr(contours[i]) for i in find_search(contours, hierarchy, colors)]
+    search_contours = [c for c in search_contours if len(c) == 4]
     # print(search_contours)
     search_contours = [clockwise(i) for i in search_contours]
     search_areas = [cv2.contourArea(i) for i in search_contours]
@@ -633,7 +637,6 @@ def find(img):
     # print(search)
     # print(corrective)
     
-    print("ready in", time.time() - start_time)
     
     # for con in find_search(contours, hierarchy, colors):
     #     cv2.drawContours(paint, [approxQuadr(contours[con])], -1, (0, 0, 255), 2)
@@ -661,7 +664,6 @@ def recognize_distribution_(img, p1, p2, p3, p4, H = None):
     from interpolation_correct import Curve
     
     cur = Curve(p1, p2, p3, p4)
-    print(cur._type)
     
     dx = np.sign(cur.dist(p3, p2))
     
@@ -882,30 +884,25 @@ def recognize_search_distribution(img, search, H = None):
     return [pattern1, pattern2, pattern3, pattern4]
     
 
+class FinderPatterns(list):
+    def __init__(self, patterns, binary):
+        super().__init__(patterns)
+        self.binary = binary
+
+
 def zxing_find(img):
-    # img.save("zxing-cpp_finder/input.png")
-    img_arr = np.array(img)
-    # img_arr = cv2.cvtColor(img_arr, cv2.COLOR_RGB2BGR)
-    cv2.imwrite("zxing-cpp_finder/input.png", img_arr)
-    run = subprocess.run('.\\"zxing-cpp_finder\\zxing_find.exe" "zxing-cpp_finder/input.png"', shell=True, capture_output=True, text=True)
-    res = run.stdout.split('\n')
-    res.pop()
-    
-    def point_from(s):
-        return np.array(list(map(float, s.split(','))))
-    
-    res = [i.split() for i in res]
-    # print(res)
-    res = [[point_from(i[0]), int(i[1]), [point_from(j) for j in i[2:]]] for i in res]
-    
-    i = 0
-    while i < len(res) - 1:
-        if res[i][0][0] == res[i + 1][0][0] and res[i][0][1] == res[i + 1][0][1]:
-            res.pop(i + 1)
-        else:
-            i += 1
-    
-    return res
+    from zxing_backend import run_helper
+    text, binary = run_helper("zxing_find", img)
+    patterns = []
+    for line in text.splitlines():
+        values = line.split()
+        if not values:
+            continue
+        point = lambda value: np.asarray([float(v) for v in value.split(",")])
+        pattern = [point(values[0]), int(values[1]), [point(v) for v in values[2:]]]
+        if not patterns or not np.array_equal(patterns[-1][0], pattern[0]):
+            patterns.append(pattern)
+    return FinderPatterns(patterns, binary)
 
 def zxing_check(img):
     
@@ -975,8 +972,9 @@ def find_qr_zxing(orig, zxing_qr=None):
 
     prets = zxing_qr
     
-    # img = cv2.imread("zxing-cpp_finder/output.png")
-    img = Image.open("zxing-cpp_finder/output.png")
+    img = getattr(zxing_qr, "binary", None)
+    if img is None:
+        img = binarizer.binarize_zxing_cpp(orig)
     start_time = time.time()
     
     # s = []
@@ -994,11 +992,13 @@ def find_qr_zxing(orig, zxing_qr=None):
     
 
     search_contours = []
+    pret_sizes = []
     for pret in prets:
         c = pret[0]
         c = np.array([int(c[0]), int(c[1])])
-        if len(pret[2]):
+        if len(pret[2]) == 4:
             search_contours.append([])
+            pret_sizes.append(pret[1])
             for p in pret[2]:
                 search_contours[-1].append([(p - c) * 7/6 + c])
         else:
@@ -1020,11 +1020,15 @@ def find_qr_zxing(orig, zxing_qr=None):
                                best = cont
                     
                     best = best.reshape(-1, 2)
-                    search_contours.append([])
-                    for p in best:
-                        search_contours[-1].append([(p - c) * 7 / (7 - lvl * 2) + c])
-                    break
+                    if len(best) == 4:
+                        search_contours.append([])
+                        pret_sizes.append(pret[1])
+                        for p in best:
+                            search_contours[-1].append([(p - c) * 7 / (7 - lvl * 2) + c])
+                        break
 
+    # Keep each accepted contour associated with its own finder size.
+    # A finder whose contour recovery fails must not shift later indices.
     search_contours = [np.array(i, dtype="int32") for i in search_contours]
     search_contours = [clockwise(i) for i in search_contours]
     search_areas = [cv2.contourArea(i) for i in search_contours]
@@ -1034,13 +1038,13 @@ def find_qr_zxing(orig, zxing_qr=None):
         show += list(i)
     # show_points(img, show)
     
-    all_search, all_indexes = disp_evristic_sort(search, [i[1] for i in prets])
+    all_search, all_indexes = disp_evristic_sort(search, pret_sizes)
  
     search = all_search[0]
     indexes = all_indexes[0]
     
     search_area = sum(search_areas[i] for i in indexes) / 3
-    search_module = max(prets[i][1] for i in indexes)
+    search_module = max(pret_sizes[i] for i in indexes)
     
     search = sort_search_dir(search)
     
@@ -1065,7 +1069,6 @@ def find_qr_zxing(orig, zxing_qr=None):
     # print(search)
     # print(corrective)
     
-    print("ready in", time.time() - start_time)
     
     # for con in find_search(contours, hierarchy, colors):
     #     cv2.drawContours(paint, [approxQuadr(contours[con])], -1, (0, 0, 255), 2)

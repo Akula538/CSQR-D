@@ -84,8 +84,8 @@
     "QReader": {
       "0": {
         "samples": 12,
-        "decoded": 9,
-        "rate_percent": 75.0
+        "decoded": 8,
+        "rate_percent": 66.66666666666667
       },
       "1": {
         "samples": 53,
@@ -104,8 +104,8 @@
       },
       "Overall": {
         "samples": 169,
-        "decoded": 33,
-        "rate_percent": 19.526627218934912
+        "decoded": 32,
+        "rate_percent": 18.93491124260355
       }
     },
     "CSQR-D": {
@@ -121,8 +121,8 @@
       },
       "2": {
         "samples": 92,
-        "decoded": 86,
-        "rate_percent": 93.47826086956522
+        "decoded": 89,
+        "rate_percent": 96.73913043478261
       },
       "3": {
         "samples": 12,
@@ -131,8 +131,8 @@
       },
       "Overall": {
         "samples": 169,
-        "decoded": 163,
-        "rate_percent": 96.44970414201184
+        "decoded": 166,
+        "rate_percent": 98.22485207100591
       }
     }
   },
@@ -141,114 +141,114 @@
       "samples": 135,
       "measurements": 405,
       "decoded": 112,
-      "mean_ms": 8.700548395061729,
-      "median_ms": 8.5465,
-      "p95_ms": 11.271959999999982
+      "mean_ms": 8.271205432098766,
+      "median_ms": 8.3293,
+      "p95_ms": 9.81178
     },
     "ZBar": {
       "samples": 135,
       "measurements": 405,
       "decoded": 98,
-      "mean_ms": 14.892662716049383,
-      "median_ms": 14.8888,
-      "p95_ms": 17.43358
+      "mean_ms": 14.809212345679015,
+      "median_ms": 14.9731,
+      "p95_ms": 17.62472
     },
     "OpenCV": {
       "samples": 135,
       "measurements": 405,
       "decoded": 54,
-      "mean_ms": 26.27771259259259,
-      "median_ms": 27.0998,
-      "p95_ms": 38.57564
+      "mean_ms": 27.241527407407407,
+      "median_ms": 28.6171,
+      "p95_ms": 39.181439999999995
     },
     "QReader": {
       "samples": 135,
       "measurements": 405,
       "decoded": 126,
-      "mean_ms": 238.71094913580245,
-      "median_ms": 177.9973,
-      "p95_ms": 680.5831199999999
+      "mean_ms": 248.8272809876543,
+      "median_ms": 183.0593,
+      "p95_ms": 718.4071799999996
     },
     "CSQR-D": {
       "samples": 135,
       "measurements": 405,
-      "decoded": 132,
-      "mean_ms": 29.237190370370367,
-      "median_ms": 23.7514,
-      "p95_ms": 61.61553999999999
+      "decoded": 133,
+      "mean_ms": 27.543858518518515,
+      "median_ms": 22.4899,
+      "p95_ms": 56.05779999999997
     }
   },
   "curved_runtime": {
     "0": {
       "L": {
         "samples": 3,
-        "mean_ms": 39.4492
+        "mean_ms": 32.58883333333333
       },
       "M": {
         "samples": 3,
-        "mean_ms": 30.1348
+        "mean_ms": 23.800700000000003
       },
       "Q": {
         "samples": 2,
-        "mean_ms": 37.46575
+        "mean_ms": 26.41905
       },
       "H": {
         "samples": 4,
-        "mean_ms": 30.798175
+        "mean_ms": 24.916025
       }
     },
     "1": {
       "L": {
         "samples": 15,
-        "mean_ms": 47.58712
+        "mean_ms": 29.848660000000002
       },
       "M": {
         "samples": 14,
-        "mean_ms": 37.58248571428572
+        "mean_ms": 26.166235714285712
       },
       "Q": {
         "samples": 13,
-        "mean_ms": 38.493530769230766
+        "mean_ms": 26.515607692307693
       },
       "H": {
         "samples": 11,
-        "mean_ms": 36.93876363636363
+        "mean_ms": 26.540436363636363
       }
     },
     "2": {
       "L": {
         "samples": 22,
-        "mean_ms": 59.90849545454545
+        "mean_ms": 32.79895909090909
       },
       "M": {
         "samples": 23,
-        "mean_ms": 51.22111304347827
+        "mean_ms": 34.49432608695653
       },
       "Q": {
         "samples": 22,
-        "mean_ms": 44.57286818181819
+        "mean_ms": 26.850277272727272
       },
       "H": {
         "samples": 25,
-        "mean_ms": 43.275784
+        "mean_ms": 31.780704
       }
     },
     "3": {
       "L": {
         "samples": 3,
-        "mean_ms": 85.70543333333335
+        "mean_ms": 57.62846666666667
       },
       "M": {
         "samples": 3,
-        "mean_ms": 62.386300000000006
+        "mean_ms": 36.0384
       },
       "Q": {
         "samples": 3,
-        "mean_ms": 85.80596666666666
+        "mean_ms": 27.412133333333333
       },
       "H": {
         "samples": 3,
-        "mean_ms": 41.52503333333333
+        "mean_ms": 29.002799999999997
       }
     }
   }

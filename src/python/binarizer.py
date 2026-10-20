@@ -88,11 +88,8 @@ def binarize_sauvola(image, window=None, k=0.3, R=128):
 
 
 def binarize_zxing_cpp(img):
-    # img.save("zxing-cpp_finder/input.png")
-    cv2.imwrite("zxing-cpp_finder/input.png", img)
-    subprocess.run('.\\"zxing-cpp_finder\\zxing_binarize.exe" "zxing-cpp_finder/input.png"', shell=True)
-    output = cv2.imread("zxing-cpp_finder/output.png")
-    return output
+    from zxing_backend import run_helper
+    return run_helper("zxing_binarize", img)[1]
 
 
 if __name__ == "__main__":

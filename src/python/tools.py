@@ -122,6 +122,7 @@ def cut_image(img, qr, pattern_recovered, QRsize = 25, return_shift = False):
     x2 = min(x2 + scale * (x2 - x1), img.shape[1])
     y1 = max(y1 - scale * (y2 - y1), 0)
     y2 = min(y2 + scale * (y2 - y1), img.shape[0])
+    x1, y1 = int(x1), int(y1)
     
     for i in range(len(qr)):
         qr[i] = qr[i] - np.array([x1, y1])
