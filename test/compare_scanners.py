@@ -1,7 +1,7 @@
 """Compare two C++ CLIs on all four real datasets without changing fixtures.
 
-data uses the existing README 2000px cache; data2/data3/data4 use original
-images. data3 checks its independently annotated payloads. Other sets retain
+data/qr/data1 uses the existing README 2000px cache; data/qr/data2 through data4 use original
+images. data/qr/data3 checks its independently annotated payloads. Other sets retain
 the README nonempty-payload criterion and separately report disagreements.
 Times include process startup, image loading and shutdown; runs are interleaved.
 """
@@ -40,23 +40,23 @@ def prepare_inputs():
 
 
 def cases():
-    labels = json.loads((ROOT / "data3/manifest.json").read_text(encoding="utf-8"))
+    labels = json.loads((ROOT / "data/qr/data3/manifest.json").read_text(encoding="utf-8"))
     expected = {r["file"]: r for r in labels["cases"]}
     originals = {r["source"]: r for r in json.loads(
         (ROOT / "test/benchmark_results/manifest.json").read_text())}
-    for dataset in ("data", "data2", "data3", "data4"):
+    for dataset in ("data/qr/data1", "data/qr/data2", "data/qr/data3", "data/qr/data4"):
         for source in sorted((ROOT / dataset).rglob("*")):
             if source.suffix.lower() not in {".png", ".jpg", ".jpeg"}:
                 continue
             path = source
             label = None
-            if dataset == "data":
+            if dataset == "data/qr/data1":
                 path = ROOT / "test/benchmark_results/inputs_2000" / source.name
                 if sha(source) != originals[source.relative_to(ROOT).as_posix()]["sha256"]:
                     raise ValueError(f"Source differs from README manifest: {source}")
                 if not path.exists():
                     raise ValueError("Missing resized input cache; run with --prepare-inputs")
-            elif dataset == "data3":
+            elif dataset == "data/qr/data3":
                 row = expected[source.relative_to(ROOT / dataset).as_posix()]
                 if sha(source) != row["sha256"]:
                     raise ValueError(f"Changed fixture: {source}")
@@ -114,7 +114,7 @@ def main():
             if (i + 1) % 50 == 0:
                 print(f"Repeat {repeat + 1}: {i + 1}/{len(inputs)}", flush=True)
     summary = {}
-    for dataset in ("data", "data2", "data3", "data4"):
+    for dataset in ("data/qr/data1", "data/qr/data2", "data/qr/data3", "data/qr/data4"):
         subset = [r for r in rows if r["dataset"] == dataset]
         summary[dataset] = {}
         for name in executables:
@@ -146,7 +146,7 @@ def main():
     if inputs != list(cases()):
         raise RuntimeError("Input changed during measurement")
     resize_metadata = ROOT / "test/benchmark_results/inputs_2000/resizer.json"
-    report = dict(measurement="CLI wall time; data at 2000px, other sets original",
+    report = dict(measurement="CLI wall time; data/qr/data1 at 2000px, other sets original",
                   seed=1, repeats=args.repeat, environment=dict(platform=platform.platform(),
                       python=sys.version, processor=platform.processor()),
                   resizer=json.loads(resize_metadata.read_text()) if resize_metadata.exists() else None,

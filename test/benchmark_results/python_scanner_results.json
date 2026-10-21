@@ -1,6 +1,6 @@
 {
   "summary": {
-    "data": {
+    "data/qr/data1": {
       "samples": 169,
       "decoded": 166,
       "errors": [],
@@ -8,26 +8,26 @@
       "python_only": [],
       "payload_disagreements": []
     },
-    "data2": {
+    "data/qr/data2": {
       "samples": 135,
       "decoded": 134,
       "errors": [],
       "cpp_only": [],
       "python_only": [
-        "data2/data/123.png"
+        "data/qr/data2/data/123.png"
       ],
       "payload_disagreements": [
-        "data2/data/10.png",
-        "data2/data/106.png",
-        "data2/data/113.png",
-        "data2/data/114.png",
-        "data2/data/120.png",
-        "data2/data/82.png",
-        "data2/data/87.png",
-        "data2/data/96.png"
+        "data/qr/data2/data/10.png",
+        "data/qr/data2/data/106.png",
+        "data/qr/data2/data/113.png",
+        "data/qr/data2/data/114.png",
+        "data/qr/data2/data/120.png",
+        "data/qr/data2/data/82.png",
+        "data/qr/data2/data/87.png",
+        "data/qr/data2/data/96.png"
       ]
     },
-    "data3": {
+    "data/qr/data3": {
       "samples": 20,
       "decoded": 14,
       "errors": [],
@@ -35,7 +35,7 @@
       "python_only": [],
       "payload_disagreements": []
     },
-    "data4": {
+    "data/qr/data4": {
       "samples": 68,
       "decoded": 41,
       "errors": [],
@@ -64,8 +64,8 @@
   },
   "records": [
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0001_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0001_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0001_v2_H_big_d2.png",
       "sha256": "afc53f5587e6781172b769f3bcf1a4642f3326f8266cefc87f9c88074f785790",
       "source_sha256": "06e87e5f7dff63f9b058c9e73089a7c721277cfa56a131c959167d3e712450c6",
@@ -84,8 +84,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0002_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0002_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0002_v2_H_big_d2.png",
       "sha256": "e25e8c45ce059d6f6fa6c9ca35b0e0ee4d713c09297b0d23dce0bc0bd895cdcb",
       "source_sha256": "a298b80a5d524662e1514cb66ac973d3885e6efadf8793e533f7813d7363a79e",
@@ -104,8 +104,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0003_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0003_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0003_v2_H_big_d2.png",
       "sha256": "1c6a2dca6cfe521cb0d5f1e2cb239e8e45f0fc2bb15b63da260621fdcd5a3a36",
       "source_sha256": "880c671ba3623a8116a9e44d17d6852a85ba7980c8a47d2779387d31abd40501",
@@ -124,8 +124,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0004_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0004_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0004_v2_H_big_d2.png",
       "sha256": "5cd558cac45bb9722655ea3f7bce7b74fb8cba3a125865157ed48ea35b4aa06e",
       "source_sha256": "91bcd19036e9aff88a0c45817eccd1a2e2d733c68f5153e6178539e26b6d2d6a",
@@ -144,8 +144,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0005_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0005_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0005_v2_H_big_d2.png",
       "sha256": "720586b6975af30ee910ddc1948ad06f0875426ba3e67270ce324b1aacee1a90",
       "source_sha256": "c6febd80acd034b2f92df4367ca5abe2b8582a4523617b84402ee5499aaf2153",
@@ -164,8 +164,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0006_v2_H_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0006_v2_H_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0006_v2_H_big_d3.png",
       "sha256": "1e1b4addb043cba17f4dc097ca10fa6abe9a8062e0b3a5c8800993a558fe74f8",
       "source_sha256": "ef491e2691a498c71b266420eae5b2e9795c60a15e9ce7f24c6d5bbfc478edbb",
@@ -184,8 +184,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0007_v2_H_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0007_v2_H_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0007_v2_H_big_d1.png",
       "sha256": "20cf9f424194bd3ac5a2d371140f7ba72bf1cd869b5b4c874d61f7b412dfc96f",
       "source_sha256": "84ba68d84fbaabb673231dfca3e2e20542b60c452b3a5475d9a7e46ab4c3ef67",
@@ -204,8 +204,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0008_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0008_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0008_v2_H_big_d2.png",
       "sha256": "4d426ad67742de7410a33ede9d6487f5cd62be7b7e7e1387f89e7a658f9329c0",
       "source_sha256": "7ab8c8f8d6023db30e6c2513aea40d51bcb5abc67c6fe46573ca67500733744e",
@@ -224,8 +224,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0009_v2_H_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0009_v2_H_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0009_v2_H_big_d0.png",
       "sha256": "d3a73ef941acce2405cffd0b43378628e62af9e1184d934ad77b75966651116d",
       "source_sha256": "e8b6203e0392903893e6b5e7a7dcde96e0caf8915e29b2ea678691760bcfd7e2",
@@ -244,8 +244,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0010_v2_H_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0010_v2_H_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0010_v2_H_big_d1.png",
       "sha256": "e1c29594f91e2188f756eb5631d67d4b9a23c54cbfca73e679a6df8336e4ef2d",
       "source_sha256": "c644c3083a5b86b85957fb001dfc0cd6f7a3c2de69f8d4957ac4ae9315b92566",
@@ -264,8 +264,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0011_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0011_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0011_v2_H_big_d2.png",
       "sha256": "15db836ecbf84f6fcb589ee4a2650c646ac70eedbf40699e09ee5c27db932a85",
       "source_sha256": "e84831906599a264b86fd8018e418cb4152cd5283c4ffee57ae661ed7b9edf04",
@@ -284,8 +284,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0012_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0012_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0012_v2_H_big_d2.png",
       "sha256": "7cc174461724bd613b150c3069b4b99cfa62aab22ade2b16893beb800df875a6",
       "source_sha256": "5b720265e6776ee8973f67e2e25de640e47f4219b0f6bffee65336b2df674d7f",
@@ -304,8 +304,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0013_v2_H_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0013_v2_H_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0013_v2_H_big_d3.png",
       "sha256": "a0169640c9050c17bf84d4dec490cdf6b8f0aa02372054b4fca7daee3c49d2ee",
       "source_sha256": "a3c2d581653af015b43948f26922c72bb6a660f737e9bfcde9422aa7f909701f",
@@ -324,8 +324,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0014_v2_H_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0014_v2_H_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0014_v2_H_big_d1.png",
       "sha256": "4eea61e3fb59d2d4401af84ec95fa4ef4ab167621da9ffb15330049183cea201",
       "source_sha256": "ba046859d822f2cf5042e100e5fce4ad4a80af02f57604eea71f236058940149",
@@ -344,8 +344,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0015_v2_H_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0015_v2_H_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0015_v2_H_big_d1.png",
       "sha256": "df0f4ff78f3328b93847db4a9b33725445e3d81896b6e94be41b62b0de0e4d8a",
       "source_sha256": "d7945901417ff1a4cd4f734d140e53dc31269d56f7e94fafcbf123481e8cfa3a",
@@ -364,8 +364,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0016_v2_H_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0016_v2_H_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0016_v2_H_big_d0.png",
       "sha256": "03443ae1c16a9eefa09a1e21f7f4640cea6ef836cd7e8b5016f9ef77ee75ba94",
       "source_sha256": "5a4054ae1742142cb5352d474e1562680a8ef7cde632da3acc1e27404d5510ff",
@@ -384,8 +384,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0017_v2_H_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0017_v2_H_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0017_v2_H_big_d0.png",
       "sha256": "e85b94ad2b4423c296f5599f30bf81b52b4f703e571bc3ed0092959374ea4604",
       "source_sha256": "fce3fa0fe26721f411dea85bdbcec3c68b62167e9f81a3fcac7d96feced1067a",
@@ -404,8 +404,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0018_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0018_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0018_v2_H_big_d2.png",
       "sha256": "82576b9cb733a6b724eb6a8d636394e509c0bb5b4499a5997482433d3b2484bb",
       "source_sha256": "1f62746404a43fed12d2c89ec2518269a12b29d08ced5d545fd293ed0fb68f33",
@@ -424,8 +424,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0019_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0019_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0019_v2_H_big_d2.png",
       "sha256": "9e642d53756bb8aa4b6a3b06f11fc879c732bde09420689240ca06b82b55c4c9",
       "source_sha256": "e467d8d3bcb825d76d9dda2b93e71a10e6f8689d0aa0fd694ba2e7efa2d4cd96",
@@ -444,8 +444,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0020_v2_H_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0020_v2_H_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0020_v2_H_big_d1.png",
       "sha256": "0ca023a2b4c99349c316ec9a94c1112b5ebba60e3f25741388960e136c61fb26",
       "source_sha256": "85fd85026f1736acb4ea6dc50adff3ff8876abfb2252ed460e1c49db390ab160",
@@ -464,8 +464,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0021_v2_H_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0021_v2_H_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0021_v2_H_big_d0.png",
       "sha256": "fc401b6d097d1cf7009348f5d213030697035efbd1b92d177e576874794eaff5",
       "source_sha256": "a2f15554941271572720832677b763cbc307bf2048b8ebd3f7766317140755a3",
@@ -484,8 +484,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0022_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0022_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0022_v2_H_big_d2.png",
       "sha256": "ac243d90165c7ac5ff3a41c8b1ba351f2656ca65390e0b54b2affbcba2c93b96",
       "source_sha256": "1c1e229ec7873326a4841197a97b7e9491faa074ce41e90d52909ab484d68635",
@@ -504,8 +504,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0023_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0023_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0023_v2_H_big_d2.png",
       "sha256": "b7afab3e90a5e3f9ffeabe1953d6f1955facde138d49c0fae6ff671ffd093d9a",
       "source_sha256": "47970dbd1916f454df2c8836e29cb394cc7df9fb894158d4376978b86bf325d7",
@@ -524,8 +524,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0024_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0024_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0024_v2_H_big_d2.png",
       "sha256": "4b431a374071890824917a21d099a7e6330cba621ca4128a81da7c1f57cd0863",
       "source_sha256": "c15155444bfd6e92e945b7a5bbd35c96cb752a6055a60c16c07370f701be97c5",
@@ -544,8 +544,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0025_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0025_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0025_v2_H_big_d2.png",
       "sha256": "be054839a4a1884e4bf4b35889dda004fe9e6757ebd497e136aefb86a4749b8f",
       "source_sha256": "484a9d24782d82cb76468120dc72030619f7fb3eb74b482cda498ab9021caa6d",
@@ -564,8 +564,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0026_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0026_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0026_v2_H_big_d2.png",
       "sha256": "c19d3bb9ace6e288501d45caaaf5d58cb32207e0a7027b9be2dfd9c972f3ce11",
       "source_sha256": "1aab1433144e7a02ddfd65a9167dcfe6ff1313624e25c062adabdff994fea6ab",
@@ -584,8 +584,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0027_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0027_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0027_v2_H_big_d2.png",
       "sha256": "3cc22d003ee3168f0aba6fa7097715bb25395aca1f1443fa61a4073a52d0520d",
       "source_sha256": "a0d73b34d6fefa4003937e2d6a7121c121459749f5dcafa3c6cf53177d83c4d7",
@@ -604,8 +604,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0028_v2_H_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0028_v2_H_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0028_v2_H_big_d3.png",
       "sha256": "178d958bdf6de7cfe26f489709ec8912c5852490d5e534c2eb8dca539e670dda",
       "source_sha256": "cb79d311d106944995845bf2313c6fe568b1eeca412d1e09720ddeb7816b1030",
@@ -624,8 +624,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/big/img0029_v2_H_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/big/img0029_v2_H_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0029_v2_H_big_d2.png",
       "sha256": "7b240f7ddaa9df354dbdb54de1d78f197ced86ed1acc8973386c91f64eac3ca9",
       "source_sha256": "c1bea05db0cedb86cdab08f66e0118532261a362e75517065deca9ad47868ed3",
@@ -644,8 +644,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0030_v2_H_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0030_v2_H_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0030_v2_H_small_d1.png",
       "sha256": "6eb545501449205fda1bcb6dbcc4a21a734c27d86d0058417aa76b086cced127",
       "source_sha256": "2b357dfffbe3aca0931b1db31a1d60a9557a11fd401b76217d6ab3b8978ac62b",
@@ -664,8 +664,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0031_v2_H_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0031_v2_H_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0031_v2_H_small_d2.png",
       "sha256": "b4585680bf67e7bfc137ccd11a930c78b63a768e9ed1b049348a046affcdd8e5",
       "source_sha256": "ca642fd119861449bd9e101eaf6ce36afcd118de5d750f2722c092ec1cdea4e6",
@@ -684,8 +684,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0032_v2_H_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0032_v2_H_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0032_v2_H_small_d2.png",
       "sha256": "7544968c2d57c7789aa01c82b05c494eb15ac38a955c6f499bae02f0b18f1fc1",
       "source_sha256": "1bd918e2ff12d5b0a8a9afb3912eb542d48c9e8f3f8f61ccf98d62d98db42f25",
@@ -704,8 +704,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0033_v2_H_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0033_v2_H_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0033_v2_H_small_d2.png",
       "sha256": "d45ded08bf019a695bff9e004b2e356ece8d676f2318fa1d96cf9975c0f345c4",
       "source_sha256": "ba7cb25b9881d7c8e697e56f249f9613566684ffc866a87c1bc4487d7ff8260f",
@@ -724,8 +724,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0034_v2_H_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0034_v2_H_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0034_v2_H_small_d2.png",
       "sha256": "23ac7a19d4a9d325b39499af1fcc02478759a5cf6e84a3de9fd0a500e8c19441",
       "source_sha256": "bb528cd5d96cda088c3a5e98c66621bbde868488707a517800b680c796dea610",
@@ -744,8 +744,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0035_v2_H_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0035_v2_H_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0035_v2_H_small_d2.png",
       "sha256": "ded0744c223f4b5cfc8dc042c3859a7fe4886c8d3169d6b4275c7d2ee36a294b",
       "source_sha256": "c907ac9a0d40ccd0d88e3957e6df4a263e68cae3f4811884cc49caa3ae6691e0",
@@ -764,8 +764,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0036_v2_H_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0036_v2_H_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0036_v2_H_small_d1.png",
       "sha256": "99525484bbf7093915e42b663ac3c81a0f68c427a74439fc09097a10729fbadf",
       "source_sha256": "5dab498efef9599d193b5106f6a5b94470cc3afbadb83f55de49301526c054ec",
@@ -784,8 +784,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0037_v2_H_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0037_v2_H_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0037_v2_H_small_d2.png",
       "sha256": "b78e0bdce4a13e4798fe112875db173b1a3fd375f5d8b0147d174fe2968dfc99",
       "source_sha256": "ac4950baf04f72e474f1b9182983f87335acf1b0e1e25cdf7bcc7c1928db7c7a",
@@ -804,8 +804,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0038_v2_H_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0038_v2_H_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0038_v2_H_small_d2.png",
       "sha256": "ef4fe865fab971df56572eed455e13f71b83a074d5b15c5639759788a909d30c",
       "source_sha256": "f060402f4dd4ec33f70f91b72aa67316a5f940ae8c92f8bc967a8dba825bc72a",
@@ -824,8 +824,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0039_v2_H_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0039_v2_H_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0039_v2_H_small_d1.png",
       "sha256": "ad9f833047facdc48d49e91315ab61d61152e66bd2f79752f5c8a5cd7c0a99c2",
       "source_sha256": "d39a4c5c6ea3920a53842f34bc3e38f57b929dae208b756e75dc06ef60c3a673",
@@ -844,8 +844,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0040_v2_H_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0040_v2_H_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0040_v2_H_small_d1.png",
       "sha256": "8522b946e05795d307c41ded3b2cf6c0a6ef88050f3b32d50c385f605207773a",
       "source_sha256": "facd71b8ea8768b8df32f86e3a4d70232fa29433e6597a1765b194ee715910c2",
@@ -864,8 +864,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0041_v2_H_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0041_v2_H_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0041_v2_H_small_d1.png",
       "sha256": "3054e24e236b138698e08505eb3a67165b182f9f6a59898daaff40c66b4fc5c9",
       "source_sha256": "0681fda9abfffb12919b9e15253e18ef4d5298feae018b78571e417c0cbf9a94",
@@ -884,8 +884,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0042_v2_H_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0042_v2_H_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0042_v2_H_small_d1.png",
       "sha256": "4612ef0a169b9fbde3552b255076e34ac84611ad5623a51d99bcf110d0de0691",
       "source_sha256": "d2f96b5d4e9ee4ce16bed5d4a55fb14f9e29ccdb1eaa745bceac5839aa7fc98f",
@@ -904,8 +904,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/H/small/img0043_v2_H_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/H/small/img0043_v2_H_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0043_v2_H_small_d2.png",
       "sha256": "26609afa8065e124726b9149ed7662aaf0f71764f478fef3edd3a885b4fb6f3e",
       "source_sha256": "7096c969ca841fcb82fb2b049f81d94f1df73dfbbe5c7d7281692a46c65cd74d",
@@ -924,8 +924,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0044_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0044_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0044_v2_L_big_d2.png",
       "sha256": "5df16ad272a6ef61006a738ae7836ab3a320355e79d6d087058044ae2645feab",
       "source_sha256": "cb382eacf0c104ba90ac5cdc7fee7b374b1bdea964fd985f6b7b38ed77a415ee",
@@ -944,8 +944,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0045_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0045_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0045_v2_L_big_d2.png",
       "sha256": "5b4e0277402f0464df1109aa4646d3b2620256b1ee964e3e6749ff75ae2b6fca",
       "source_sha256": "b056560cd233a1d253f5a58e88ecbc4547c2ab3fe0b31c96581c9401e0588c32",
@@ -964,8 +964,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0046_v2_L_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0046_v2_L_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0046_v2_L_big_d3.png",
       "sha256": "d112d89592a17e8f2dda533d17e78d1ec2b77e4732e37121287af4baf4d76853",
       "source_sha256": "d9f1a891a6d28eaf09e67fd449dcdbe80fc2ada88898954e33a1c1926d07a7e1",
@@ -984,8 +984,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0047_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0047_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0047_v2_L_big_d2.png",
       "sha256": "63db2654504bdd477e53a8adac550e3950d6740263bf95e1d12138e9ce99326c",
       "source_sha256": "1787e058863cb45d3f64a9bb4c51725fddc0c376c966fb18e99e9a6fd33d385f",
@@ -1004,8 +1004,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0048_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0048_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0048_v2_L_big_d2.png",
       "sha256": "85adad554a4fd93f0c10f1b04787254a687e56fff890ef63331b5acd5d435eb7",
       "source_sha256": "4f05e170e9621c49c7bf7ba659cb1cddf177f206d4d1f029628e30c808c1c878",
@@ -1024,8 +1024,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0049_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0049_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0049_v2_L_big_d2.png",
       "sha256": "ccedf11ac1b523c0a60bfff55e21491fee2e026e1de1dd968ca801110a51e8e4",
       "source_sha256": "9445ded53341543b4daae3261e2298bafa60aa7f0f84bc0f6924eb583c5895c7",
@@ -1044,8 +1044,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0050_v2_L_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0050_v2_L_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0050_v2_L_big_d1.png",
       "sha256": "b154ddc70190d8eacf3a63ca25657b5f0e24ac9a5afb95ccf668d6ac1be442c6",
       "source_sha256": "efa44a0c20a31363c5eeaf37357cf2c6f7b00d976467f0b4f79b96049db58d22",
@@ -1064,8 +1064,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0051_v2_L_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0051_v2_L_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0051_v2_L_big_d1.png",
       "sha256": "4e3cc13d0c79fbd355fd2e661e091273a0ca08089d5039ff6179db5f3c11074f",
       "source_sha256": "767cf9767c0d8fb8270d27a482145cb8bd69231a6edaaa15af5b9baa194d7f1b",
@@ -1084,8 +1084,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0052_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0052_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0052_v2_L_big_d2.png",
       "sha256": "dc32fa2d65904ad0ac25cbf536156a73b381454028781bd8f2ab598528a4c0eb",
       "source_sha256": "c56a05ea39dbba447831c7afb4c9e13f27b866e93c9bea997e6e6a74001bdc55",
@@ -1104,8 +1104,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0053_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0053_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0053_v2_L_big_d2.png",
       "sha256": "df83cd39a0b1e20b009e6f059beaf7806bc503533de146fff86597345995461e",
       "source_sha256": "4b10ed35e69f64e962bd4124142ccd148fd6073b7b115d0abf322f5cee512937",
@@ -1124,8 +1124,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0054_v2_L_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0054_v2_L_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0054_v2_L_big_d1.png",
       "sha256": "cf3487660647ef0e11e57d1f6fe18b7a43602aec4b635931b2ff3b15ea59a2d5",
       "source_sha256": "34acc29f517986c7227104dad758369f1fa3c0ecc592c9146ce2c75f05659ecd",
@@ -1144,8 +1144,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0055_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0055_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0055_v2_L_big_d2.png",
       "sha256": "79a386c64ad4ac0bdd934e6ca5cce5ac9a2a2a0577680762ee89cce0d8a0676e",
       "source_sha256": "bbbf2928fb05ca7df8702d60ad35309f10a7149f56e28ba16626205237839634",
@@ -1164,8 +1164,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0056_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0056_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0056_v2_L_big_d2.png",
       "sha256": "e7859f37dee49600f417e68e3f84cea3a727bbbd561f505c2dcd4c0d640352f5",
       "source_sha256": "c5643253f1acaed9d0535276d86c275c8107d4d0f5b39da0487e9b0411d84ffc",
@@ -1184,8 +1184,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0057_v2_L_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0057_v2_L_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0057_v2_L_big_d0.png",
       "sha256": "f382a2d8b6a4d76c23bd842ad8fb25dcc5a4bc12d58af2b04106a249653c96a1",
       "source_sha256": "af6034c7244ab7a3e1a7413e2983e0b00668ad0e0ad2a56f95f417694c3a43a3",
@@ -1204,8 +1204,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0058_v2_L_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0058_v2_L_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0058_v2_L_big_d0.png",
       "sha256": "ff9d5e80a96deb64f40ec7cf7c48cbababbabad881a65a37b3d8341ec38f7ce0",
       "source_sha256": "7a84ddc60515ddb0ef620e4e12a110c2971ea28bf4957c61cecc9f569c296680",
@@ -1224,8 +1224,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0059_v2_L_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0059_v2_L_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0059_v2_L_big_d0.png",
       "sha256": "9404107b795067116a73b84dfc8acb0e5d0b971ed24d91653be2da7931fe7e4f",
       "source_sha256": "116eff1802450bdd8e3ee95b495525229eaec6fbb5073a9622ada4913b44a5f7",
@@ -1244,8 +1244,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0060_v2_L_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0060_v2_L_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0060_v2_L_big_d1.png",
       "sha256": "26b552fcfaed2d5f9149b928275bfa6c70afb3146c665d480c0fa60649cee7b8",
       "source_sha256": "2c975bbb1aced1c1395398245693d9a56d27cbb74c37d041168ee6174a3bd709",
@@ -1264,8 +1264,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0061_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0061_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0061_v2_L_big_d2.png",
       "sha256": "3e5c9b6964879a47b468d6afddc9cd17b60d6002ceb0aeec6633302808fe225c",
       "source_sha256": "7dc213574afaf490f36bcdfedad9a8350887ae6f01e742fbc3d140bf7498c8e8",
@@ -1284,8 +1284,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0062_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0062_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0062_v2_L_big_d2.png",
       "sha256": "048efb7009e4feb1aa9e19945ea647d57d02c22e59b82262e825c6a14ed8a0fb",
       "source_sha256": "077b6c6d3781a5d01ac80b370254c768888b6b86e1eb1c34ecbaaec9d0021d96",
@@ -1304,8 +1304,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0063_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0063_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0063_v2_L_big_d2.png",
       "sha256": "ee5912516dc405d0cd7e87b0f480be8e87ca0b3d4b0ccae8b271b86063d7c797",
       "source_sha256": "7bea38d2942a94cd7ba94c83b02cc9ae6eb3ed8f5674be77bf33e2d35ec1a78b",
@@ -1324,8 +1324,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0064_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0064_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0064_v2_L_big_d2.png",
       "sha256": "d8332d5ed9a985d75cb8747e18ac05084749a9c3190999a931d184ff83477eb8",
       "source_sha256": "52d5e1373b98a826c2d876d2d8aca4085754ed1b2a0791a3ab3036e201e72c7d",
@@ -1344,8 +1344,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0065_v2_L_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0065_v2_L_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0065_v2_L_big_d3.png",
       "sha256": "e32b8f123122f69bf129e4220d2ec7ea74ad9d0f103b7b6e018938dbee5044f5",
       "source_sha256": "f09943223fa25680dfd81e01e669ba5640af48cb9d70c6531d933f6aa75e1f62",
@@ -1364,8 +1364,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0066_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0066_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0066_v2_L_big_d2.png",
       "sha256": "2e75e8e0e36ab430795aec59e87d5753d3f5eb08bb6545fe63d4ef8d7e5ef903",
       "source_sha256": "08a1a29e14563f7c24eb63dbf0ce2fe0311ce279c2d1431f606f7b8a1427963f",
@@ -1384,8 +1384,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0067_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0067_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0067_v2_L_big_d2.png",
       "sha256": "3d740b234ef862eceb0651428ec68336293b5888968be78a576cae6adea527ad",
       "source_sha256": "388cf1da3244d661529567b9d4bada005ab6afaabe7e087df9184066831725be",
@@ -1404,8 +1404,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0068_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0068_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0068_v2_L_big_d2.png",
       "sha256": "978c4bb44e898a125472cb639b9a7e3d992d5be0765ff6521426a6e59dfbe1c0",
       "source_sha256": "2a69845f395f53e851746317fdcd97d19281e7603113f00c3ce9d33c728c5ea6",
@@ -1424,8 +1424,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0069_v2_L_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0069_v2_L_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0069_v2_L_big_d1.png",
       "sha256": "3e4cd40a8ca3ed583274b3bae6ba79d361b926d5baa5b36db3eb4e805e5f7ad4",
       "source_sha256": "9f622e6c5fb5423d20a41f1dcb7a7eb8633252f4b2f02f947081d45d88b147f9",
@@ -1444,8 +1444,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0070_v2_L_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0070_v2_L_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0070_v2_L_big_d2.png",
       "sha256": "bd2c88d5b769c7e039ea24078d0b0da6ff328f1606b8e3777800fcfce558dbb0",
       "source_sha256": "0707a4f1f7e9c6e2443d3694771be0fe8a21c264f84434a9a2e16e16dbf0652e",
@@ -1464,8 +1464,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/big/img0071_v2_L_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/big/img0071_v2_L_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0071_v2_L_big_d3.png",
       "sha256": "91928b47bcf445d1859c540f42a57712e7435be58fc7aa5c3fcaa45d5d3d30c3",
       "source_sha256": "7b03146d776248a933b57224c5a333fbb503ee0c3f8e7ce055873eb8cb377c49",
@@ -1484,8 +1484,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0072_v2_L_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0072_v2_L_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0072_v2_L_small_d2.png",
       "sha256": "95b408024f0354384bf53edb9639b590bbe73aef09b3adde6ad42452dd7d0091",
       "source_sha256": "f9de862f7002f340b5fc80eca4be5c22fab6cb7f97fa4f780be840e3b84f5cd1",
@@ -1504,8 +1504,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0073_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0073_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0073_v2_L_small_d1.png",
       "sha256": "6b5e089a002e8b1051bb12e7eac99f3f00f153a0b503677e19d615082f935d07",
       "source_sha256": "46ee19a3f2c9f7b2a2a8be9e8c9d757f26d4da6aaf3d4b3638b67c88a9625220",
@@ -1524,8 +1524,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0074_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0074_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0074_v2_L_small_d1.png",
       "sha256": "011d1b2c2a4737a499b2bd3239ee83e657f29b49ec888c5232a3ef6c08ea49e6",
       "source_sha256": "a477f9101bd724374237ffe1f74f445d861b1c6c8f683539daef6c84dbc7585e",
@@ -1544,8 +1544,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0075_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0075_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0075_v2_L_small_d1.png",
       "sha256": "031d793884271e7c4c558695e4c240b9f7b0ddd7cae3100b2d5c348057adb2fc",
       "source_sha256": "741511d4d07a5dc204f458fdbe24cd24759b1be29e1cba617f437f6fccb78d83",
@@ -1564,8 +1564,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0076_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0076_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0076_v2_L_small_d1.png",
       "sha256": "6b51e7f911cba3a5eafaa5bfb9e1326d7fcb80bf932f2ac04ccde7cd2bd10a5d",
       "source_sha256": "a67cd855c8cb89c7b5ec42b0795fb73a887c6451670489ce7e56385c9df5850e",
@@ -1584,8 +1584,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0077_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0077_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0077_v2_L_small_d1.png",
       "sha256": "43e716c23c3fc4375a7b697574caf554e6db8df74caf9693b4286c4a109211a1",
       "source_sha256": "67e6057cf52917d58e4ec63ea1c06e346445bc0e9891fb9b94daef98e50875c9",
@@ -1604,8 +1604,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0078_v2_L_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0078_v2_L_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0078_v2_L_small_d2.png",
       "sha256": "97af21d8f103e96856f185e7e25c7e13116303778110cce7bba8d43889788cdd",
       "source_sha256": "7c3b894f79827ad50a4e0ca84ffdf7d7f112c9d5497aca4f3c055b796b12573e",
@@ -1624,8 +1624,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0079_v2_L_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0079_v2_L_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0079_v2_L_small_d2.png",
       "sha256": "a5e3dd4bcc66fb0e5b28af4143d6ad8b1eae252c0ed41c5baeb8f98d2d275dc0",
       "source_sha256": "f30d5d9a96a90482cb41423fa4875cc05e129935ddd6f24c5128e34204ffb0d6",
@@ -1644,8 +1644,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0080_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0080_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0080_v2_L_small_d1.png",
       "sha256": "bd0cfcabe6f31224f51b4979e14c85b50bd25dde75f97cd129a966abee577efe",
       "source_sha256": "d1b7059eba20532298495862d325ccc361f00e4c7ef477b6db1ef852d11a1b02",
@@ -1664,8 +1664,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0081_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0081_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0081_v2_L_small_d1.png",
       "sha256": "91392dd9bcd8df6f4a586cf24db16ec5afbd7716bd0e666f76fcb9b81b92ae5f",
       "source_sha256": "43079435998e9225f22ef9d9d6648e8c540e61d602aab23741dd25e164280f8c",
@@ -1684,8 +1684,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0082_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0082_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0082_v2_L_small_d1.png",
       "sha256": "cebda8480b066c152663253cc8eb5c7aa9c95672027238963f3a08f39199d3b0",
       "source_sha256": "6bf143bfecfd4eb7db44ccfe983617754d6c33df1951c6893a245b30642657a3",
@@ -1704,8 +1704,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0083_v2_L_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0083_v2_L_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0083_v2_L_small_d2.png",
       "sha256": "918e8f15140229ba73046398bc2f482f86c7a4f197682ab32298df51b3ca34f5",
       "source_sha256": "d8e7df192caaa01e77aab6bb17a7304101f3ae2f0d7bfdcffe9f8c1823c25106",
@@ -1724,8 +1724,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0084_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0084_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0084_v2_L_small_d1.png",
       "sha256": "d31abcd7794f5664def884b4f3f7fafd49db07d43fac0f396cc1325be62a0b88",
       "source_sha256": "09eb708484cd2c82f9fbcd53559eebbe2669326c56a2d4b0607bc5e0a826f68e",
@@ -1744,8 +1744,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0085_v2_L_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0085_v2_L_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0085_v2_L_small_d1.png",
       "sha256": "3db489bab34e98a3e560ffb1f63fb494107ad0d4d66d96ed1c62143defe7fd89",
       "source_sha256": "168ed78b676150aeda4a3001317d10fa75cef923bb6852429fc90a9f20a685fc",
@@ -1764,8 +1764,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/L/small/img0086_v2_L_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/L/small/img0086_v2_L_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0086_v2_L_small_d2.png",
       "sha256": "55a2bc782b59a51ab853b4b38d933de4650c5bd07c6825654d0a893846db8e86",
       "source_sha256": "a40e7b71a2379f61995bfde7f30e3c6abef849add714d85b0a48858152ffc6d9",
@@ -1784,8 +1784,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0087_v2_M_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0087_v2_M_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0087_v2_M_big_d3.png",
       "sha256": "a3b1afeee7884582b3e7e1d72fec08dd0fa83cc05fb7ded4949bcf4df28530b7",
       "source_sha256": "acfa6c840b53aa300e8d66379ecd136e39ba8702633ac41db32cb974c073ef7e",
@@ -1804,8 +1804,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0088_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0088_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0088_v2_M_big_d2.png",
       "sha256": "9c4ecdee0073ccedf576166f1ab387c1f9f58ea3ad53d6706880429efb26e8d7",
       "source_sha256": "64c7774f06c7afe11e1b02db49946ca66317d202db0fe9788e6a149ec5f315d3",
@@ -1824,8 +1824,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0089_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0089_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0089_v2_M_big_d2.png",
       "sha256": "bdc2f0927bf05f40ce37f51a48a0e39882a8044bf5133313e97693fef1c5eb68",
       "source_sha256": "898fdc475c48567adb3a70ce4bf0abcd50fde040bcdfdaad3caedd14c383a5b6",
@@ -1844,8 +1844,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0090_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0090_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0090_v2_M_big_d2.png",
       "sha256": "94178f88076538559be9db69fc95c260fb1d6c9ea3fa68a853ae24836df46cb7",
       "source_sha256": "a0f83f930c0928a80d4df276f81d6840c9a57fe1d61fd145a2e8a9b2ceb106bc",
@@ -1864,8 +1864,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0091_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0091_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0091_v2_M_big_d2.png",
       "sha256": "60036371689fbb038fb75d24e826d711b6cc63a7525146755eff2a45facc8d33",
       "source_sha256": "bf9360552c5f4ff244a5c5122b867da8e58bfa1121a8081a8cf6c178d161531b",
@@ -1884,8 +1884,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0092_v2_M_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0092_v2_M_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0092_v2_M_big_d3.png",
       "sha256": "0cda0e9d26587f3779078ec70b8f34385670c29dff9343c835c453d52528c9d9",
       "source_sha256": "4a6af7133635046e1df0df0249c1666d8b9b33167013beb3768c5d48a9067edc",
@@ -1904,8 +1904,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0093_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0093_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0093_v2_M_big_d2.png",
       "sha256": "cbe7827ea051b684df5e5a8102835343c2ec824b1966fc64809523806abc62c3",
       "source_sha256": "284d3266de294a11aad54fb15a4ce31232ea43c57dc19e247d774298ed377e88",
@@ -1924,8 +1924,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0094_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0094_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0094_v2_M_big_d2.png",
       "sha256": "d601e217e7b6fd280e237f846d2432f3597384ca859545123f80910817788b07",
       "source_sha256": "38b1732904c5a336289c188ad4f97a14c30ef892356a85a73bad3216bfb03d38",
@@ -1944,8 +1944,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0095_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0095_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0095_v2_M_big_d2.png",
       "sha256": "f899de7d2ee4f5c74b280b933ea8a38d5ed6c8dda32974d621aeeb334fe8c404",
       "source_sha256": "1e0e34f8f3bb3e4007689138521bc74776f3b95127de11b94c95c093227e360c",
@@ -1964,8 +1964,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0096_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0096_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0096_v2_M_big_d2.png",
       "sha256": "187ba7001e9d72e4f3e0e40c45bb2562f88b7bf66f8c0f07380faaf6bde57a28",
       "source_sha256": "0a3e7ecc76829944331f2f02911124f14bd25e21dd0e2668d8121b1c4619d3a2",
@@ -1984,8 +1984,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0097_v2_M_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0097_v2_M_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0097_v2_M_big_d3.png",
       "sha256": "744adcfe41a78caa480eca976b42b4cf1fcdc8f465db4156cae2db0dfc45f843",
       "source_sha256": "e83bd455bc002cc509f5efe65efebfa55258ffffde456fc2b4bb6260e18bcd88",
@@ -2004,8 +2004,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0098_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0098_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0098_v2_M_big_d2.png",
       "sha256": "8e5a454fdb9807f808995b6c163325f062f94c35831ff7737eae03a71428d20f",
       "source_sha256": "e6618ab0e02543a934d87c7023975165d6bf80b3d39c40aef9fc794a06c20d93",
@@ -2024,8 +2024,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0099_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0099_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0099_v2_M_big_d2.png",
       "sha256": "b6de36ce42636b25b7ef506e9b590cef7b0f6a59f55bca1a256dfff3c780d552",
       "source_sha256": "7dddc42fbce13137ae4f8088730ca35ae404e4fe710c02301486e3bc2a03cee9",
@@ -2044,8 +2044,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0100_v2_M_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0100_v2_M_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0100_v2_M_big_d1.png",
       "sha256": "143f663c69dc4ef513c9f905fe2d8867a9a958c3f2c28dbfc7279e819990e603",
       "source_sha256": "d0171ef8a4813c449ad4766ca00c8a835df39e1d7bfed819dba2f45a3887027b",
@@ -2064,8 +2064,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0101_v2_M_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0101_v2_M_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0101_v2_M_big_d1.png",
       "sha256": "994a8968bc1cb26b6093943e275e4f10710113c13c6f9342ac08e446bbc0e65e",
       "source_sha256": "dadf5dbd148b0ae3b8068666e7d51093cc8825bcbefbbc53daff765a6700d530",
@@ -2084,8 +2084,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0102_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0102_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0102_v2_M_big_d2.png",
       "sha256": "3da14ecd0d7bd581a694988aa08c3b9cdac7771a0612140057ada091953ff2b9",
       "source_sha256": "c7b236dcfc22fa5a816b045b84213fe21666a4548cb28506003da86b3394e6b2",
@@ -2104,8 +2104,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0103_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0103_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0103_v2_M_big_d2.png",
       "sha256": "c23e7ec8cfc78ae1c4475a70f2176335e14147f427ef63001ce44d1548abc886",
       "source_sha256": "c91076f593df94060e7997b7a9a242b52632674dff357c0e9e61850a09fabe3c",
@@ -2124,8 +2124,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0104_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0104_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0104_v2_M_big_d2.png",
       "sha256": "6b3156ff62a093e154ad8b83671d947e55dd03b64c59b6f2064f4b7989ee46ff",
       "source_sha256": "a6d30fa654569e312136a037660b3984b5a4d53c72c43c78a7d20d0b376b9587",
@@ -2144,8 +2144,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0105_v2_M_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0105_v2_M_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0105_v2_M_big_d1.png",
       "sha256": "fb9bced60714c24ce3d8f16780df3e7fd0bca135f13e8a18bf4bedb8400e9c9b",
       "source_sha256": "aa90b2c25907e19eff2386c67b2e20b538e4e71a584b511a560ac41194f975ad",
@@ -2164,8 +2164,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0106_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0106_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0106_v2_M_big_d2.png",
       "sha256": "780336ce9f41323698e5b1bb12eef62baf456493d67c2b9e80f6a55c57a37b63",
       "source_sha256": "9899b317559dbde99306a065c2256438f1d76e11fcde89e6df95f810c6160dcc",
@@ -2184,8 +2184,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0107_v2_M_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0107_v2_M_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0107_v2_M_big_d1.png",
       "sha256": "dac10170cd4b995c352780d4fc1ddbc3a34b768cc856ca9544de9395a3eadea0",
       "source_sha256": "3653f4f8b4a32e45c7fe7ac7e7d5ce49da686e7cc67f02590675214a4137698a",
@@ -2204,8 +2204,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0108_v2_M_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0108_v2_M_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0108_v2_M_big_d1.png",
       "sha256": "1a499636bed61add0447e0bca9a497e6daa595f1a7c8103c3c7721837513fe19",
       "source_sha256": "cbd19aaafb7650ca982fbd1dc08a877a80cd31e941c85f7b1cacd4d31da3e5a6",
@@ -2224,8 +2224,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0109_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0109_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0109_v2_M_big_d2.png",
       "sha256": "9b686acdc019f5ecd2016bb38aee01ffc452abcd642e82bcdd69655fd00a765e",
       "source_sha256": "5ee81023f9766919a8d580ce6d3ffae8beda32125304ad35fd550609f6667431",
@@ -2244,8 +2244,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0110_v2_M_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0110_v2_M_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0110_v2_M_big_d1.png",
       "sha256": "2c7ee0af6b32ac4f3049f74f7b11c98b1967e8ddd53ea55f817e792f3001c79b",
       "source_sha256": "a3e12f28396161252d08c5338f4939ccc7db6599401ed6a6cb35a7904377659d",
@@ -2264,8 +2264,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0111_v2_M_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0111_v2_M_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0111_v2_M_big_d0.png",
       "sha256": "adb67bbc9cf01cad0254389ec3e428d1caeb03a43b3857e99671da856936d92c",
       "source_sha256": "1546478ea1f5b89044cca3aaf6b756cae087a1334397918bdb7f90c9f8c95476",
@@ -2284,8 +2284,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0112_v2_M_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0112_v2_M_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0112_v2_M_big_d0.png",
       "sha256": "17b0672596b10904658feb4b2aa4d1e8ed8aac7efed177696e6cff8a7172c2ed",
       "source_sha256": "bf371bacc3cdd1c6b313c72ae4bb95d6e76159921d787b34af1d4e4212f6628c",
@@ -2304,8 +2304,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0113_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0113_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0113_v2_M_big_d2.png",
       "sha256": "405a345ee626d53bcbf00f67de22c4124076887f8f91af8e02a7ca5e59b49e6a",
       "source_sha256": "61581e27a404a1bdb82ea5cf6f63a8912415f05ded229e2e69856eb4e06deeb3",
@@ -2324,8 +2324,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0114_v2_M_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0114_v2_M_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0114_v2_M_big_d2.png",
       "sha256": "9fa3f72b6cdd254d62a507e06f476d7d0cce51f34bb3b9cefaa0df9c865f16b3",
       "source_sha256": "2c90b891ccebfbf09359d839ff173f6f0601454288c514b4124bc202bc4a94de",
@@ -2344,8 +2344,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0115_v2_M_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0115_v2_M_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0115_v2_M_big_d1.png",
       "sha256": "2a771caf2c94e9eed019a068979241df2ff4b424411e8463af4666110fc113b6",
       "source_sha256": "c9843bbd8629c7c21da754740ab9a1843a422864522e8932b620ce7b2dc5d2dd",
@@ -2364,8 +2364,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/big/img0116_v2_M_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/big/img0116_v2_M_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0116_v2_M_big_d0.png",
       "sha256": "71c210b0ed1980041f2e1616341633420659826cabc090cb5a20f069604ed772",
       "source_sha256": "de30f36283c18e0db4c0e2f2ec422429b5f6f2e96942e18173082a0c238415c9",
@@ -2384,8 +2384,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0117_v2_M_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0117_v2_M_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0117_v2_M_small_d1.png",
       "sha256": "14138f25e2d7faaa0f116836b5fd7bc85a8b9a70385b6d86fba97be87ad32aeb",
       "source_sha256": "669bfea597757732bbc4713df04147f3bccd45cdf010d37d2aacd66998fcb3ec",
@@ -2404,8 +2404,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0118_v2_M_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0118_v2_M_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0118_v2_M_small_d2.png",
       "sha256": "2a37d6b63859d4fdc75cf3f50fd89661dda909f1fa4f6dfc8bf35b0677ac8b42",
       "source_sha256": "62d690ec19f4f84967fcf5a418500205494e55e94beac1ea4e370fe9e1404dd3",
@@ -2424,8 +2424,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0119_v2_M_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0119_v2_M_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0119_v2_M_small_d1.png",
       "sha256": "f314933bb0489974a4f8f31538b6209557fabce73b746a8076eca5a3de81d4fa",
       "source_sha256": "08e71ebbec46a5d9065ea882bc1d49ea2d06cd5a6fe17a090809175813681980",
@@ -2444,8 +2444,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0120_v2_M_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0120_v2_M_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0120_v2_M_small_d2.png",
       "sha256": "aeaf6e5248f70bd358c555b579eeaff9be7cd38785fdc491895ce9524cfe1378",
       "source_sha256": "9aba72729c2407a422b096af638638b828efc492884d5dd13df0b06845f894bf",
@@ -2464,8 +2464,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0121_v2_M_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0121_v2_M_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0121_v2_M_small_d1.png",
       "sha256": "3a47e21216fb27f93b33f3669c88a0c4302c8469bb3ac0fb18ad7a7c0233fbc4",
       "source_sha256": "36a8be049255264c68ef05b80e6fbae06bab2caa29cbf2c1e9bdd6e2ae368f36",
@@ -2484,8 +2484,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0122_v2_M_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0122_v2_M_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0122_v2_M_small_d2.png",
       "sha256": "8545dab3b7959e04c8e13005d984112996ffc2e690801a7bf9065f283a0627bc",
       "source_sha256": "92cdbfbd734c0da736f0403a598fd4f6ecc15e8e96c1a03ca159f712d629af7e",
@@ -2504,8 +2504,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0123_v2_M_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0123_v2_M_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0123_v2_M_small_d2.png",
       "sha256": "eae31c89f1d7f5a0746c77fcb5d4dab12799f21d7065893b7ceac5894089ddb0",
       "source_sha256": "6533681a93b396c3cd5517d28cbe8f85a4b325976087e29b315a64126a6d3ba5",
@@ -2524,8 +2524,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0124_v2_M_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0124_v2_M_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0124_v2_M_small_d2.png",
       "sha256": "0a5e47362a934ee5b2d267a009ac98d5e1447ff0a0827cafe09ca0ea5b8b4479",
       "source_sha256": "bb14a318b5c86622350149d0e606ec04d32db4fea0b44ec7c3119c09a0cff695",
@@ -2544,8 +2544,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0125_v2_M_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0125_v2_M_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0125_v2_M_small_d1.png",
       "sha256": "8ce10d32bfc3c25bb4e9729f4d1542edd8bb2e30e7684e05ad2bbebcc8c43112",
       "source_sha256": "b2086deb4be08fc37fd34fc00543ab84c53d80927c0a17e802dbb2285f53049f",
@@ -2564,8 +2564,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0126_v2_M_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0126_v2_M_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0126_v2_M_small_d1.png",
       "sha256": "f2e22542b49ac2afcc82ea64f5f39d5bf895731b9f0aa27e9c0802e1eeaf16a0",
       "source_sha256": "aa82fdebf0354b8d831c6b23f3ce146b9b5fd2d3f5bcdd4e8680140c0e03467f",
@@ -2584,8 +2584,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0127_v2_M_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0127_v2_M_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0127_v2_M_small_d2.png",
       "sha256": "433551022adac24a26bd6704c466f05a944afca0dce88a85cee49fa3909fd5f6",
       "source_sha256": "990ed362cff2be9e636a12afa666d829c307372753629b6cbf6c00a39a458b15",
@@ -2604,8 +2604,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0128_v2_M_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0128_v2_M_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0128_v2_M_small_d1.png",
       "sha256": "be88ec1f8218a49b17ef8203b689e856c4f14cfb429d199e757fa0cfa6e65042",
       "source_sha256": "613c86a7a44654469286aa214819d9088f87c5bac0f3b9fafacedbcce1ed0b25",
@@ -2624,8 +2624,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/M/small/img0129_v2_M_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/M/small/img0129_v2_M_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0129_v2_M_small_d1.png",
       "sha256": "b195d967f271edeb8eba72e1b09d34de74f2e3956f8f23e0c4ab2ff706a2b0b4",
       "source_sha256": "3902cade92058f44c2b44e329d9d16d061ba59a89526cd3b9b13dd87a1d492ab",
@@ -2644,8 +2644,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0130_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0130_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0130_v2_Q_big_d2.png",
       "sha256": "c1c09ac0e062d8e4b5304fd2adc5dd4e351cc514fd6e5d4702deb6613fc749b0",
       "source_sha256": "c1e6ccbcdc0f5f160e215f90ce65c6e4e474241c0cdad9c0e3823ee01ae21afa",
@@ -2664,8 +2664,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0131_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0131_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0131_v2_Q_big_d2.png",
       "sha256": "66afa761e7ad0c88109ebf5f6badf6b8a92fa2ce91c1d551d36cc889f328a8eb",
       "source_sha256": "aedd9e7525baeb4fe786ca4d252bdd374b75d8072bbc06d67fd6691dc22d38c9",
@@ -2684,8 +2684,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0132_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0132_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0132_v2_Q_big_d2.png",
       "sha256": "69a411510e009339b1c095ca82c345a3860adf96532de84d0d1acdf23e44a4c0",
       "source_sha256": "ddc3c7d24b51733634c11ab90daf3bfb8f3532e39009755774239fae8ed62cbc",
@@ -2704,8 +2704,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0133_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0133_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0133_v2_Q_big_d2.png",
       "sha256": "212fc1d51cae40f74fe09f6633ee24f5ff4d000ea656e9b71721f33ab74372c1",
       "source_sha256": "3d8c7363c6c502281d030f54304452b6dbe0cf45bf728c43eebc58376509b43f",
@@ -2724,8 +2724,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0134_v2_Q_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0134_v2_Q_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0134_v2_Q_big_d3.png",
       "sha256": "6bac612a53fd1cda1c9e89ea4de0c01dccd791b9c3a87ca43dc02dc6462ce522",
       "source_sha256": "f70ac7b2e1f8eedf77fe815acccb2701a5b8f31fb4923e6da46fec9e65404ca6",
@@ -2744,8 +2744,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0135_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0135_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0135_v2_Q_big_d2.png",
       "sha256": "509489e7c401d51e60d8c02577d99a13ed61399fbcfdef43a3da270b8cb4c630",
       "source_sha256": "afff43911402ab859ad1243ab361555fbd7ac717dfd23b0aadec180086162b85",
@@ -2764,8 +2764,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0136_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0136_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0136_v2_Q_big_d2.png",
       "sha256": "e9cb17ed6783fccf806feb232f7078fda0d2242ea77583c72f57f76370a9a49f",
       "source_sha256": "c736060890f93b4ac1cc31d9fbd997591b14f0206d299d20b28af9245aeb684d",
@@ -2784,8 +2784,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0137_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0137_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0137_v2_Q_big_d2.png",
       "sha256": "559c9403e804389293faf67dcdead192792ee37fbdaa2aefb04e385310f7e212",
       "source_sha256": "11d363fabd918d15f01ac9710c4d520a1ca4fb3be9eae0e6e93cedb9c7088747",
@@ -2804,8 +2804,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0138_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0138_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0138_v2_Q_big_d2.png",
       "sha256": "5e23688c58d53f2a1f277bb985f4786fd6c369b946500e70c60b354bdec2ef4d",
       "source_sha256": "083c84bd6ecf024c368324d1a3bb16692d8806c64e32836401edbd0f0415a2e1",
@@ -2824,8 +2824,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0139_v2_Q_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0139_v2_Q_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0139_v2_Q_big_d3.png",
       "sha256": "3dbd44e6e6543ec2cb22a18e48926ab9fbe9de435b065f4cd0998ab163469432",
       "source_sha256": "72fe8d0ec2976e80116152628eff6e33afa3e74c8d2791c8fec384a2c9e1a1dc",
@@ -2844,8 +2844,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0140_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0140_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0140_v2_Q_big_d2.png",
       "sha256": "e6d627b1886c83c239a0f8c5e4ab7b19f49f67e84e1cc2196c997fa8f824be80",
       "source_sha256": "046088f451e6c4aeb461f14e674263f3a02868adfe874e6affc530aa21c226f9",
@@ -2864,8 +2864,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0141_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0141_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0141_v2_Q_big_d2.png",
       "sha256": "931904f4cda1b91270e5109fdce82f6a6149437a737199e8569f5d0a33f984fe",
       "source_sha256": "ae3d7b44f2d91c0f1518ec6886959340bb39bd90a4c182efb385e017c41a793c",
@@ -2884,8 +2884,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0142_v2_Q_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0142_v2_Q_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0142_v2_Q_big_d1.png",
       "sha256": "e5c9bf55c9cd6b5707bc3144144120168bb946a45f7366a8f0f0779cc1037840",
       "source_sha256": "58f5c51b94dff87bb6af31a97eecff3c992b0f6ea7f42a9351eb8d01397d55f0",
@@ -2904,8 +2904,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0143_v2_Q_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0143_v2_Q_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0143_v2_Q_big_d1.png",
       "sha256": "6d3117bd7cd522e093319c7ef47c6d81b8133cba69d864d8fa27d4c25c82565d",
       "source_sha256": "f4983b8104f61b6a2ca52d2dfed13e448739a94d917de5547921346174c6168b",
@@ -2924,8 +2924,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0144_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0144_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0144_v2_Q_big_d2.png",
       "sha256": "51cdbefb601b8ff3524e588ed5cfd87062e7d15eb7efb22cb4507c29745a25db",
       "source_sha256": "95179e421f2c15f5b597a8cf699c34e329daa0b8b28f122e28bb788bb40acdab",
@@ -2944,8 +2944,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0145_v2_Q_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0145_v2_Q_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0145_v2_Q_big_d1.png",
       "sha256": "d3f0bcc561a7e4b11a648ae347e196f3b3fafb63c8b548dc4cd4f9227e5f8be3",
       "source_sha256": "8be653f16d29ffd91f4ab59346ff52674d1cb818ca8dbab73ef2e0ac02e521dc",
@@ -2964,8 +2964,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0146_v2_Q_big_d3.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0146_v2_Q_big_d3.png",
       "input": "test/benchmark_results/inputs_2000/img0146_v2_Q_big_d3.png",
       "sha256": "1d56a9fc03389a14d06dec96190b9d3d75b9ccc6372cdad98b928ba0899ec7b7",
       "source_sha256": "0470397180fe9916b86d605ae5dab042e3815d14816bd6926fc5f3e6d970b358",
@@ -2984,8 +2984,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0147_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0147_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0147_v2_Q_big_d2.png",
       "sha256": "2b1c4e6ce252c27f6fefbba28d1831bf50740fab8f64d491879003b5a97ce64e",
       "source_sha256": "9a931b0ec991518a574b6af98c86aa8d63bcc9020f89e04b3102ec385cb2e6e6",
@@ -3004,8 +3004,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0148_v2_Q_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0148_v2_Q_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0148_v2_Q_big_d1.png",
       "sha256": "885ce7549446efdb316cbaabc3679a039d92af2955737998e1aa054e090a7522",
       "source_sha256": "6972145fa8eee3bae01c764ae0f17cecaced1ffdddb547f8aedd3c4629b0ad74",
@@ -3024,8 +3024,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0149_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0149_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0149_v2_Q_big_d2.png",
       "sha256": "49f5aecf679078955ada4a4b7824caa8058de239f247134e01a26952f9a2e160",
       "source_sha256": "83d053dcdb440c68287f90be00f77d7ae2d49d88ad3bea79bdeb09e706a4df98",
@@ -3044,8 +3044,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0150_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0150_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0150_v2_Q_big_d2.png",
       "sha256": "169865d42647de20a28bfac3344d2a0e8c6fc4d110a5560c116f48d60240281b",
       "source_sha256": "fde3a28e113b193cefd612bcf710ba7855655d602abffa3209933f98c9d8c8ee",
@@ -3064,8 +3064,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0151_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0151_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0151_v2_Q_big_d2.png",
       "sha256": "6ea59a7e8b305c3f93fce7006eace57f3433783a0ae34d99ff7826e3c5ef9cd9",
       "source_sha256": "9395b5fb2fd794d91a8dc392be4472546320174bcc15edd7699ee91825671b72",
@@ -3084,8 +3084,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0152_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0152_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0152_v2_Q_big_d2.png",
       "sha256": "1d36aa06bfc49372c5732a8e2664d9ab88e3eaf9daf4d73ea642c5dc8bed791a",
       "source_sha256": "7ab44dddfc362c33231e1c934c131da379f692d3499b1d02b8e8d193b3f790c2",
@@ -3104,8 +3104,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0153_v2_Q_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0153_v2_Q_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0153_v2_Q_big_d1.png",
       "sha256": "9eb02b521769356cbcac8889cf65fe3f170211043783db489075621c79111caa",
       "source_sha256": "80191d30aae4ddd39d05ba6c332b306f90714f945186dea5ab93891542465dec",
@@ -3124,8 +3124,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0154_v2_Q_big_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0154_v2_Q_big_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0154_v2_Q_big_d2.png",
       "sha256": "f11c0f57e3a366e2aba9e6e7c05bff27ec259c47072f7c8ddf1c6e928e69e86d",
       "source_sha256": "e0da4af7d43f64d59cd0a36de5212f4976ff9814ee25e5d339d2b82afdf49a46",
@@ -3144,8 +3144,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0155_v2_Q_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0155_v2_Q_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0155_v2_Q_big_d1.png",
       "sha256": "5718256c4dab4b7ecafc34e64d7c4fb8bb1f7650d4448a5a9e29fdec4903d9aa",
       "source_sha256": "3d3fbd347ae81aafd3aded868a298d945827b4656c6072da1f58a6d2d247977f",
@@ -3164,8 +3164,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0156_v2_Q_big_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0156_v2_Q_big_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0156_v2_Q_big_d0.png",
       "sha256": "665fddf434fae0c53409decff4ed13c980ead87f715a44cd1de827dca2e363bd",
       "source_sha256": "da8281026fa47d0efa10d17bcd03c4d6c91b8af8a51125424c3442c088104f85",
@@ -3184,8 +3184,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/big/img0157_v2_Q_big_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/big/img0157_v2_Q_big_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0157_v2_Q_big_d1.png",
       "sha256": "c9ea545ab0375a7e47cb0d1cdf0570fdd1ba9468a07d2b0719ec2859e6c0f050",
       "source_sha256": "67093399d2c0f2b48d7969aad8bb4f71082cca0e0ec5381728d6dbbd2a022665",
@@ -3204,8 +3204,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0158_v2_Q_small_d0.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0158_v2_Q_small_d0.png",
       "input": "test/benchmark_results/inputs_2000/img0158_v2_Q_small_d0.png",
       "sha256": "3d8ac9abe154cb2faea668cd5c63c6bdf2dec6409e14c4d2bc6fb72f71e44a5d",
       "source_sha256": "16b85aba9e0fb9e35c63af92667ec18938a038de21ad246e0208a1d2e8265975",
@@ -3224,8 +3224,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0159_v2_Q_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0159_v2_Q_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0159_v2_Q_small_d1.png",
       "sha256": "ebd408b4916469d9cff1eda11a480dd11e6699d7d7ac6163422a75a723b78130",
       "source_sha256": "761e9a55756cf6c3077aa6ce6479f6fb75b36834180f2b1fd7938e60453efbda",
@@ -3244,8 +3244,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0160_v2_Q_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0160_v2_Q_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0160_v2_Q_small_d2.png",
       "sha256": "19b00068bfb7fcb2705f9b14d0d6d725f2e66f41f207e0c9a81397a81e070e18",
       "source_sha256": "1b203e2a89e1205bc56eae09b4905e946749ed9ce0bd9517b22a1724c661f958",
@@ -3264,8 +3264,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0161_v2_Q_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0161_v2_Q_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0161_v2_Q_small_d2.png",
       "sha256": "00c321b260cd8604e2f32ca4ec7accd10c36f5d73d4bd15d7cf0e2141febe10d",
       "source_sha256": "76c7072099de39b1f47a411c2b95b8ba76004cd775a3bf7d791ef09d48d87b0f",
@@ -3284,8 +3284,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0162_v2_Q_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0162_v2_Q_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0162_v2_Q_small_d2.png",
       "sha256": "298f7ecfae1db0222c827be8217f8441a1305f1824877332e80f90ccfcddc027",
       "source_sha256": "fddf06a33d759b1e42e7740eab3415f65de74f7aaf462a9b9c7abf35030fada4",
@@ -3304,8 +3304,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0163_v2_Q_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0163_v2_Q_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0163_v2_Q_small_d1.png",
       "sha256": "7f3d1903ef62276da8fe577c524195c32215b0042383477d44c0467d5a685256",
       "source_sha256": "dee27f62420ecf2cdfd813a0b9fea8b46cea60e097e58eeeed3d531085f79243",
@@ -3324,8 +3324,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0164_v2_Q_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0164_v2_Q_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0164_v2_Q_small_d2.png",
       "sha256": "62a53a49ff92bff3e333aef84c98ed2cc2ed990bd479a80d5e545ed4460e4a99",
       "source_sha256": "687bcd09af9b5f44d1a384ad3b57d371b99208063fd900152793a8d34dbd8502",
@@ -3344,8 +3344,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0165_v2_Q_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0165_v2_Q_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0165_v2_Q_small_d1.png",
       "sha256": "a0dc3434f538569c9b9604c6da216d791acea8831ca3715d7da02b5a4da1a748",
       "source_sha256": "791e917b8be0cf68e3ac49c8a35b7be47d47cbd753593a207539b759b9cca8ce",
@@ -3364,8 +3364,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0166_v2_Q_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0166_v2_Q_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0166_v2_Q_small_d1.png",
       "sha256": "f5c9eda63005a519adec608a4e9e7eb9e00013796129173e22af1f921607b09c",
       "source_sha256": "e2d1cc6b01eca9c68441d45e1538e001ffb999313c96565c1e940042c1de88d7",
@@ -3384,8 +3384,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0167_v2_Q_small_d2.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0167_v2_Q_small_d2.png",
       "input": "test/benchmark_results/inputs_2000/img0167_v2_Q_small_d2.png",
       "sha256": "31225b7bda4edbe077bcaf8de70615a398b0a517943fd9687a0b620381cdbf04",
       "source_sha256": "f311fa2c4647a09f6acafb9a77d1a97d5477aecf05bb5a40dd64dc09ae210691",
@@ -3404,8 +3404,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0168_v2_Q_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0168_v2_Q_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0168_v2_Q_small_d1.png",
       "sha256": "1812b0b313f8bcf459a4e64b66f0430a4e038bb81a0e29f01bbad1afabfdde91",
       "source_sha256": "718535c1f500634f03feb052d2912bf93dca50bef3a724700a63fbf4795559fe",
@@ -3424,8 +3424,8 @@
       }
     },
     {
-      "dataset": "data",
-      "source": "data/v2/Q/small/img0169_v2_Q_small_d1.png",
+      "dataset": "data/qr/data1",
+      "source": "data/qr/data1/v2/Q/small/img0169_v2_Q_small_d1.png",
       "input": "test/benchmark_results/inputs_2000/img0169_v2_Q_small_d1.png",
       "sha256": "8606612c7bf51bd2aa4b80a144cf7945a9e27ca2c0b34ad5d62bc1b71f02bfc0",
       "source_sha256": "6d0e06577d0312e70453c8962492bdeb436082ef0d8721f0ac6179643bb2abd8",
@@ -3444,9 +3444,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/1.png",
-      "input": "data2/data/1.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/1.png",
+      "input": "data/qr/data2/data/1.png",
       "sha256": "a3ec75512da8920420ef23d0c9cc24d03c3d9c4729ae9a29d8963d841d0cd80d",
       "source_sha256": "a3ec75512da8920420ef23d0c9cc24d03c3d9c4729ae9a29d8963d841d0cd80d",
       "expected": null,
@@ -3464,9 +3464,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/10.png",
-      "input": "data2/data/10.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/10.png",
+      "input": "data/qr/data2/data/10.png",
       "sha256": "01e3057d5959d2631c471de4c884bf5abc3288a693a2eb913b1922e0d3378e86",
       "source_sha256": "01e3057d5959d2631c471de4c884bf5abc3288a693a2eb913b1922e0d3378e86",
       "expected": null,
@@ -3484,9 +3484,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/100.png",
-      "input": "data2/data/100.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/100.png",
+      "input": "data/qr/data2/data/100.png",
       "sha256": "8c076e28d404bafd584e2dac7bef1e47f4a66bee1101c4823ecd863dec5543ec",
       "source_sha256": "8c076e28d404bafd584e2dac7bef1e47f4a66bee1101c4823ecd863dec5543ec",
       "expected": null,
@@ -3504,9 +3504,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/102.png",
-      "input": "data2/data/102.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/102.png",
+      "input": "data/qr/data2/data/102.png",
       "sha256": "66208924acb7f2b9e7b09707d6fdab6dabdb75b19ffa84fc1125bb1a2f558483",
       "source_sha256": "66208924acb7f2b9e7b09707d6fdab6dabdb75b19ffa84fc1125bb1a2f558483",
       "expected": null,
@@ -3524,9 +3524,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/103.png",
-      "input": "data2/data/103.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/103.png",
+      "input": "data/qr/data2/data/103.png",
       "sha256": "622a8abceeb3192ec4d03de97f334b75db651aca97cf059b38620b1ab9578e82",
       "source_sha256": "622a8abceeb3192ec4d03de97f334b75db651aca97cf059b38620b1ab9578e82",
       "expected": null,
@@ -3544,9 +3544,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/104.png",
-      "input": "data2/data/104.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/104.png",
+      "input": "data/qr/data2/data/104.png",
       "sha256": "5e66d1fe91d3c15c66aef81f4ab1cb122ef693a30159812562e1f490434d7ebd",
       "source_sha256": "5e66d1fe91d3c15c66aef81f4ab1cb122ef693a30159812562e1f490434d7ebd",
       "expected": null,
@@ -3564,9 +3564,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/105.png",
-      "input": "data2/data/105.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/105.png",
+      "input": "data/qr/data2/data/105.png",
       "sha256": "bfb4a5cd56bde9341663122c3759d2b83745b6c6146fa76766bd01f3ecc3d286",
       "source_sha256": "bfb4a5cd56bde9341663122c3759d2b83745b6c6146fa76766bd01f3ecc3d286",
       "expected": null,
@@ -3584,9 +3584,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/106.png",
-      "input": "data2/data/106.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/106.png",
+      "input": "data/qr/data2/data/106.png",
       "sha256": "252414cb791c3d2bfc362983e758d17dbe32662e875ce9485fe3908315a8cff9",
       "source_sha256": "252414cb791c3d2bfc362983e758d17dbe32662e875ce9485fe3908315a8cff9",
       "expected": null,
@@ -3604,9 +3604,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/107.png",
-      "input": "data2/data/107.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/107.png",
+      "input": "data/qr/data2/data/107.png",
       "sha256": "476809bc1c35efaf30adbc7d53dd9e05998787d9a75bc444e3a8249b4c4ea5a8",
       "source_sha256": "476809bc1c35efaf30adbc7d53dd9e05998787d9a75bc444e3a8249b4c4ea5a8",
       "expected": null,
@@ -3624,9 +3624,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/108.png",
-      "input": "data2/data/108.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/108.png",
+      "input": "data/qr/data2/data/108.png",
       "sha256": "0e6be130de3c1c318abb48d65cbc3916e2f04561e42e62575432265da1257469",
       "source_sha256": "0e6be130de3c1c318abb48d65cbc3916e2f04561e42e62575432265da1257469",
       "expected": null,
@@ -3644,9 +3644,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/109.png",
-      "input": "data2/data/109.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/109.png",
+      "input": "data/qr/data2/data/109.png",
       "sha256": "26d6b043c8ee182baa85143856c9fd0205e9184ae20dbdd3bc49a3cdd88d9812",
       "source_sha256": "26d6b043c8ee182baa85143856c9fd0205e9184ae20dbdd3bc49a3cdd88d9812",
       "expected": null,
@@ -3664,9 +3664,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/11.png",
-      "input": "data2/data/11.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/11.png",
+      "input": "data/qr/data2/data/11.png",
       "sha256": "3622ae1e287e8a547463377b9648a85aa84084dbc341e2907e5ad2637249add0",
       "source_sha256": "3622ae1e287e8a547463377b9648a85aa84084dbc341e2907e5ad2637249add0",
       "expected": null,
@@ -3684,9 +3684,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/110.png",
-      "input": "data2/data/110.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/110.png",
+      "input": "data/qr/data2/data/110.png",
       "sha256": "b2fcf69ffe60675846fe64cc7fa900674aa29d56e96f1d75a032672a36345af6",
       "source_sha256": "b2fcf69ffe60675846fe64cc7fa900674aa29d56e96f1d75a032672a36345af6",
       "expected": null,
@@ -3704,9 +3704,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/111.png",
-      "input": "data2/data/111.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/111.png",
+      "input": "data/qr/data2/data/111.png",
       "sha256": "164a0913812c3e3c7a7096ab4748d9ff0a2a9e2317742563f3368839ecb23bed",
       "source_sha256": "164a0913812c3e3c7a7096ab4748d9ff0a2a9e2317742563f3368839ecb23bed",
       "expected": null,
@@ -3724,9 +3724,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/112.png",
-      "input": "data2/data/112.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/112.png",
+      "input": "data/qr/data2/data/112.png",
       "sha256": "b48636f00404441a0ea4598c58b897f9f96dff915189c426fab0db42bd69d6a4",
       "source_sha256": "b48636f00404441a0ea4598c58b897f9f96dff915189c426fab0db42bd69d6a4",
       "expected": null,
@@ -3744,9 +3744,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/113.png",
-      "input": "data2/data/113.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/113.png",
+      "input": "data/qr/data2/data/113.png",
       "sha256": "8f14b81ae8e2de1cc640414760d57c68519904cd83058adabd7de6448e2b7d24",
       "source_sha256": "8f14b81ae8e2de1cc640414760d57c68519904cd83058adabd7de6448e2b7d24",
       "expected": null,
@@ -3764,9 +3764,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/114.png",
-      "input": "data2/data/114.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/114.png",
+      "input": "data/qr/data2/data/114.png",
       "sha256": "2d808ab0390cb43d2192b2c589cca6798ea3ccbd6dcbb3c2bbfded38b7d6c43d",
       "source_sha256": "2d808ab0390cb43d2192b2c589cca6798ea3ccbd6dcbb3c2bbfded38b7d6c43d",
       "expected": null,
@@ -3784,9 +3784,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/117.png",
-      "input": "data2/data/117.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/117.png",
+      "input": "data/qr/data2/data/117.png",
       "sha256": "d2a431b1e9dc42331c1d5fad84fb8da0205ea18b1bf5817d4085bf38be929376",
       "source_sha256": "d2a431b1e9dc42331c1d5fad84fb8da0205ea18b1bf5817d4085bf38be929376",
       "expected": null,
@@ -3804,9 +3804,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/118.png",
-      "input": "data2/data/118.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/118.png",
+      "input": "data/qr/data2/data/118.png",
       "sha256": "e3eecd56664aa1e3ea1a70e84f9e3d220e32b69774c02073251b485052da9847",
       "source_sha256": "e3eecd56664aa1e3ea1a70e84f9e3d220e32b69774c02073251b485052da9847",
       "expected": null,
@@ -3824,9 +3824,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/119.png",
-      "input": "data2/data/119.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/119.png",
+      "input": "data/qr/data2/data/119.png",
       "sha256": "f340650bdebf5a7b86c13c717f7f49ceb2417fcd04893639dffa71ef41d3a02c",
       "source_sha256": "f340650bdebf5a7b86c13c717f7f49ceb2417fcd04893639dffa71ef41d3a02c",
       "expected": null,
@@ -3844,9 +3844,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/12.png",
-      "input": "data2/data/12.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/12.png",
+      "input": "data/qr/data2/data/12.png",
       "sha256": "5a4b304a7ea8c10fd08ce733f7f142c007323d9e95e3c4d6ed8464c9f98b0139",
       "source_sha256": "5a4b304a7ea8c10fd08ce733f7f142c007323d9e95e3c4d6ed8464c9f98b0139",
       "expected": null,
@@ -3864,9 +3864,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/120.png",
-      "input": "data2/data/120.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/120.png",
+      "input": "data/qr/data2/data/120.png",
       "sha256": "ef9710b88d12056557b0e71e1538a10f99d375692214c392ea06eca733b841bb",
       "source_sha256": "ef9710b88d12056557b0e71e1538a10f99d375692214c392ea06eca733b841bb",
       "expected": null,
@@ -3884,9 +3884,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/122.png",
-      "input": "data2/data/122.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/122.png",
+      "input": "data/qr/data2/data/122.png",
       "sha256": "caa5edd86dde56987006587ddba6788e921ec03f8c6fd60a578dd7c948bbdc9b",
       "source_sha256": "caa5edd86dde56987006587ddba6788e921ec03f8c6fd60a578dd7c948bbdc9b",
       "expected": null,
@@ -3904,9 +3904,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/123.png",
-      "input": "data2/data/123.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/123.png",
+      "input": "data/qr/data2/data/123.png",
       "sha256": "aa31a98dd28ed8689da4ac4780645b69397b3e98cd562900e509e3290a0471d8",
       "source_sha256": "aa31a98dd28ed8689da4ac4780645b69397b3e98cd562900e509e3290a0471d8",
       "expected": null,
@@ -3924,9 +3924,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/124.png",
-      "input": "data2/data/124.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/124.png",
+      "input": "data/qr/data2/data/124.png",
       "sha256": "db03c0b6eb0cd4db67430daf9106c0d9a312043f40f23bd0290159abb0ff2d45",
       "source_sha256": "db03c0b6eb0cd4db67430daf9106c0d9a312043f40f23bd0290159abb0ff2d45",
       "expected": null,
@@ -3944,9 +3944,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/125.png",
-      "input": "data2/data/125.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/125.png",
+      "input": "data/qr/data2/data/125.png",
       "sha256": "63d0e5ff7281d436cee8e42df0ecef6d3beeb3750e8bd4329853deb0c7b59d4b",
       "source_sha256": "63d0e5ff7281d436cee8e42df0ecef6d3beeb3750e8bd4329853deb0c7b59d4b",
       "expected": null,
@@ -3964,9 +3964,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/128.png",
-      "input": "data2/data/128.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/128.png",
+      "input": "data/qr/data2/data/128.png",
       "sha256": "154777a0058f2e1809c586c8c2bd9e097517f5c92d552135d3506f2a7422b544",
       "source_sha256": "154777a0058f2e1809c586c8c2bd9e097517f5c92d552135d3506f2a7422b544",
       "expected": null,
@@ -3984,9 +3984,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/13.png",
-      "input": "data2/data/13.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/13.png",
+      "input": "data/qr/data2/data/13.png",
       "sha256": "4767e9b40b0e87d9f4ec8194dc5040f613e8df1c53a56a247e76a649b3aa62c0",
       "source_sha256": "4767e9b40b0e87d9f4ec8194dc5040f613e8df1c53a56a247e76a649b3aa62c0",
       "expected": null,
@@ -4004,9 +4004,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/130.png",
-      "input": "data2/data/130.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/130.png",
+      "input": "data/qr/data2/data/130.png",
       "sha256": "66a0e84f4231aad3861f99d2017f1ffe00492c0aa15f1ae9376f6a9dbccfb8ae",
       "source_sha256": "66a0e84f4231aad3861f99d2017f1ffe00492c0aa15f1ae9376f6a9dbccfb8ae",
       "expected": null,
@@ -4024,9 +4024,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/131.png",
-      "input": "data2/data/131.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/131.png",
+      "input": "data/qr/data2/data/131.png",
       "sha256": "a67e3faafd660f76e7c623aa9c411d8c7172eedfc0f640e02f7907282cb4704a",
       "source_sha256": "a67e3faafd660f76e7c623aa9c411d8c7172eedfc0f640e02f7907282cb4704a",
       "expected": null,
@@ -4044,9 +4044,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/132.png",
-      "input": "data2/data/132.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/132.png",
+      "input": "data/qr/data2/data/132.png",
       "sha256": "fbd15d4c4afadf852fad2f2fa7d5ce4860198a14b053d18d21b292b761a4cb70",
       "source_sha256": "fbd15d4c4afadf852fad2f2fa7d5ce4860198a14b053d18d21b292b761a4cb70",
       "expected": null,
@@ -4064,9 +4064,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/133.png",
-      "input": "data2/data/133.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/133.png",
+      "input": "data/qr/data2/data/133.png",
       "sha256": "4c57f545635f752d971cdef1e92c7a15a843df6fa66e4cf7c4be8f9ffda68482",
       "source_sha256": "4c57f545635f752d971cdef1e92c7a15a843df6fa66e4cf7c4be8f9ffda68482",
       "expected": null,
@@ -4084,9 +4084,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/134.png",
-      "input": "data2/data/134.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/134.png",
+      "input": "data/qr/data2/data/134.png",
       "sha256": "27963deaf6db39bb1fd9405061d3ef6d1cba67b5b43f62b8f3a1a6d46f82cfef",
       "source_sha256": "27963deaf6db39bb1fd9405061d3ef6d1cba67b5b43f62b8f3a1a6d46f82cfef",
       "expected": null,
@@ -4104,9 +4104,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/135.png",
-      "input": "data2/data/135.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/135.png",
+      "input": "data/qr/data2/data/135.png",
       "sha256": "33b90f5844366ad78e8ea17fcd3ddb9637be6aa0eb28285b77b74cf8e5fccdd8",
       "source_sha256": "33b90f5844366ad78e8ea17fcd3ddb9637be6aa0eb28285b77b74cf8e5fccdd8",
       "expected": null,
@@ -4124,9 +4124,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/136.png",
-      "input": "data2/data/136.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/136.png",
+      "input": "data/qr/data2/data/136.png",
       "sha256": "08624db6371bb4fe6704c614c855e891e29872ee7feb8554ff6dcf8db154c092",
       "source_sha256": "08624db6371bb4fe6704c614c855e891e29872ee7feb8554ff6dcf8db154c092",
       "expected": null,
@@ -4144,9 +4144,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/137.png",
-      "input": "data2/data/137.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/137.png",
+      "input": "data/qr/data2/data/137.png",
       "sha256": "8e4293fd2695f2e30bfddcee5907d335cfa744579fa82fc5b31e0aec857f8a56",
       "source_sha256": "8e4293fd2695f2e30bfddcee5907d335cfa744579fa82fc5b31e0aec857f8a56",
       "expected": null,
@@ -4164,9 +4164,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/138.png",
-      "input": "data2/data/138.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/138.png",
+      "input": "data/qr/data2/data/138.png",
       "sha256": "6c349a4057f8cf49cae0a87c1d44b060fadb5517a3f54a2f4c8c6f044a453035",
       "source_sha256": "6c349a4057f8cf49cae0a87c1d44b060fadb5517a3f54a2f4c8c6f044a453035",
       "expected": null,
@@ -4184,9 +4184,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/139.png",
-      "input": "data2/data/139.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/139.png",
+      "input": "data/qr/data2/data/139.png",
       "sha256": "a7d325e32e54266f9dc8de28349345ffcb34c2d4d43f9f0df71a57306837b30a",
       "source_sha256": "a7d325e32e54266f9dc8de28349345ffcb34c2d4d43f9f0df71a57306837b30a",
       "expected": null,
@@ -4204,9 +4204,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/14.png",
-      "input": "data2/data/14.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/14.png",
+      "input": "data/qr/data2/data/14.png",
       "sha256": "030e1896ab580d252d7fda296628d041632e5d201af1223cbe9c1ba436312d57",
       "source_sha256": "030e1896ab580d252d7fda296628d041632e5d201af1223cbe9c1ba436312d57",
       "expected": null,
@@ -4224,9 +4224,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/140.png",
-      "input": "data2/data/140.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/140.png",
+      "input": "data/qr/data2/data/140.png",
       "sha256": "45208c814f58df417a5e2de53e1cbfcaa353026ae97ab084df0135299417aa6c",
       "source_sha256": "45208c814f58df417a5e2de53e1cbfcaa353026ae97ab084df0135299417aa6c",
       "expected": null,
@@ -4244,9 +4244,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/141.png",
-      "input": "data2/data/141.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/141.png",
+      "input": "data/qr/data2/data/141.png",
       "sha256": "f7737efddb5e8e6a4647ceb610aa5d6772529cf7c8808006b74346ee58c72e67",
       "source_sha256": "f7737efddb5e8e6a4647ceb610aa5d6772529cf7c8808006b74346ee58c72e67",
       "expected": null,
@@ -4264,9 +4264,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/143.png",
-      "input": "data2/data/143.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/143.png",
+      "input": "data/qr/data2/data/143.png",
       "sha256": "68f951a20b96b2fffcc4a0d86d1ede7a8cb3bbdf8d22fc747dab5e06a3e85308",
       "source_sha256": "68f951a20b96b2fffcc4a0d86d1ede7a8cb3bbdf8d22fc747dab5e06a3e85308",
       "expected": null,
@@ -4284,9 +4284,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/144.png",
-      "input": "data2/data/144.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/144.png",
+      "input": "data/qr/data2/data/144.png",
       "sha256": "35d672eacac8fe953f4730d2825e41e7f02fa1a01ed7f0b79f66c30586f412e3",
       "source_sha256": "35d672eacac8fe953f4730d2825e41e7f02fa1a01ed7f0b79f66c30586f412e3",
       "expected": null,
@@ -4304,9 +4304,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/145.png",
-      "input": "data2/data/145.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/145.png",
+      "input": "data/qr/data2/data/145.png",
       "sha256": "e77567a3c268ecbc6ec8335d2a0f721f54ffda0c6f5f522b889920e896658ca4",
       "source_sha256": "e77567a3c268ecbc6ec8335d2a0f721f54ffda0c6f5f522b889920e896658ca4",
       "expected": null,
@@ -4324,9 +4324,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/146.png",
-      "input": "data2/data/146.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/146.png",
+      "input": "data/qr/data2/data/146.png",
       "sha256": "c104cf79b07d005f98bce25c40a2e4c449c514b4d3e578b5d6d6cca9f7cfe519",
       "source_sha256": "c104cf79b07d005f98bce25c40a2e4c449c514b4d3e578b5d6d6cca9f7cfe519",
       "expected": null,
@@ -4344,9 +4344,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/147.png",
-      "input": "data2/data/147.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/147.png",
+      "input": "data/qr/data2/data/147.png",
       "sha256": "8d1ccadf240ab5b881267a79793b78475ff309216f454c32619a474967d3ce08",
       "source_sha256": "8d1ccadf240ab5b881267a79793b78475ff309216f454c32619a474967d3ce08",
       "expected": null,
@@ -4364,9 +4364,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/148.png",
-      "input": "data2/data/148.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/148.png",
+      "input": "data/qr/data2/data/148.png",
       "sha256": "ee64e4450837b01e365ea9a6379d74cd44423578a75d50b5063956ee3cbeb9a6",
       "source_sha256": "ee64e4450837b01e365ea9a6379d74cd44423578a75d50b5063956ee3cbeb9a6",
       "expected": null,
@@ -4384,9 +4384,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/149.png",
-      "input": "data2/data/149.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/149.png",
+      "input": "data/qr/data2/data/149.png",
       "sha256": "835422210ffe5582d97a9e753b75919c72d4123051f5c045c7158df5ab5e770a",
       "source_sha256": "835422210ffe5582d97a9e753b75919c72d4123051f5c045c7158df5ab5e770a",
       "expected": null,
@@ -4404,9 +4404,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/150.png",
-      "input": "data2/data/150.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/150.png",
+      "input": "data/qr/data2/data/150.png",
       "sha256": "f04d7e1172af4662b36c506c9fb03cafc31a36e1cbc1ba9b278586af7b8ee53e",
       "source_sha256": "f04d7e1172af4662b36c506c9fb03cafc31a36e1cbc1ba9b278586af7b8ee53e",
       "expected": null,
@@ -4424,9 +4424,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/16.png",
-      "input": "data2/data/16.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/16.png",
+      "input": "data/qr/data2/data/16.png",
       "sha256": "64492c4e7c56117bf4ddba3ee5c73919fa85f3f1b58d7d8d9f7152b2e5e5a489",
       "source_sha256": "64492c4e7c56117bf4ddba3ee5c73919fa85f3f1b58d7d8d9f7152b2e5e5a489",
       "expected": null,
@@ -4444,9 +4444,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/17.png",
-      "input": "data2/data/17.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/17.png",
+      "input": "data/qr/data2/data/17.png",
       "sha256": "43adf5399b6c6581b24901f3e7e7e3836eb46a99a6823e9c8c67bbeace07a01b",
       "source_sha256": "43adf5399b6c6581b24901f3e7e7e3836eb46a99a6823e9c8c67bbeace07a01b",
       "expected": null,
@@ -4464,9 +4464,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/18.png",
-      "input": "data2/data/18.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/18.png",
+      "input": "data/qr/data2/data/18.png",
       "sha256": "8ee29e32679fa49e30787f528e22dc37055fefef9f88c991064536c91a0e6e02",
       "source_sha256": "8ee29e32679fa49e30787f528e22dc37055fefef9f88c991064536c91a0e6e02",
       "expected": null,
@@ -4484,9 +4484,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/19.png",
-      "input": "data2/data/19.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/19.png",
+      "input": "data/qr/data2/data/19.png",
       "sha256": "2e3ad18556421b87c39741cf34cb41d70dd56127dc4820bc238adf39c126e291",
       "source_sha256": "2e3ad18556421b87c39741cf34cb41d70dd56127dc4820bc238adf39c126e291",
       "expected": null,
@@ -4504,9 +4504,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/2.png",
-      "input": "data2/data/2.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/2.png",
+      "input": "data/qr/data2/data/2.png",
       "sha256": "24637d8a765c25e1de4c4a993d9f31bb1c81c7ad0d0d337c9a78db26abee9310",
       "source_sha256": "24637d8a765c25e1de4c4a993d9f31bb1c81c7ad0d0d337c9a78db26abee9310",
       "expected": null,
@@ -4524,9 +4524,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/20.png",
-      "input": "data2/data/20.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/20.png",
+      "input": "data/qr/data2/data/20.png",
       "sha256": "08afa7226588859d627b689bdee1ffae17491ac135a366560c176ae1945ff06a",
       "source_sha256": "08afa7226588859d627b689bdee1ffae17491ac135a366560c176ae1945ff06a",
       "expected": null,
@@ -4544,9 +4544,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/21.png",
-      "input": "data2/data/21.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/21.png",
+      "input": "data/qr/data2/data/21.png",
       "sha256": "656bbdd8cda5600ced9d29e78d758ae828d306d7c0f8fa49c2b8f2b02f232916",
       "source_sha256": "656bbdd8cda5600ced9d29e78d758ae828d306d7c0f8fa49c2b8f2b02f232916",
       "expected": null,
@@ -4564,9 +4564,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/22.png",
-      "input": "data2/data/22.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/22.png",
+      "input": "data/qr/data2/data/22.png",
       "sha256": "78204788e9eaeb1609e04770fed3b9897f8385c6eda3ee7a0b2bc1ad025d409e",
       "source_sha256": "78204788e9eaeb1609e04770fed3b9897f8385c6eda3ee7a0b2bc1ad025d409e",
       "expected": null,
@@ -4584,9 +4584,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/23.png",
-      "input": "data2/data/23.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/23.png",
+      "input": "data/qr/data2/data/23.png",
       "sha256": "d0576148545edd34fb37cfc0f12688190ea943c05fb40595a6155f0a6ac5c2c5",
       "source_sha256": "d0576148545edd34fb37cfc0f12688190ea943c05fb40595a6155f0a6ac5c2c5",
       "expected": null,
@@ -4604,9 +4604,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/24.png",
-      "input": "data2/data/24.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/24.png",
+      "input": "data/qr/data2/data/24.png",
       "sha256": "5201ee3a6e2c639c7b39b2877515f91168b4dd47bb459a603b7cbb6193eff413",
       "source_sha256": "5201ee3a6e2c639c7b39b2877515f91168b4dd47bb459a603b7cbb6193eff413",
       "expected": null,
@@ -4624,9 +4624,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/25.png",
-      "input": "data2/data/25.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/25.png",
+      "input": "data/qr/data2/data/25.png",
       "sha256": "1e17e50435d476a643d55c34b3efa386feffcd128fdee7d4cff8ed622476bf66",
       "source_sha256": "1e17e50435d476a643d55c34b3efa386feffcd128fdee7d4cff8ed622476bf66",
       "expected": null,
@@ -4644,9 +4644,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/26.png",
-      "input": "data2/data/26.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/26.png",
+      "input": "data/qr/data2/data/26.png",
       "sha256": "6ae33ddf365963647961f1427a715e9cd27760d23144222011119a417e29b4bb",
       "source_sha256": "6ae33ddf365963647961f1427a715e9cd27760d23144222011119a417e29b4bb",
       "expected": null,
@@ -4664,9 +4664,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/27.png",
-      "input": "data2/data/27.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/27.png",
+      "input": "data/qr/data2/data/27.png",
       "sha256": "8bc8e6948354ef2fafbc9eb8637c1ee1fc0081b6b9b03ac26bd63c6ce264d8eb",
       "source_sha256": "8bc8e6948354ef2fafbc9eb8637c1ee1fc0081b6b9b03ac26bd63c6ce264d8eb",
       "expected": null,
@@ -4684,9 +4684,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/29.png",
-      "input": "data2/data/29.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/29.png",
+      "input": "data/qr/data2/data/29.png",
       "sha256": "5ad4fea226513e21ce213f877e6d49ffc7b5c68f058f0e12027218780877352d",
       "source_sha256": "5ad4fea226513e21ce213f877e6d49ffc7b5c68f058f0e12027218780877352d",
       "expected": null,
@@ -4704,9 +4704,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/3.png",
-      "input": "data2/data/3.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/3.png",
+      "input": "data/qr/data2/data/3.png",
       "sha256": "eefd4dcf554a39ee7ed400ca2ea44125f664e4b0a64bbd58cf36252799d9c78b",
       "source_sha256": "eefd4dcf554a39ee7ed400ca2ea44125f664e4b0a64bbd58cf36252799d9c78b",
       "expected": null,
@@ -4724,9 +4724,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/30.png",
-      "input": "data2/data/30.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/30.png",
+      "input": "data/qr/data2/data/30.png",
       "sha256": "9a8688f9e628b8199771b472bc8173b669bafc5a0cb5ba331a0e1bb79a3d6d6e",
       "source_sha256": "9a8688f9e628b8199771b472bc8173b669bafc5a0cb5ba331a0e1bb79a3d6d6e",
       "expected": null,
@@ -4744,9 +4744,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/31.png",
-      "input": "data2/data/31.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/31.png",
+      "input": "data/qr/data2/data/31.png",
       "sha256": "bcb880df2be9e4635e0cfcb6388d2d8b6d28547ed33a3b4162198957bac2cf16",
       "source_sha256": "bcb880df2be9e4635e0cfcb6388d2d8b6d28547ed33a3b4162198957bac2cf16",
       "expected": null,
@@ -4764,9 +4764,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/32.png",
-      "input": "data2/data/32.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/32.png",
+      "input": "data/qr/data2/data/32.png",
       "sha256": "38f7770d4e38279167fafc262835f3d5ba1ca703bb1c2ef658b056bab6f0a1a5",
       "source_sha256": "38f7770d4e38279167fafc262835f3d5ba1ca703bb1c2ef658b056bab6f0a1a5",
       "expected": null,
@@ -4784,9 +4784,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/34.png",
-      "input": "data2/data/34.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/34.png",
+      "input": "data/qr/data2/data/34.png",
       "sha256": "67bddb6fe1f97138847c29d600703e035d5119f9b9899e001f933fce88f4d6fd",
       "source_sha256": "67bddb6fe1f97138847c29d600703e035d5119f9b9899e001f933fce88f4d6fd",
       "expected": null,
@@ -4804,9 +4804,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/35.png",
-      "input": "data2/data/35.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/35.png",
+      "input": "data/qr/data2/data/35.png",
       "sha256": "a43d11de95ad0f44955143ec3835b6a21b11ec23cb106721e7be630fde04f6e9",
       "source_sha256": "a43d11de95ad0f44955143ec3835b6a21b11ec23cb106721e7be630fde04f6e9",
       "expected": null,
@@ -4824,9 +4824,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/36.png",
-      "input": "data2/data/36.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/36.png",
+      "input": "data/qr/data2/data/36.png",
       "sha256": "891f0be0ce6eb339f3e59b4c36cd2fd60de2b0cf48498618faf955f68697b185",
       "source_sha256": "891f0be0ce6eb339f3e59b4c36cd2fd60de2b0cf48498618faf955f68697b185",
       "expected": null,
@@ -4844,9 +4844,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/37.png",
-      "input": "data2/data/37.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/37.png",
+      "input": "data/qr/data2/data/37.png",
       "sha256": "3b3a711417bab351ae122bb86f66dddd32dd4c6a5652e732c2fe07294ef7541c",
       "source_sha256": "3b3a711417bab351ae122bb86f66dddd32dd4c6a5652e732c2fe07294ef7541c",
       "expected": null,
@@ -4864,9 +4864,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/38.png",
-      "input": "data2/data/38.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/38.png",
+      "input": "data/qr/data2/data/38.png",
       "sha256": "f1a0b9a433256d2dab56cc231036f726c2dd159c087dc74f92c8a42a3f7498b6",
       "source_sha256": "f1a0b9a433256d2dab56cc231036f726c2dd159c087dc74f92c8a42a3f7498b6",
       "expected": null,
@@ -4884,9 +4884,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/39.png",
-      "input": "data2/data/39.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/39.png",
+      "input": "data/qr/data2/data/39.png",
       "sha256": "1b8b34236d35048a5bec7f5cbdd9dae5560491516c33b9773c9e610b3fdb2e90",
       "source_sha256": "1b8b34236d35048a5bec7f5cbdd9dae5560491516c33b9773c9e610b3fdb2e90",
       "expected": null,
@@ -4904,9 +4904,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/4.png",
-      "input": "data2/data/4.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/4.png",
+      "input": "data/qr/data2/data/4.png",
       "sha256": "73b1725d7a76142c8c229c32bcf009d978312845b9b59cd09edd8e376e1792e1",
       "source_sha256": "73b1725d7a76142c8c229c32bcf009d978312845b9b59cd09edd8e376e1792e1",
       "expected": null,
@@ -4924,9 +4924,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/40.png",
-      "input": "data2/data/40.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/40.png",
+      "input": "data/qr/data2/data/40.png",
       "sha256": "9cb0448fde033a45c3c86333bf2f314ecc7e07b295cd876ec5de4eb824f8f67d",
       "source_sha256": "9cb0448fde033a45c3c86333bf2f314ecc7e07b295cd876ec5de4eb824f8f67d",
       "expected": null,
@@ -4944,9 +4944,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/41.png",
-      "input": "data2/data/41.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/41.png",
+      "input": "data/qr/data2/data/41.png",
       "sha256": "cdbf2bf47db6cdb069addadd5e9042ea24b8743857301c25f5482b58b5feb941",
       "source_sha256": "cdbf2bf47db6cdb069addadd5e9042ea24b8743857301c25f5482b58b5feb941",
       "expected": null,
@@ -4964,9 +4964,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/42.png",
-      "input": "data2/data/42.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/42.png",
+      "input": "data/qr/data2/data/42.png",
       "sha256": "23aea316fc85f57adab2639e27eafd2c169827b5f454bd78811bfe9cc84c8b7a",
       "source_sha256": "23aea316fc85f57adab2639e27eafd2c169827b5f454bd78811bfe9cc84c8b7a",
       "expected": null,
@@ -4984,9 +4984,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/43.png",
-      "input": "data2/data/43.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/43.png",
+      "input": "data/qr/data2/data/43.png",
       "sha256": "13a74619685bf86384f8c402d2f22a5687a9eda3176958f218191ff32b5325cd",
       "source_sha256": "13a74619685bf86384f8c402d2f22a5687a9eda3176958f218191ff32b5325cd",
       "expected": null,
@@ -5004,9 +5004,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/44.png",
-      "input": "data2/data/44.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/44.png",
+      "input": "data/qr/data2/data/44.png",
       "sha256": "d03baa40831bc7af3ec7e19086307e306239fb3620a18bb3af87d4d71680a7cc",
       "source_sha256": "d03baa40831bc7af3ec7e19086307e306239fb3620a18bb3af87d4d71680a7cc",
       "expected": null,
@@ -5024,9 +5024,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/45.png",
-      "input": "data2/data/45.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/45.png",
+      "input": "data/qr/data2/data/45.png",
       "sha256": "d0a835d0a14d591aa7f7f13619a5909c53a49785771343b897b8a929d3a121f4",
       "source_sha256": "d0a835d0a14d591aa7f7f13619a5909c53a49785771343b897b8a929d3a121f4",
       "expected": null,
@@ -5044,9 +5044,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/46.png",
-      "input": "data2/data/46.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/46.png",
+      "input": "data/qr/data2/data/46.png",
       "sha256": "1e212cbe4530da3c0a38724300bd400bff74205704f7da72b902c3b1fca38dc7",
       "source_sha256": "1e212cbe4530da3c0a38724300bd400bff74205704f7da72b902c3b1fca38dc7",
       "expected": null,
@@ -5064,9 +5064,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/47.png",
-      "input": "data2/data/47.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/47.png",
+      "input": "data/qr/data2/data/47.png",
       "sha256": "8ce693744c7d39962521b71d38deb82f1f4660caa160f3ae0356afc91c127df1",
       "source_sha256": "8ce693744c7d39962521b71d38deb82f1f4660caa160f3ae0356afc91c127df1",
       "expected": null,
@@ -5084,9 +5084,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/48.png",
-      "input": "data2/data/48.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/48.png",
+      "input": "data/qr/data2/data/48.png",
       "sha256": "83f146bc727b045be290a452a39e21e1f4b5e595ea73a82026a9ac0c715394f0",
       "source_sha256": "83f146bc727b045be290a452a39e21e1f4b5e595ea73a82026a9ac0c715394f0",
       "expected": null,
@@ -5104,9 +5104,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/49.png",
-      "input": "data2/data/49.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/49.png",
+      "input": "data/qr/data2/data/49.png",
       "sha256": "0d30343338c875d8a6a1c2fbfe82f0759eb8e0b5a7f24dee28789fc341c1492b",
       "source_sha256": "0d30343338c875d8a6a1c2fbfe82f0759eb8e0b5a7f24dee28789fc341c1492b",
       "expected": null,
@@ -5124,9 +5124,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/5.png",
-      "input": "data2/data/5.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/5.png",
+      "input": "data/qr/data2/data/5.png",
       "sha256": "aabb2e99b6618f078582423f4269a086f285c9ac33ac9b1a2f0d61a04ee967ec",
       "source_sha256": "aabb2e99b6618f078582423f4269a086f285c9ac33ac9b1a2f0d61a04ee967ec",
       "expected": null,
@@ -5144,9 +5144,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/50.png",
-      "input": "data2/data/50.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/50.png",
+      "input": "data/qr/data2/data/50.png",
       "sha256": "e1c6224d2bdc3111e2e823862e6995ed9fc7b8543137546c72771df9ba44987e",
       "source_sha256": "e1c6224d2bdc3111e2e823862e6995ed9fc7b8543137546c72771df9ba44987e",
       "expected": null,
@@ -5164,9 +5164,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/51.png",
-      "input": "data2/data/51.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/51.png",
+      "input": "data/qr/data2/data/51.png",
       "sha256": "d6e31fd413dc84f7f8e3cd6b1e625354ae811584681c8ae2ea09a1e497e3bb6c",
       "source_sha256": "d6e31fd413dc84f7f8e3cd6b1e625354ae811584681c8ae2ea09a1e497e3bb6c",
       "expected": null,
@@ -5184,9 +5184,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/52.png",
-      "input": "data2/data/52.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/52.png",
+      "input": "data/qr/data2/data/52.png",
       "sha256": "77c0752e90423835bb74dc6536a1403959b911ad80eb13e3c2846b55aa9a79bd",
       "source_sha256": "77c0752e90423835bb74dc6536a1403959b911ad80eb13e3c2846b55aa9a79bd",
       "expected": null,
@@ -5204,9 +5204,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/53.png",
-      "input": "data2/data/53.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/53.png",
+      "input": "data/qr/data2/data/53.png",
       "sha256": "c667c02eeb589150993de6342d563c07756ae841912b1a9e0a3103c82a81c365",
       "source_sha256": "c667c02eeb589150993de6342d563c07756ae841912b1a9e0a3103c82a81c365",
       "expected": null,
@@ -5224,9 +5224,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/54.png",
-      "input": "data2/data/54.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/54.png",
+      "input": "data/qr/data2/data/54.png",
       "sha256": "26a5b0bf0f9a7b13997f2ed63aeb31fe3c3ca508441fd7f9e3bf53ae0ba798dd",
       "source_sha256": "26a5b0bf0f9a7b13997f2ed63aeb31fe3c3ca508441fd7f9e3bf53ae0ba798dd",
       "expected": null,
@@ -5244,9 +5244,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/55.png",
-      "input": "data2/data/55.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/55.png",
+      "input": "data/qr/data2/data/55.png",
       "sha256": "c5ad5a26f7a944a1bcedf7233099e2afa6504d0ee09a9f592158a8004e182b04",
       "source_sha256": "c5ad5a26f7a944a1bcedf7233099e2afa6504d0ee09a9f592158a8004e182b04",
       "expected": null,
@@ -5264,9 +5264,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/56.png",
-      "input": "data2/data/56.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/56.png",
+      "input": "data/qr/data2/data/56.png",
       "sha256": "de9973f22b821bafa3213c0d5cd77058b486ab35ac47b15dcc1bb44a121cf1ae",
       "source_sha256": "de9973f22b821bafa3213c0d5cd77058b486ab35ac47b15dcc1bb44a121cf1ae",
       "expected": null,
@@ -5284,9 +5284,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/57.png",
-      "input": "data2/data/57.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/57.png",
+      "input": "data/qr/data2/data/57.png",
       "sha256": "597d106628f149c06df69038f8ebb3a09a661e851699ff2dca76656849a00b94",
       "source_sha256": "597d106628f149c06df69038f8ebb3a09a661e851699ff2dca76656849a00b94",
       "expected": null,
@@ -5304,9 +5304,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/59.png",
-      "input": "data2/data/59.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/59.png",
+      "input": "data/qr/data2/data/59.png",
       "sha256": "cce408d99998ec3cd7c0c11bfa61f37b4472af478f15862cf05981659cc668a7",
       "source_sha256": "cce408d99998ec3cd7c0c11bfa61f37b4472af478f15862cf05981659cc668a7",
       "expected": null,
@@ -5324,9 +5324,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/6.png",
-      "input": "data2/data/6.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/6.png",
+      "input": "data/qr/data2/data/6.png",
       "sha256": "08538895414ace459534fadc8c18a32d9504f1df42e524e958ff298a4f507749",
       "source_sha256": "08538895414ace459534fadc8c18a32d9504f1df42e524e958ff298a4f507749",
       "expected": null,
@@ -5344,9 +5344,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/61.png",
-      "input": "data2/data/61.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/61.png",
+      "input": "data/qr/data2/data/61.png",
       "sha256": "926f0f03bb702c411c73aca8bc37f0d1ecf1b85810478e7d50d0085216d98aa8",
       "source_sha256": "926f0f03bb702c411c73aca8bc37f0d1ecf1b85810478e7d50d0085216d98aa8",
       "expected": null,
@@ -5364,9 +5364,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/62.png",
-      "input": "data2/data/62.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/62.png",
+      "input": "data/qr/data2/data/62.png",
       "sha256": "7a044d977c93ede6f9afa3ee045b76b1810f4c04f97979a6471715538beff522",
       "source_sha256": "7a044d977c93ede6f9afa3ee045b76b1810f4c04f97979a6471715538beff522",
       "expected": null,
@@ -5384,9 +5384,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/63.png",
-      "input": "data2/data/63.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/63.png",
+      "input": "data/qr/data2/data/63.png",
       "sha256": "7cde47130fd03658dc1414d03591861835806eae5377bb754b496ff03b428638",
       "source_sha256": "7cde47130fd03658dc1414d03591861835806eae5377bb754b496ff03b428638",
       "expected": null,
@@ -5404,9 +5404,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/64.png",
-      "input": "data2/data/64.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/64.png",
+      "input": "data/qr/data2/data/64.png",
       "sha256": "131e5d89015fc5d4cf8c087a210a74dde8ad0d4b4723c8fdc8793a5f75b98041",
       "source_sha256": "131e5d89015fc5d4cf8c087a210a74dde8ad0d4b4723c8fdc8793a5f75b98041",
       "expected": null,
@@ -5424,9 +5424,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/65.png",
-      "input": "data2/data/65.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/65.png",
+      "input": "data/qr/data2/data/65.png",
       "sha256": "377b3e3b5aab0fc26e4bb02632f7b1d9e4a1c3ac21e73f33f824ce9fd6906a33",
       "source_sha256": "377b3e3b5aab0fc26e4bb02632f7b1d9e4a1c3ac21e73f33f824ce9fd6906a33",
       "expected": null,
@@ -5444,9 +5444,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/66.png",
-      "input": "data2/data/66.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/66.png",
+      "input": "data/qr/data2/data/66.png",
       "sha256": "edc7c957f437fa104616ecf580c22933bcda228e60c22d6a0fbf9b256858a48b",
       "source_sha256": "edc7c957f437fa104616ecf580c22933bcda228e60c22d6a0fbf9b256858a48b",
       "expected": null,
@@ -5464,9 +5464,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/67.png",
-      "input": "data2/data/67.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/67.png",
+      "input": "data/qr/data2/data/67.png",
       "sha256": "1cac1944ea3929f7949a5e7a80ba66aa5629491c261a634de2f0a1fdfc4275f4",
       "source_sha256": "1cac1944ea3929f7949a5e7a80ba66aa5629491c261a634de2f0a1fdfc4275f4",
       "expected": null,
@@ -5484,9 +5484,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/68.png",
-      "input": "data2/data/68.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/68.png",
+      "input": "data/qr/data2/data/68.png",
       "sha256": "37e9875c315f4551b76f12ca64d8d40c520a4a6f369341c50e4cd721f8b312b3",
       "source_sha256": "37e9875c315f4551b76f12ca64d8d40c520a4a6f369341c50e4cd721f8b312b3",
       "expected": null,
@@ -5504,9 +5504,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/69.png",
-      "input": "data2/data/69.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/69.png",
+      "input": "data/qr/data2/data/69.png",
       "sha256": "768d8b780c4bbcdda381faab865d34ee82e8fe4088f36d620a8dd7cacc279d27",
       "source_sha256": "768d8b780c4bbcdda381faab865d34ee82e8fe4088f36d620a8dd7cacc279d27",
       "expected": null,
@@ -5524,9 +5524,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/7.png",
-      "input": "data2/data/7.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/7.png",
+      "input": "data/qr/data2/data/7.png",
       "sha256": "0c5a681bd6cd5917d87fdf17ff496c7a6d2d3118932c7308ea41db37a9b59da7",
       "source_sha256": "0c5a681bd6cd5917d87fdf17ff496c7a6d2d3118932c7308ea41db37a9b59da7",
       "expected": null,
@@ -5544,9 +5544,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/70.png",
-      "input": "data2/data/70.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/70.png",
+      "input": "data/qr/data2/data/70.png",
       "sha256": "6262204a3054cbbb2c0a2ebb5635eb9d1618ba818ebc338827e45fd38c61eb0f",
       "source_sha256": "6262204a3054cbbb2c0a2ebb5635eb9d1618ba818ebc338827e45fd38c61eb0f",
       "expected": null,
@@ -5564,9 +5564,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/71.png",
-      "input": "data2/data/71.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/71.png",
+      "input": "data/qr/data2/data/71.png",
       "sha256": "2737ac375c0fa08119ae74619e6ec5dbc2d2ea9cbc25542a4ca27d821190a34b",
       "source_sha256": "2737ac375c0fa08119ae74619e6ec5dbc2d2ea9cbc25542a4ca27d821190a34b",
       "expected": null,
@@ -5584,9 +5584,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/72.png",
-      "input": "data2/data/72.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/72.png",
+      "input": "data/qr/data2/data/72.png",
       "sha256": "09667123ca17166d3115464b9dee9d6f5b614aa2a3fe0864bc8f7fc221c24aab",
       "source_sha256": "09667123ca17166d3115464b9dee9d6f5b614aa2a3fe0864bc8f7fc221c24aab",
       "expected": null,
@@ -5604,9 +5604,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/74.png",
-      "input": "data2/data/74.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/74.png",
+      "input": "data/qr/data2/data/74.png",
       "sha256": "c1f4fb5cdde707488cb5252512d2882b9a041aad3bc8b723c42655ffbbf512fe",
       "source_sha256": "c1f4fb5cdde707488cb5252512d2882b9a041aad3bc8b723c42655ffbbf512fe",
       "expected": null,
@@ -5624,9 +5624,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/75.png",
-      "input": "data2/data/75.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/75.png",
+      "input": "data/qr/data2/data/75.png",
       "sha256": "25f3f9bc5a3736511d6b46abb2f2710e42555b8e6b98748149a63d110c608deb",
       "source_sha256": "25f3f9bc5a3736511d6b46abb2f2710e42555b8e6b98748149a63d110c608deb",
       "expected": null,
@@ -5644,9 +5644,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/76.png",
-      "input": "data2/data/76.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/76.png",
+      "input": "data/qr/data2/data/76.png",
       "sha256": "4f130d7359d88719e415fd924fc9bd51f964ac6259626fc83daeb2d8968c8586",
       "source_sha256": "4f130d7359d88719e415fd924fc9bd51f964ac6259626fc83daeb2d8968c8586",
       "expected": null,
@@ -5664,9 +5664,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/77.png",
-      "input": "data2/data/77.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/77.png",
+      "input": "data/qr/data2/data/77.png",
       "sha256": "59ac02e2f0691be3cbf7fbb52bd62a159de8f898b02a508d8385c460771afa22",
       "source_sha256": "59ac02e2f0691be3cbf7fbb52bd62a159de8f898b02a508d8385c460771afa22",
       "expected": null,
@@ -5684,9 +5684,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/78.png",
-      "input": "data2/data/78.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/78.png",
+      "input": "data/qr/data2/data/78.png",
       "sha256": "c6289475b49863573b7af78a3fe50f0f908407a2fa236f978826a9dc04480778",
       "source_sha256": "c6289475b49863573b7af78a3fe50f0f908407a2fa236f978826a9dc04480778",
       "expected": null,
@@ -5704,9 +5704,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/79.png",
-      "input": "data2/data/79.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/79.png",
+      "input": "data/qr/data2/data/79.png",
       "sha256": "38e3c58186851886c9779abb7f2ca74fce289113eab1e29de9c0f09ee48ec294",
       "source_sha256": "38e3c58186851886c9779abb7f2ca74fce289113eab1e29de9c0f09ee48ec294",
       "expected": null,
@@ -5724,9 +5724,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/8.png",
-      "input": "data2/data/8.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/8.png",
+      "input": "data/qr/data2/data/8.png",
       "sha256": "9f51413ba35cdde3013c9bbb62474a6a3a5d64cdb623b476644caffe0195c28b",
       "source_sha256": "9f51413ba35cdde3013c9bbb62474a6a3a5d64cdb623b476644caffe0195c28b",
       "expected": null,
@@ -5744,9 +5744,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/80.png",
-      "input": "data2/data/80.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/80.png",
+      "input": "data/qr/data2/data/80.png",
       "sha256": "8e8c84c09d65ace0f44ad37193cb5901004c6be79c008232d8c5e25e34917072",
       "source_sha256": "8e8c84c09d65ace0f44ad37193cb5901004c6be79c008232d8c5e25e34917072",
       "expected": null,
@@ -5764,9 +5764,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/81.png",
-      "input": "data2/data/81.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/81.png",
+      "input": "data/qr/data2/data/81.png",
       "sha256": "8198cd0a828381eb59ad87ad33f0c4824d203418b0d0179cab5472dc9bbaf013",
       "source_sha256": "8198cd0a828381eb59ad87ad33f0c4824d203418b0d0179cab5472dc9bbaf013",
       "expected": null,
@@ -5784,9 +5784,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/82.png",
-      "input": "data2/data/82.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/82.png",
+      "input": "data/qr/data2/data/82.png",
       "sha256": "d23c68d014d962c592d66fa0629463d6d0844b7f9443238d3d9304655a631d8b",
       "source_sha256": "d23c68d014d962c592d66fa0629463d6d0844b7f9443238d3d9304655a631d8b",
       "expected": null,
@@ -5804,9 +5804,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/83.png",
-      "input": "data2/data/83.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/83.png",
+      "input": "data/qr/data2/data/83.png",
       "sha256": "f3e920da65b3e14d3020e82ff678a7008816a5df2dd4ae1f1d8ed7631726b45e",
       "source_sha256": "f3e920da65b3e14d3020e82ff678a7008816a5df2dd4ae1f1d8ed7631726b45e",
       "expected": null,
@@ -5824,9 +5824,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/84.png",
-      "input": "data2/data/84.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/84.png",
+      "input": "data/qr/data2/data/84.png",
       "sha256": "6fc09e5fc90eef619733a782e7e94bb2593d2dd102e591106dbbbccee372baa6",
       "source_sha256": "6fc09e5fc90eef619733a782e7e94bb2593d2dd102e591106dbbbccee372baa6",
       "expected": null,
@@ -5844,9 +5844,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/86.png",
-      "input": "data2/data/86.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/86.png",
+      "input": "data/qr/data2/data/86.png",
       "sha256": "383634914f8e6145067e40eac4def19f7f67ab70946d0e722b227928860bf84a",
       "source_sha256": "383634914f8e6145067e40eac4def19f7f67ab70946d0e722b227928860bf84a",
       "expected": null,
@@ -5864,9 +5864,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/87.png",
-      "input": "data2/data/87.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/87.png",
+      "input": "data/qr/data2/data/87.png",
       "sha256": "fd89cbd16f9a82211683938503cb95d05eb700ec06677a89f6c44aa51262effc",
       "source_sha256": "fd89cbd16f9a82211683938503cb95d05eb700ec06677a89f6c44aa51262effc",
       "expected": null,
@@ -5884,9 +5884,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/88.png",
-      "input": "data2/data/88.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/88.png",
+      "input": "data/qr/data2/data/88.png",
       "sha256": "d40ca944da0f5851588a38678bd73d7eb541ee912c32f0e263ae58e79ea87d35",
       "source_sha256": "d40ca944da0f5851588a38678bd73d7eb541ee912c32f0e263ae58e79ea87d35",
       "expected": null,
@@ -5904,9 +5904,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/89.png",
-      "input": "data2/data/89.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/89.png",
+      "input": "data/qr/data2/data/89.png",
       "sha256": "59026b24a5c60868a17051f8c37d26a8aadf3aad781d60f902de4155803bbaf4",
       "source_sha256": "59026b24a5c60868a17051f8c37d26a8aadf3aad781d60f902de4155803bbaf4",
       "expected": null,
@@ -5924,9 +5924,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/9.png",
-      "input": "data2/data/9.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/9.png",
+      "input": "data/qr/data2/data/9.png",
       "sha256": "3a8360309e6ac6b3d0d9eca45a43591cd7e109da62f788688434c771f0c7b17d",
       "source_sha256": "3a8360309e6ac6b3d0d9eca45a43591cd7e109da62f788688434c771f0c7b17d",
       "expected": null,
@@ -5944,9 +5944,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/90.png",
-      "input": "data2/data/90.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/90.png",
+      "input": "data/qr/data2/data/90.png",
       "sha256": "40cb7a88db7b44e8426e1b9a7ae01c1daa96be140515f35ac8045f95b5eac466",
       "source_sha256": "40cb7a88db7b44e8426e1b9a7ae01c1daa96be140515f35ac8045f95b5eac466",
       "expected": null,
@@ -5964,9 +5964,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/91.png",
-      "input": "data2/data/91.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/91.png",
+      "input": "data/qr/data2/data/91.png",
       "sha256": "172404637d737b3064e8267048b11f4928c6f59277d3ce4e5cb4220ba24f691f",
       "source_sha256": "172404637d737b3064e8267048b11f4928c6f59277d3ce4e5cb4220ba24f691f",
       "expected": null,
@@ -5984,9 +5984,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/92.png",
-      "input": "data2/data/92.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/92.png",
+      "input": "data/qr/data2/data/92.png",
       "sha256": "90a825fdd46d85eb30c8fbf33ce392b97b0a8eebe24da5d553890c5860b41726",
       "source_sha256": "90a825fdd46d85eb30c8fbf33ce392b97b0a8eebe24da5d553890c5860b41726",
       "expected": null,
@@ -6004,9 +6004,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/93.png",
-      "input": "data2/data/93.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/93.png",
+      "input": "data/qr/data2/data/93.png",
       "sha256": "2328996dbc5eda1f6cc0c1d07a92b3762ed7b40d5e76b962f2e7e4252cdc68db",
       "source_sha256": "2328996dbc5eda1f6cc0c1d07a92b3762ed7b40d5e76b962f2e7e4252cdc68db",
       "expected": null,
@@ -6024,9 +6024,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/94.png",
-      "input": "data2/data/94.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/94.png",
+      "input": "data/qr/data2/data/94.png",
       "sha256": "2846d78bbebc42f5030ad3d2961cd6c973c667ecaa8cfb5b14371a3eaee88af8",
       "source_sha256": "2846d78bbebc42f5030ad3d2961cd6c973c667ecaa8cfb5b14371a3eaee88af8",
       "expected": null,
@@ -6044,9 +6044,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/95.png",
-      "input": "data2/data/95.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/95.png",
+      "input": "data/qr/data2/data/95.png",
       "sha256": "2e832494a2d6c0b38dc4466972e443141b4a2dee77e53a897983f66ff1ade84e",
       "source_sha256": "2e832494a2d6c0b38dc4466972e443141b4a2dee77e53a897983f66ff1ade84e",
       "expected": null,
@@ -6064,9 +6064,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/96.png",
-      "input": "data2/data/96.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/96.png",
+      "input": "data/qr/data2/data/96.png",
       "sha256": "1ef59c205b58dd2f5e55aac6e2be92d75eb4320d8f1f8bc0558affee450cd645",
       "source_sha256": "1ef59c205b58dd2f5e55aac6e2be92d75eb4320d8f1f8bc0558affee450cd645",
       "expected": null,
@@ -6084,9 +6084,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/97.png",
-      "input": "data2/data/97.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/97.png",
+      "input": "data/qr/data2/data/97.png",
       "sha256": "c6221c066d937e980bdf99d01fbb88ecba3c15ef8cd9f74246301a281bb92c22",
       "source_sha256": "c6221c066d937e980bdf99d01fbb88ecba3c15ef8cd9f74246301a281bb92c22",
       "expected": null,
@@ -6104,9 +6104,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/98.png",
-      "input": "data2/data/98.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/98.png",
+      "input": "data/qr/data2/data/98.png",
       "sha256": "97620765239ebfb99e784f9f27445f1a0087f5ae43e5ba3f8150422f5803b9c2",
       "source_sha256": "97620765239ebfb99e784f9f27445f1a0087f5ae43e5ba3f8150422f5803b9c2",
       "expected": null,
@@ -6124,9 +6124,9 @@
       }
     },
     {
-      "dataset": "data2",
-      "source": "data2/data/99.png",
-      "input": "data2/data/99.png",
+      "dataset": "data/qr/data2",
+      "source": "data/qr/data2/data/99.png",
+      "input": "data/qr/data2/data/99.png",
       "sha256": "f3f6aa9d86517091cbd11cd0aab315e25b0db796fc71abd304d4b90393c67995",
       "source_sha256": "f3f6aa9d86517091cbd11cd0aab315e25b0db796fc71abd304d4b90393c67995",
       "expected": null,
@@ -6144,9 +6144,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold00.png",
-      "input": "data3/fold00.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold00.png",
+      "input": "data/qr/data3/fold00.png",
       "sha256": "19753758e3d7dc4bedc806af33a83675a947ae8a37611c6082c384f0e9e4f57d",
       "source_sha256": "19753758e3d7dc4bedc806af33a83675a947ae8a37611c6082c384f0e9e4f57d",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6164,9 +6164,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold01.png",
-      "input": "data3/fold01.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold01.png",
+      "input": "data/qr/data3/fold01.png",
       "sha256": "962ea1008774f51d0ccffce77c5d03db2285de85d709353a8d1cbdb11ad6f47b",
       "source_sha256": "962ea1008774f51d0ccffce77c5d03db2285de85d709353a8d1cbdb11ad6f47b",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6184,9 +6184,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold02.png",
-      "input": "data3/fold02.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold02.png",
+      "input": "data/qr/data3/fold02.png",
       "sha256": "5cbb77e0ccabb63fef47ea538094f2cfd3ae514a81af00621ad9d23136125b32",
       "source_sha256": "5cbb77e0ccabb63fef47ea538094f2cfd3ae514a81af00621ad9d23136125b32",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6204,9 +6204,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold03.png",
-      "input": "data3/fold03.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold03.png",
+      "input": "data/qr/data3/fold03.png",
       "sha256": "fbda8c70418fa867a8605d8677526e832c7d5033a0575f886f9fe1b21af59240",
       "source_sha256": "fbda8c70418fa867a8605d8677526e832c7d5033a0575f886f9fe1b21af59240",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6224,9 +6224,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold04.png",
-      "input": "data3/fold04.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold04.png",
+      "input": "data/qr/data3/fold04.png",
       "sha256": "854748848e4be6f54c798588cfc8eea6dfe41fd7006b1e4149ed9bc6e282dfd9",
       "source_sha256": "854748848e4be6f54c798588cfc8eea6dfe41fd7006b1e4149ed9bc6e282dfd9",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6244,9 +6244,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold05.png",
-      "input": "data3/fold05.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold05.png",
+      "input": "data/qr/data3/fold05.png",
       "sha256": "b6b2a74274babed7a3f755b5d658bb3193a239527779bfc9e4dd2b284d470fc3",
       "source_sha256": "b6b2a74274babed7a3f755b5d658bb3193a239527779bfc9e4dd2b284d470fc3",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6264,9 +6264,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold06.png",
-      "input": "data3/fold06.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold06.png",
+      "input": "data/qr/data3/fold06.png",
       "sha256": "9c99e7e2dea6270659b7c3c15632e807416b93c73094a528eb322503e8b7b0d2",
       "source_sha256": "9c99e7e2dea6270659b7c3c15632e807416b93c73094a528eb322503e8b7b0d2",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6284,9 +6284,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold07.png",
-      "input": "data3/fold07.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold07.png",
+      "input": "data/qr/data3/fold07.png",
       "sha256": "281443ddd3b4dcd30db8e719b5211528665cff479255ca6bc209d7d5ef64cc24",
       "source_sha256": "281443ddd3b4dcd30db8e719b5211528665cff479255ca6bc209d7d5ef64cc24",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6304,9 +6304,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold08.png",
-      "input": "data3/fold08.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold08.png",
+      "input": "data/qr/data3/fold08.png",
       "sha256": "001c5415cc48fa0e2b0756d0d2f69e61a44f311d362aa0e363938781b3e83e0e",
       "source_sha256": "001c5415cc48fa0e2b0756d0d2f69e61a44f311d362aa0e363938781b3e83e0e",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6324,9 +6324,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold09.png",
-      "input": "data3/fold09.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold09.png",
+      "input": "data/qr/data3/fold09.png",
       "sha256": "73a90bf6a7380446b4841b2b43bb810bb2b3560a37e5e316cc45295a8a250cc9",
       "source_sha256": "73a90bf6a7380446b4841b2b43bb810bb2b3560a37e5e316cc45295a8a250cc9",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6344,9 +6344,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold10.png",
-      "input": "data3/fold10.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold10.png",
+      "input": "data/qr/data3/fold10.png",
       "sha256": "a1deb68003b229dca734f9a63f6a9a943c92dc884aae304cdfff83007ef7e277",
       "source_sha256": "a1deb68003b229dca734f9a63f6a9a943c92dc884aae304cdfff83007ef7e277",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6364,9 +6364,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold11.png",
-      "input": "data3/fold11.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold11.png",
+      "input": "data/qr/data3/fold11.png",
       "sha256": "240f67715513a043ba390a09f04b2b76dd749c8b1f0b24981f099e9b06df1fd3",
       "source_sha256": "240f67715513a043ba390a09f04b2b76dd749c8b1f0b24981f099e9b06df1fd3",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6384,9 +6384,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold12.png",
-      "input": "data3/fold12.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold12.png",
+      "input": "data/qr/data3/fold12.png",
       "sha256": "ed4706bc2ce57ad3def41beba370c0fa142ae5139e2433067bf69df628b84abd",
       "source_sha256": "ed4706bc2ce57ad3def41beba370c0fa142ae5139e2433067bf69df628b84abd",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6404,9 +6404,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold13.png",
-      "input": "data3/fold13.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold13.png",
+      "input": "data/qr/data3/fold13.png",
       "sha256": "4d2555ed568960a257ccc1021b1a34a6931e350f41884924501fb62fdcf87283",
       "source_sha256": "4d2555ed568960a257ccc1021b1a34a6931e350f41884924501fb62fdcf87283",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6424,9 +6424,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold14.png",
-      "input": "data3/fold14.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold14.png",
+      "input": "data/qr/data3/fold14.png",
       "sha256": "554408294bc7433f5a116696c1a35cae2a660d800a2d60e7a20954601e42d14a",
       "source_sha256": "554408294bc7433f5a116696c1a35cae2a660d800a2d60e7a20954601e42d14a",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6444,9 +6444,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold15.png",
-      "input": "data3/fold15.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold15.png",
+      "input": "data/qr/data3/fold15.png",
       "sha256": "e6eb2dc27a38c56024b9c98fc8577c7909409934d45c956f87249646bd29c1f3",
       "source_sha256": "e6eb2dc27a38c56024b9c98fc8577c7909409934d45c956f87249646bd29c1f3",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6464,9 +6464,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold16.png",
-      "input": "data3/fold16.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold16.png",
+      "input": "data/qr/data3/fold16.png",
       "sha256": "6f073c1edbfa54d985584706c9ecd26ad47118b4b78c4ea84d55515dff659c3b",
       "source_sha256": "6f073c1edbfa54d985584706c9ecd26ad47118b4b78c4ea84d55515dff659c3b",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6484,9 +6484,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold17.png",
-      "input": "data3/fold17.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold17.png",
+      "input": "data/qr/data3/fold17.png",
       "sha256": "0104bfd52e751f84236eb87e61864fdca65db4d42f66bc58cafee65efa3099eb",
       "source_sha256": "0104bfd52e751f84236eb87e61864fdca65db4d42f66bc58cafee65efa3099eb",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6504,9 +6504,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold18.png",
-      "input": "data3/fold18.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold18.png",
+      "input": "data/qr/data3/fold18.png",
       "sha256": "f1434511e6e16838074ce5b16ac0c802ad004f838118cd9152d5eaf214a9407a",
       "source_sha256": "f1434511e6e16838074ce5b16ac0c802ad004f838118cd9152d5eaf214a9407a",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6524,9 +6524,9 @@
       }
     },
     {
-      "dataset": "data3",
-      "source": "data3/fold19.png",
-      "input": "data3/fold19.png",
+      "dataset": "data/qr/data3",
+      "source": "data/qr/data3/fold19.png",
+      "input": "data/qr/data3/fold19.png",
       "sha256": "c95c770ba7fb9dbb96987cbc6bb7077a0a037f9c5501aedaa77951a020f6f569",
       "source_sha256": "c95c770ba7fb9dbb96987cbc6bb7077a0a037f9c5501aedaa77951a020f6f569",
       "expected": "GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE_GANYU_MY_WIFE",
@@ -6544,9 +6544,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0001_v2_H_big_d2.png.jpg",
-      "input": "data4/v2/H/big/img0001_v2_H_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0001_v2_H_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0001_v2_H_big_d2.png.jpg",
       "sha256": "95e8bb90fc6d0e29fc5feceaa40d92e1dee9320a7bb4e9b8c3a454ca97609e52",
       "source_sha256": "95e8bb90fc6d0e29fc5feceaa40d92e1dee9320a7bb4e9b8c3a454ca97609e52",
       "expected": null,
@@ -6564,9 +6564,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0002_v2_H_big_d3.png.jpg",
-      "input": "data4/v2/H/big/img0002_v2_H_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0002_v2_H_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0002_v2_H_big_d3.png.jpg",
       "sha256": "c08cae9daa10933f915b2176aecc2e689c9fcd185c6abf6d7e3ccd55bb83db2b",
       "source_sha256": "c08cae9daa10933f915b2176aecc2e689c9fcd185c6abf6d7e3ccd55bb83db2b",
       "expected": null,
@@ -6584,9 +6584,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0003_v2_H_big_d3.png.jpg",
-      "input": "data4/v2/H/big/img0003_v2_H_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0003_v2_H_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0003_v2_H_big_d3.png.jpg",
       "sha256": "9fa783f78b3bf1c0497ea25157af6eb65fe3443af8578bfe3ec84589b902795a",
       "source_sha256": "9fa783f78b3bf1c0497ea25157af6eb65fe3443af8578bfe3ec84589b902795a",
       "expected": null,
@@ -6604,9 +6604,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0004_v2_H_big_d2.png.jpg",
-      "input": "data4/v2/H/big/img0004_v2_H_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0004_v2_H_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0004_v2_H_big_d2.png.jpg",
       "sha256": "fcb0cc6c717b695e434a66a2c4c36267075e1246e575f8ed28072fbab5accfdd",
       "source_sha256": "fcb0cc6c717b695e434a66a2c4c36267075e1246e575f8ed28072fbab5accfdd",
       "expected": null,
@@ -6624,9 +6624,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0005_v2_H_big_d4.png.jpg",
-      "input": "data4/v2/H/big/img0005_v2_H_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0005_v2_H_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0005_v2_H_big_d4.png.jpg",
       "sha256": "3effd397102920bc561ba41d0876826f6108edbacbe62dc1f97289c2d508b724",
       "source_sha256": "3effd397102920bc561ba41d0876826f6108edbacbe62dc1f97289c2d508b724",
       "expected": null,
@@ -6644,9 +6644,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0006_v2_H_big_d3.png.jpg",
-      "input": "data4/v2/H/big/img0006_v2_H_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0006_v2_H_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0006_v2_H_big_d3.png.jpg",
       "sha256": "b121db84bcc41658822ff286f5b14cc34b5733ac7418398fae59fcc1b7004086",
       "source_sha256": "b121db84bcc41658822ff286f5b14cc34b5733ac7418398fae59fcc1b7004086",
       "expected": null,
@@ -6664,9 +6664,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0007_v2_H_big_d2.png.jpg",
-      "input": "data4/v2/H/big/img0007_v2_H_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0007_v2_H_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0007_v2_H_big_d2.png.jpg",
       "sha256": "f1ce40f2f7caf14acce2e0631cb8d4bc03235a8e890d06f59f28149f4534973f",
       "source_sha256": "f1ce40f2f7caf14acce2e0631cb8d4bc03235a8e890d06f59f28149f4534973f",
       "expected": null,
@@ -6684,9 +6684,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0008_v2_H_big_d2.png.jpg",
-      "input": "data4/v2/H/big/img0008_v2_H_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0008_v2_H_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0008_v2_H_big_d2.png.jpg",
       "sha256": "9fbe0e79d6b13992b6279df197a4f9547823481e7ed142a63c744bf9828ed2cc",
       "source_sha256": "9fbe0e79d6b13992b6279df197a4f9547823481e7ed142a63c744bf9828ed2cc",
       "expected": null,
@@ -6704,9 +6704,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0009_v2_H_big_d5.png.jpg",
-      "input": "data4/v2/H/big/img0009_v2_H_big_d5.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0009_v2_H_big_d5.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0009_v2_H_big_d5.png.jpg",
       "sha256": "fc72ddd1a13e98e8cc4ee7fdad1629aebe798460f990ecaa42c5892b7ea0e6d2",
       "source_sha256": "fc72ddd1a13e98e8cc4ee7fdad1629aebe798460f990ecaa42c5892b7ea0e6d2",
       "expected": null,
@@ -6724,9 +6724,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0010_v2_H_big_d2.png.jpg",
-      "input": "data4/v2/H/big/img0010_v2_H_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0010_v2_H_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0010_v2_H_big_d2.png.jpg",
       "sha256": "9efd8c39993dff29e45c7f465c462a408221ccb00178a013856b239c02b655ed",
       "source_sha256": "9efd8c39993dff29e45c7f465c462a408221ccb00178a013856b239c02b655ed",
       "expected": null,
@@ -6744,9 +6744,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0011_v2_H_big_d5.png.jpg",
-      "input": "data4/v2/H/big/img0011_v2_H_big_d5.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0011_v2_H_big_d5.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0011_v2_H_big_d5.png.jpg",
       "sha256": "48ac65797c822154a273b30611d9169f73c3a2720cc1a3182a06946edc73406f",
       "source_sha256": "48ac65797c822154a273b30611d9169f73c3a2720cc1a3182a06946edc73406f",
       "expected": null,
@@ -6764,9 +6764,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0012_v2_H_big_d3.png.jpg",
-      "input": "data4/v2/H/big/img0012_v2_H_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0012_v2_H_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0012_v2_H_big_d3.png.jpg",
       "sha256": "387dd68e162b7bb2c96a40cfc2a67f9fe7e08a7bd8e6eda23f4df26f78d06821",
       "source_sha256": "387dd68e162b7bb2c96a40cfc2a67f9fe7e08a7bd8e6eda23f4df26f78d06821",
       "expected": null,
@@ -6784,9 +6784,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0013_v2_H_big_d4.png.jpg",
-      "input": "data4/v2/H/big/img0013_v2_H_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0013_v2_H_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0013_v2_H_big_d4.png.jpg",
       "sha256": "92b6cb6fa53d12885de3719cdb0a785c0c1a3115b1af80493c8cc0bf5975bd4a",
       "source_sha256": "92b6cb6fa53d12885de3719cdb0a785c0c1a3115b1af80493c8cc0bf5975bd4a",
       "expected": null,
@@ -6804,9 +6804,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0014_v2_H_big_d3.png.jpg",
-      "input": "data4/v2/H/big/img0014_v2_H_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0014_v2_H_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0014_v2_H_big_d3.png.jpg",
       "sha256": "5ed0be021016b33fe8d252f684b7273dd9989a36aae3e9da59d3ba756371c4ca",
       "source_sha256": "5ed0be021016b33fe8d252f684b7273dd9989a36aae3e9da59d3ba756371c4ca",
       "expected": null,
@@ -6824,9 +6824,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/big/img0015_v2_H_big_d5.png.jpg",
-      "input": "data4/v2/H/big/img0015_v2_H_big_d5.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/big/img0015_v2_H_big_d5.png.jpg",
+      "input": "data/qr/data4/v2/H/big/img0015_v2_H_big_d5.png.jpg",
       "sha256": "5e15dd9d502c35172cd70bfce4a0d61f2aa728cb52a8f1380ad02e43f4866198",
       "source_sha256": "5e15dd9d502c35172cd70bfce4a0d61f2aa728cb52a8f1380ad02e43f4866198",
       "expected": null,
@@ -6844,9 +6844,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/small/img0016_v2_H_small_d2.png.jpg",
-      "input": "data4/v2/H/small/img0016_v2_H_small_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/small/img0016_v2_H_small_d2.png.jpg",
+      "input": "data/qr/data4/v2/H/small/img0016_v2_H_small_d2.png.jpg",
       "sha256": "e7c956f9436b2da0fb93448a31cb2e4ca28536c464194920fb42aa56ee9b6bcf",
       "source_sha256": "e7c956f9436b2da0fb93448a31cb2e4ca28536c464194920fb42aa56ee9b6bcf",
       "expected": null,
@@ -6864,9 +6864,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/H/small/img0017_v2_H_small_d3.png.jpg",
-      "input": "data4/v2/H/small/img0017_v2_H_small_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/H/small/img0017_v2_H_small_d3.png.jpg",
+      "input": "data/qr/data4/v2/H/small/img0017_v2_H_small_d3.png.jpg",
       "sha256": "601ff5053f3bcee7928ec7da45d5ed2ade5c70824e0b4f3a4660c0d5a9cc2ccd",
       "source_sha256": "601ff5053f3bcee7928ec7da45d5ed2ade5c70824e0b4f3a4660c0d5a9cc2ccd",
       "expected": null,
@@ -6884,9 +6884,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0018_v2_L_big_d2.png.jpg",
-      "input": "data4/v2/L/big/img0018_v2_L_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0018_v2_L_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0018_v2_L_big_d2.png.jpg",
       "sha256": "17a5287dccf35eace44764ced93185474463bfbd36c6ce43275ca4fb94058d62",
       "source_sha256": "17a5287dccf35eace44764ced93185474463bfbd36c6ce43275ca4fb94058d62",
       "expected": null,
@@ -6904,9 +6904,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0019_v2_L_big_d3.png.jpg",
-      "input": "data4/v2/L/big/img0019_v2_L_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0019_v2_L_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0019_v2_L_big_d3.png.jpg",
       "sha256": "2a73f0265d09f49cfbd1ec1d4659830edf7936b1afbb991f68ad56938dfe0c68",
       "source_sha256": "2a73f0265d09f49cfbd1ec1d4659830edf7936b1afbb991f68ad56938dfe0c68",
       "expected": null,
@@ -6924,9 +6924,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0020_v2_L_big_d3.png.jpg",
-      "input": "data4/v2/L/big/img0020_v2_L_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0020_v2_L_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0020_v2_L_big_d3.png.jpg",
       "sha256": "40c5ece282d7eb7c98d9a90b1c6ea8a334982ffd9b1fcdbe8b26cc268a4784e4",
       "source_sha256": "40c5ece282d7eb7c98d9a90b1c6ea8a334982ffd9b1fcdbe8b26cc268a4784e4",
       "expected": null,
@@ -6944,9 +6944,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0021_v2_L_big_d2.png.jpg",
-      "input": "data4/v2/L/big/img0021_v2_L_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0021_v2_L_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0021_v2_L_big_d2.png.jpg",
       "sha256": "c49b73328be245093ebff7932d4f339c7477c938ba49649e139d549d9e87ca8a",
       "source_sha256": "c49b73328be245093ebff7932d4f339c7477c938ba49649e139d549d9e87ca8a",
       "expected": null,
@@ -6964,9 +6964,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0022_v2_L_big_d4.png.jpg",
-      "input": "data4/v2/L/big/img0022_v2_L_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0022_v2_L_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0022_v2_L_big_d4.png.jpg",
       "sha256": "982fd8ac17fe90ed05e4d893e7792669814db5cb6ab574d9523eed6d297b4b2e",
       "source_sha256": "982fd8ac17fe90ed05e4d893e7792669814db5cb6ab574d9523eed6d297b4b2e",
       "expected": null,
@@ -6984,9 +6984,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0023_v2_L_big_d3.png.jpg",
-      "input": "data4/v2/L/big/img0023_v2_L_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0023_v2_L_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0023_v2_L_big_d3.png.jpg",
       "sha256": "4d948136f96db3e0891909354cab191d5f469db9991375d6617231d391d28127",
       "source_sha256": "4d948136f96db3e0891909354cab191d5f469db9991375d6617231d391d28127",
       "expected": null,
@@ -7004,9 +7004,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0024_v2_L_big_d2.png.jpg",
-      "input": "data4/v2/L/big/img0024_v2_L_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0024_v2_L_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0024_v2_L_big_d2.png.jpg",
       "sha256": "66c7aef75071a0e2f643731122559ac0c38e5ae0c9c69ce070244605b5975745",
       "source_sha256": "66c7aef75071a0e2f643731122559ac0c38e5ae0c9c69ce070244605b5975745",
       "expected": null,
@@ -7024,9 +7024,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0025_v2_L_big_d2.png.jpg",
-      "input": "data4/v2/L/big/img0025_v2_L_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0025_v2_L_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0025_v2_L_big_d2.png.jpg",
       "sha256": "93af930d7b935e871f5365ea559985b5ee597ee7354a34a8373e4a1a8701493f",
       "source_sha256": "93af930d7b935e871f5365ea559985b5ee597ee7354a34a8373e4a1a8701493f",
       "expected": null,
@@ -7044,9 +7044,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0026_v2_L_big_d5.png.jpg",
-      "input": "data4/v2/L/big/img0026_v2_L_big_d5.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0026_v2_L_big_d5.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0026_v2_L_big_d5.png.jpg",
       "sha256": "8345f8d8b27dcc40405d35ebd7778929c79b5e7c67202da7f9a8f373cf43aed2",
       "source_sha256": "8345f8d8b27dcc40405d35ebd7778929c79b5e7c67202da7f9a8f373cf43aed2",
       "expected": null,
@@ -7064,9 +7064,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0027_v2_L_big_d2.png.jpg",
-      "input": "data4/v2/L/big/img0027_v2_L_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0027_v2_L_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0027_v2_L_big_d2.png.jpg",
       "sha256": "4a8000402704432039d49154d19b6a323310e619bfc7fbcc104dc1091737cf5d",
       "source_sha256": "4a8000402704432039d49154d19b6a323310e619bfc7fbcc104dc1091737cf5d",
       "expected": null,
@@ -7084,9 +7084,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0028_v2_L_big_d3.png.jpg",
-      "input": "data4/v2/L/big/img0028_v2_L_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0028_v2_L_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0028_v2_L_big_d3.png.jpg",
       "sha256": "2f62e31ba81428cf1e1fa81f0eb75683ed464930834915e9140946a251e5e9f6",
       "source_sha256": "2f62e31ba81428cf1e1fa81f0eb75683ed464930834915e9140946a251e5e9f6",
       "expected": null,
@@ -7104,9 +7104,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0029_v2_L_big_d3.png.jpg",
-      "input": "data4/v2/L/big/img0029_v2_L_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0029_v2_L_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0029_v2_L_big_d3.png.jpg",
       "sha256": "918fb046710adbe38de8d5c42eaa84086d0377919281c10c5fe036c1b1127202",
       "source_sha256": "918fb046710adbe38de8d5c42eaa84086d0377919281c10c5fe036c1b1127202",
       "expected": null,
@@ -7124,9 +7124,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0030_v2_L_big_d4.png.jpg",
-      "input": "data4/v2/L/big/img0030_v2_L_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0030_v2_L_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0030_v2_L_big_d4.png.jpg",
       "sha256": "e269097caffed920dfdce19197bd6be8dc93843cdeed305ace54a549ac4e7737",
       "source_sha256": "e269097caffed920dfdce19197bd6be8dc93843cdeed305ace54a549ac4e7737",
       "expected": null,
@@ -7144,9 +7144,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0031_v2_L_big_d4.png.jpg",
-      "input": "data4/v2/L/big/img0031_v2_L_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0031_v2_L_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0031_v2_L_big_d4.png.jpg",
       "sha256": "9b365d22dcb839fb8a4aeaab3f2f7c1fd2313cf3807798b9eba07a0240c15c8a",
       "source_sha256": "9b365d22dcb839fb8a4aeaab3f2f7c1fd2313cf3807798b9eba07a0240c15c8a",
       "expected": null,
@@ -7164,9 +7164,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/big/img0032_v2_L_big_d5.png.jpg",
-      "input": "data4/v2/L/big/img0032_v2_L_big_d5.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/big/img0032_v2_L_big_d5.png.jpg",
+      "input": "data/qr/data4/v2/L/big/img0032_v2_L_big_d5.png.jpg",
       "sha256": "2fde3275749fe51f89c6a1f08b6362d720100d6035f0e4d0c63ef92b93e695fd",
       "source_sha256": "2fde3275749fe51f89c6a1f08b6362d720100d6035f0e4d0c63ef92b93e695fd",
       "expected": null,
@@ -7184,9 +7184,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/small/img0033_v2_L_small_d3.png.jpg",
-      "input": "data4/v2/L/small/img0033_v2_L_small_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/small/img0033_v2_L_small_d3.png.jpg",
+      "input": "data/qr/data4/v2/L/small/img0033_v2_L_small_d3.png.jpg",
       "sha256": "1c7ac24789b9fca3b60a5351ffb282ef5cdfba893298e28cbc1d0c90bf0e298d",
       "source_sha256": "1c7ac24789b9fca3b60a5351ffb282ef5cdfba893298e28cbc1d0c90bf0e298d",
       "expected": null,
@@ -7204,9 +7204,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/L/small/img0034_v2_L_small_d3.png.jpg",
-      "input": "data4/v2/L/small/img0034_v2_L_small_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/L/small/img0034_v2_L_small_d3.png.jpg",
+      "input": "data/qr/data4/v2/L/small/img0034_v2_L_small_d3.png.jpg",
       "sha256": "1bfdf1705e3f463cd038c8f251ba45d1cbed12c1dd7077b58c3cba6d5ff1b97f",
       "source_sha256": "1bfdf1705e3f463cd038c8f251ba45d1cbed12c1dd7077b58c3cba6d5ff1b97f",
       "expected": null,
@@ -7224,9 +7224,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0035_v2_M_big_d2.png.jpg",
-      "input": "data4/v2/M/big/img0035_v2_M_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0035_v2_M_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0035_v2_M_big_d2.png.jpg",
       "sha256": "2119f0e9ce9ae3ce6114dbf9ddcd399d997315b6fa329559ff6ec9abe2713baf",
       "source_sha256": "2119f0e9ce9ae3ce6114dbf9ddcd399d997315b6fa329559ff6ec9abe2713baf",
       "expected": null,
@@ -7244,9 +7244,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0036_v2_M_big_d3.png.jpg",
-      "input": "data4/v2/M/big/img0036_v2_M_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0036_v2_M_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0036_v2_M_big_d3.png.jpg",
       "sha256": "7e45344b83f2ad0a764351089be1522df8f2c747463495094d76ef5f3e22df8a",
       "source_sha256": "7e45344b83f2ad0a764351089be1522df8f2c747463495094d76ef5f3e22df8a",
       "expected": null,
@@ -7264,9 +7264,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0037_v2_M_big_d3.png.jpg",
-      "input": "data4/v2/M/big/img0037_v2_M_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0037_v2_M_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0037_v2_M_big_d3.png.jpg",
       "sha256": "16bd824ce26e69be15fa15fe4776cb63605ffa1b4d8f84c5a514cc41ea713a66",
       "source_sha256": "16bd824ce26e69be15fa15fe4776cb63605ffa1b4d8f84c5a514cc41ea713a66",
       "expected": null,
@@ -7284,9 +7284,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0038_v2_M_big_d2.png.jpg",
-      "input": "data4/v2/M/big/img0038_v2_M_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0038_v2_M_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0038_v2_M_big_d2.png.jpg",
       "sha256": "23699e128a823c3bec62fbf104bcdca62ca221b727f58db91168161c4b0ba75e",
       "source_sha256": "23699e128a823c3bec62fbf104bcdca62ca221b727f58db91168161c4b0ba75e",
       "expected": null,
@@ -7304,9 +7304,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0039_v2_M_big_d4.png.jpg",
-      "input": "data4/v2/M/big/img0039_v2_M_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0039_v2_M_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0039_v2_M_big_d4.png.jpg",
       "sha256": "828d3dc1134bed9d8ca098bf29bf6f94b98000aafa3e7bdb965e21e6f5cc307a",
       "source_sha256": "828d3dc1134bed9d8ca098bf29bf6f94b98000aafa3e7bdb965e21e6f5cc307a",
       "expected": null,
@@ -7324,9 +7324,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0040_v2_M_big_d3.png.jpg",
-      "input": "data4/v2/M/big/img0040_v2_M_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0040_v2_M_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0040_v2_M_big_d3.png.jpg",
       "sha256": "8eaab811541b6d78d023702e99918f8408e1ce3d326a481efdb572b2ad2c1ce9",
       "source_sha256": "8eaab811541b6d78d023702e99918f8408e1ce3d326a481efdb572b2ad2c1ce9",
       "expected": null,
@@ -7344,9 +7344,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0041_v2_M_big_d2.png.jpg",
-      "input": "data4/v2/M/big/img0041_v2_M_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0041_v2_M_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0041_v2_M_big_d2.png.jpg",
       "sha256": "071868d850e643cb77267cc3554ca4cf10583f2e9a5ee30f8aef9f4d29366cf5",
       "source_sha256": "071868d850e643cb77267cc3554ca4cf10583f2e9a5ee30f8aef9f4d29366cf5",
       "expected": null,
@@ -7364,9 +7364,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0042_v2_M_big_d2.png.jpg",
-      "input": "data4/v2/M/big/img0042_v2_M_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0042_v2_M_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0042_v2_M_big_d2.png.jpg",
       "sha256": "e72a91ad7dac4c3e0d73363cc3e60bb9576c568194b6723d6e086abf4e507245",
       "source_sha256": "e72a91ad7dac4c3e0d73363cc3e60bb9576c568194b6723d6e086abf4e507245",
       "expected": null,
@@ -7384,9 +7384,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0043_v2_M_big_d5.png.jpg",
-      "input": "data4/v2/M/big/img0043_v2_M_big_d5.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0043_v2_M_big_d5.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0043_v2_M_big_d5.png.jpg",
       "sha256": "ccda8b621da15b441f24799fd9c34af29f8d6b0f70b925eacf04ff3b4f2e8857",
       "source_sha256": "ccda8b621da15b441f24799fd9c34af29f8d6b0f70b925eacf04ff3b4f2e8857",
       "expected": null,
@@ -7404,9 +7404,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0044_v2_M_big_d2.png.jpg",
-      "input": "data4/v2/M/big/img0044_v2_M_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0044_v2_M_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0044_v2_M_big_d2.png.jpg",
       "sha256": "7f6024348e7f593f36b84d28e35aaaed3d1b7b2cc1d47d68fc116ccbf51d880c",
       "source_sha256": "7f6024348e7f593f36b84d28e35aaaed3d1b7b2cc1d47d68fc116ccbf51d880c",
       "expected": null,
@@ -7424,9 +7424,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0045_v2_M_big_d4.png.jpg",
-      "input": "data4/v2/M/big/img0045_v2_M_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0045_v2_M_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0045_v2_M_big_d4.png.jpg",
       "sha256": "982324a49b324f361cade35fa66cbeeb0fb6b2cb69e6c70f682b21ec3568f4a2",
       "source_sha256": "982324a49b324f361cade35fa66cbeeb0fb6b2cb69e6c70f682b21ec3568f4a2",
       "expected": null,
@@ -7444,9 +7444,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0046_v2_M_big_d3.png.jpg",
-      "input": "data4/v2/M/big/img0046_v2_M_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0046_v2_M_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0046_v2_M_big_d3.png.jpg",
       "sha256": "df0337168bcc3e54efe3cf5f820f9ed837975924cd544258545f0e539619a2f1",
       "source_sha256": "df0337168bcc3e54efe3cf5f820f9ed837975924cd544258545f0e539619a2f1",
       "expected": null,
@@ -7464,9 +7464,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0047_v2_M_big_d4.png.jpg",
-      "input": "data4/v2/M/big/img0047_v2_M_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0047_v2_M_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0047_v2_M_big_d4.png.jpg",
       "sha256": "6bd8a7520271bb57b48162e25cfd87980415aaaec8b915a02589b62a196ca90b",
       "source_sha256": "6bd8a7520271bb57b48162e25cfd87980415aaaec8b915a02589b62a196ca90b",
       "expected": null,
@@ -7484,9 +7484,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0048_v2_M_big_d3.png.jpg",
-      "input": "data4/v2/M/big/img0048_v2_M_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0048_v2_M_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0048_v2_M_big_d3.png.jpg",
       "sha256": "65606c25cc2ec05afa578c08c1704aef00ed2923ef42dd413e1b25cb4bb5d4b8",
       "source_sha256": "65606c25cc2ec05afa578c08c1704aef00ed2923ef42dd413e1b25cb4bb5d4b8",
       "expected": null,
@@ -7504,9 +7504,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/big/img0049_v2_M_big_d5.png.jpg",
-      "input": "data4/v2/M/big/img0049_v2_M_big_d5.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/big/img0049_v2_M_big_d5.png.jpg",
+      "input": "data/qr/data4/v2/M/big/img0049_v2_M_big_d5.png.jpg",
       "sha256": "70087143c011f5d78a8b2ba2bc26c2ae48e01695960f911c301cd986ddfa6fe0",
       "source_sha256": "70087143c011f5d78a8b2ba2bc26c2ae48e01695960f911c301cd986ddfa6fe0",
       "expected": null,
@@ -7524,9 +7524,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/small/img0050_v2_M_small_d3.png.jpg",
-      "input": "data4/v2/M/small/img0050_v2_M_small_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/small/img0050_v2_M_small_d3.png.jpg",
+      "input": "data/qr/data4/v2/M/small/img0050_v2_M_small_d3.png.jpg",
       "sha256": "cc36b5d2ab6e5fa6ea1d779b03ed2cdb35e97eb155e408149999b03459157893",
       "source_sha256": "cc36b5d2ab6e5fa6ea1d779b03ed2cdb35e97eb155e408149999b03459157893",
       "expected": null,
@@ -7544,9 +7544,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/M/small/img0051_v2_M_small_d3.png.jpg",
-      "input": "data4/v2/M/small/img0051_v2_M_small_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/M/small/img0051_v2_M_small_d3.png.jpg",
+      "input": "data/qr/data4/v2/M/small/img0051_v2_M_small_d3.png.jpg",
       "sha256": "35d6e5c7e3cd98ff182cc867e7c8c414ecca9d9230b87ff8f7cf7770a21bcc6c",
       "source_sha256": "35d6e5c7e3cd98ff182cc867e7c8c414ecca9d9230b87ff8f7cf7770a21bcc6c",
       "expected": null,
@@ -7564,9 +7564,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0051_v2_Q_big_d2.png.jpg",
-      "input": "data4/v2/Q/big/img0051_v2_Q_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0051_v2_Q_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0051_v2_Q_big_d2.png.jpg",
       "sha256": "ebdb5302bffd8545deb92c3cabd15f8f9ccf018eb3f46fc5dab0efea796e5f1d",
       "source_sha256": "ebdb5302bffd8545deb92c3cabd15f8f9ccf018eb3f46fc5dab0efea796e5f1d",
       "expected": null,
@@ -7584,9 +7584,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0052_v2_Q_big_d3.png.jpg",
-      "input": "data4/v2/Q/big/img0052_v2_Q_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0052_v2_Q_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0052_v2_Q_big_d3.png.jpg",
       "sha256": "9b8a95339992ed3bb5a849a902de01b77666455767e9770c55e2463cabce3c82",
       "source_sha256": "9b8a95339992ed3bb5a849a902de01b77666455767e9770c55e2463cabce3c82",
       "expected": null,
@@ -7604,9 +7604,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0053_v2_Q_big_d3.png.jpg",
-      "input": "data4/v2/Q/big/img0053_v2_Q_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0053_v2_Q_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0053_v2_Q_big_d3.png.jpg",
       "sha256": "180366f4f74c938bddfe64d4963e672f60f75afd2503125d79b0764296c2a0b8",
       "source_sha256": "180366f4f74c938bddfe64d4963e672f60f75afd2503125d79b0764296c2a0b8",
       "expected": null,
@@ -7624,9 +7624,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0054_v2_Q_big_d2.png.jpg",
-      "input": "data4/v2/Q/big/img0054_v2_Q_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0054_v2_Q_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0054_v2_Q_big_d2.png.jpg",
       "sha256": "96270aa18b69ecb2a38e99ce202f8f4d747b604b7aeb68507ee89e4ff12227c6",
       "source_sha256": "96270aa18b69ecb2a38e99ce202f8f4d747b604b7aeb68507ee89e4ff12227c6",
       "expected": null,
@@ -7644,9 +7644,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0055_v2_Q_big_d4.png.jpg",
-      "input": "data4/v2/Q/big/img0055_v2_Q_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0055_v2_Q_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0055_v2_Q_big_d4.png.jpg",
       "sha256": "22f941d4d9a92ff49e34c66dae45800d97cc4a90acd378718cd2465ad33e2d5f",
       "source_sha256": "22f941d4d9a92ff49e34c66dae45800d97cc4a90acd378718cd2465ad33e2d5f",
       "expected": null,
@@ -7664,9 +7664,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0056_v2_Q_big_d3.png.jpg",
-      "input": "data4/v2/Q/big/img0056_v2_Q_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0056_v2_Q_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0056_v2_Q_big_d3.png.jpg",
       "sha256": "939be08d20be8c590eb97237d7073af321595bd4690a96f205f480349222e1a0",
       "source_sha256": "939be08d20be8c590eb97237d7073af321595bd4690a96f205f480349222e1a0",
       "expected": null,
@@ -7684,9 +7684,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0057_v2_Q_big_d2.png.jpg",
-      "input": "data4/v2/Q/big/img0057_v2_Q_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0057_v2_Q_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0057_v2_Q_big_d2.png.jpg",
       "sha256": "a690b1c1b26943ab53c9672fe1e01b117dc42b096d2fbba7b6bf2213bb9fc72a",
       "source_sha256": "a690b1c1b26943ab53c9672fe1e01b117dc42b096d2fbba7b6bf2213bb9fc72a",
       "expected": null,
@@ -7704,9 +7704,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0058_v2_Q_big_d2.png.jpg",
-      "input": "data4/v2/Q/big/img0058_v2_Q_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0058_v2_Q_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0058_v2_Q_big_d2.png.jpg",
       "sha256": "a650915a947f32aebf755824a525a5c0b1dc1a569771173ea8500377edea3296",
       "source_sha256": "a650915a947f32aebf755824a525a5c0b1dc1a569771173ea8500377edea3296",
       "expected": null,
@@ -7724,9 +7724,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0059_v2_Q_big_d5.png.jpg",
-      "input": "data4/v2/Q/big/img0059_v2_Q_big_d5.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0059_v2_Q_big_d5.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0059_v2_Q_big_d5.png.jpg",
       "sha256": "448f4aa5f282a4bd10c0282c4c0615fa1a4168620891529064c0e87bf0b5554f",
       "source_sha256": "448f4aa5f282a4bd10c0282c4c0615fa1a4168620891529064c0e87bf0b5554f",
       "expected": null,
@@ -7744,9 +7744,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0060_v2_Q_big_d2.png.jpg",
-      "input": "data4/v2/Q/big/img0060_v2_Q_big_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0060_v2_Q_big_d2.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0060_v2_Q_big_d2.png.jpg",
       "sha256": "362a31457b9808d434a40b5d72093e69551ad9699b5356bdae9f17c0a249bd81",
       "source_sha256": "362a31457b9808d434a40b5d72093e69551ad9699b5356bdae9f17c0a249bd81",
       "expected": null,
@@ -7764,9 +7764,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0061_v2_Q_big_d4.png.jpg",
-      "input": "data4/v2/Q/big/img0061_v2_Q_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0061_v2_Q_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0061_v2_Q_big_d4.png.jpg",
       "sha256": "7535abce0a5885fe6291c49d065fc0a0b46b17c72ec113553790affd106f4f84",
       "source_sha256": "7535abce0a5885fe6291c49d065fc0a0b46b17c72ec113553790affd106f4f84",
       "expected": null,
@@ -7784,9 +7784,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0062_v2_Q_big_d3.png.jpg",
-      "input": "data4/v2/Q/big/img0062_v2_Q_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0062_v2_Q_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0062_v2_Q_big_d3.png.jpg",
       "sha256": "606b0ed60b9e60bd41b99c443d58ca71ef54db5acda178a704a1e8ed3c099a09",
       "source_sha256": "606b0ed60b9e60bd41b99c443d58ca71ef54db5acda178a704a1e8ed3c099a09",
       "expected": null,
@@ -7804,9 +7804,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0063_v2_Q_big_d4.png.jpg",
-      "input": "data4/v2/Q/big/img0063_v2_Q_big_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0063_v2_Q_big_d4.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0063_v2_Q_big_d4.png.jpg",
       "sha256": "684b4ef9113b17568ee270f962a9ce9b4123c41ca9172aaee68119b905846ce5",
       "source_sha256": "684b4ef9113b17568ee270f962a9ce9b4123c41ca9172aaee68119b905846ce5",
       "expected": null,
@@ -7824,9 +7824,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0064_v2_Q_big_d3.png.jpg",
-      "input": "data4/v2/Q/big/img0064_v2_Q_big_d3.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0064_v2_Q_big_d3.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0064_v2_Q_big_d3.png.jpg",
       "sha256": "2fd32d791c7a2332e984f582fc306eefe5f8864bc07570578e565e5b91381523",
       "source_sha256": "2fd32d791c7a2332e984f582fc306eefe5f8864bc07570578e565e5b91381523",
       "expected": null,
@@ -7844,9 +7844,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/big/img0065_v2_Q_big_d5.png.jpg",
-      "input": "data4/v2/Q/big/img0065_v2_Q_big_d5.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/big/img0065_v2_Q_big_d5.png.jpg",
+      "input": "data/qr/data4/v2/Q/big/img0065_v2_Q_big_d5.png.jpg",
       "sha256": "e5760da466c6750915b45ebf8db5cd5c2908e88db1934e145d564212fd481c1e",
       "source_sha256": "e5760da466c6750915b45ebf8db5cd5c2908e88db1934e145d564212fd481c1e",
       "expected": null,
@@ -7864,9 +7864,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/small/img0066_v2_Q_small_d2.png.jpg",
-      "input": "data4/v2/Q/small/img0066_v2_Q_small_d2.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/small/img0066_v2_Q_small_d2.png.jpg",
+      "input": "data/qr/data4/v2/Q/small/img0066_v2_Q_small_d2.png.jpg",
       "sha256": "c0bdf406447d0fc9414e4efbacc33b7dfdce7178eb865d4ef9f0c7a798c3af41",
       "source_sha256": "c0bdf406447d0fc9414e4efbacc33b7dfdce7178eb865d4ef9f0c7a798c3af41",
       "expected": null,
@@ -7884,9 +7884,9 @@
       }
     },
     {
-      "dataset": "data4",
-      "source": "data4/v2/Q/small/img0067_v2_Q_small_d4.png.jpg",
-      "input": "data4/v2/Q/small/img0067_v2_Q_small_d4.png.jpg",
+      "dataset": "data/qr/data4",
+      "source": "data/qr/data4/v2/Q/small/img0067_v2_Q_small_d4.png.jpg",
+      "input": "data/qr/data4/v2/Q/small/img0067_v2_Q_small_d4.png.jpg",
       "sha256": "93ad9c254637f7604f174f8354cc033805a29f6542831a067815f2a7ab0d3823",
       "source_sha256": "93ad9c254637f7604f174f8354cc033805a29f6542831a067815f2a7ab0d3823",
       "expected": null,

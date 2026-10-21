@@ -56,4 +56,4 @@ def test(data_path):
     
 
 if __name__ == "__main__":
-    test("data")
+    test("data/qr/data1")

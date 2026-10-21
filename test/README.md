@@ -1,9 +1,9 @@
 # Tests
 
-- `benchmark_readme.py` reproduces the three README benchmarks using `data` and `data2`. `--scanners CSQR-D --fresh` refreshes only our scanner; `--summarize --update-readme` updates both README tables.
+- `benchmark_readme.py` reproduces the three README benchmarks using `data/qr/data1` and `data/qr/data2`. `--scanners CSQR-D --fresh` refreshes only our scanner; `--summarize --update-readme` updates both README tables.
 - `benchmark_results/` contains the retained measurements, summary and input hashes. Resized input caches are generated on demand and ignored by Git.
-- `fold_test.py` checks exact payloads on the 20 real crops in [data3](../data3/). Its manifest supplies labels and verifies fixture hashes.
-- `compare_scanners.py` interleaves two C++ executables on all 392 images in `data`–`data4`, records input/executable hashes, gains, losses, payload disagreements and repeated CLI timings. Only `data3` has independent payload labels; other datasets use the README decoding-success criterion. `--prepare-inputs` creates the 2000-pixel `data` cache with Pillow before timing. Example:
+- `fold_test.py` checks exact payloads on the 20 real crops in [data/qr/data3](../data/qr/data3/). Its manifest supplies labels and verifies fixture hashes.
+- `compare_scanners.py` interleaves two C++ executables on all 392 images in `data/qr/data1`–`data/qr/data4`, records input/executable hashes, gains, losses, payload disagreements and repeated CLI timings. Only `data/qr/data3` has independent payload labels; other datasets use the README decoding-success criterion. `--prepare-inputs` creates the 2000-pixel `data/qr/data1` cache with Pillow before timing. Example:
 
   ```powershell
   python test/compare_scanners.py --baseline src/cpp/build/bin/qrscanner_baseline.exe --current src/cpp/build/bin/qrscanner_cli.exe --prepare-inputs --repeat 3 --details test/benchmark_results/scanner_improvements.json
@@ -18,7 +18,7 @@
   python test/python_scanner_test.py
   ```
 
-  [Python results](benchmark_results/python_scanner_results.json) use exact expected payloads for `data3` and the existing decoding-success criterion for other sets. Multiple-QR images can return a different valid symbol in the Python and C++ ZXing builds.
+  [Python results](benchmark_results/python_scanner_results.json) use exact expected payloads for `data/qr/data3` and the existing decoding-success criterion for other sets. Multiple-QR images can return a different valid symbol in the Python and C++ ZXing builds.
 - C++ geometry and grid-decoder checks:
 
   ```powershell

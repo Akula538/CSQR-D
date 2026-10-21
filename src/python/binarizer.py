@@ -96,8 +96,8 @@ if __name__ == "__main__":
     
     # orig = cv2.imread("orig.png")
     orig = cv2.imread("corrected.png")
-    # orig = cv2.imread("data/v2/H/small/img0039_v2_H_small_d1.png")
-    # orig = cv2.imread("data/v2/H/big/img0017_v2_H_big_d0.png")
+    # orig = cv2.imread("data/qr/data1/v2/H/small/img0039_v2_H_small_d1.png")
+    # orig = cv2.imread("data/qr/data1/v2/H/big/img0017_v2_H_big_d0.png")
     
     orig = binarize_zxing_cpp(orig)
     orig.save("corrected.png")

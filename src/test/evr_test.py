@@ -9,12 +9,12 @@ import time
 import numpy as np
 
 path_list = [
-    "data2/train/83.png",
-    "data2/train/70.png",
-    "data2/test/150.png",
-    "data2/train/94.png",
-    "data2/train/86.png",
-    "data2/test/144.png"
+    "data/qr/data2/data/83.png",
+    "data/qr/data2/data/70.png",
+    "data/qr/data2/data/150.png",
+    "data/qr/data2/data/94.png",
+    "data/qr/data2/data/86.png",
+    "data/qr/data2/data/144.png"
 ]
 
 def test(data_path):

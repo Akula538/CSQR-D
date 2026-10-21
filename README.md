@@ -28,7 +28,7 @@ CSQR-D is integrated into **Curved QR Scanner**, an Android application designed
 
 ### Dataset
 
-The benchmark uses **169 smartphone images** of QR codes on curved surfaces from `data`. Samples are grouped into four deformation levels:
+The benchmark uses **169 smartphone images** of QR codes on curved surfaces from `data/qr/data1`. Samples are grouped into four deformation levels:
 
 - **0** — almost flat (12 samples)
 - **1** — slightly curved (53 samples)
@@ -49,11 +49,11 @@ Recognition rate is the fraction of images successfully decoded at each deformat
 | 3 | 12 | 0.00% | 0.00% | 0.00% | 0.00% | 100.00% |
 | **Overall** | 169 | 21.30% | 12.43% | 6.51% | 18.93% | 98.22% |
 
-Additional real-image sets, evaluated at their original resolutions: **14/20** in `data3` (folds, exact payload match) and **41/68** in `data4`.
+Additional real-image sets, evaluated at their original resolutions: **14/20** in `data/qr/data3` (folds, exact payload match) and **41/68** in `data/qr/data4`.
 
 ### Runtime comparison
 
-Runtime is measured on **135 images** from the simpler `data2` dataset. Each image is scanned three times; the table reports mean, median and P95 processing time. P95 is the time within which 95% of calls complete.
+Runtime is measured on **135 images** from the simpler `data/qr/data2` dataset. Each image is scanned three times; the table reports mean, median and P95 processing time. P95 is the time within which 95% of calls complete.
 
 | Scanner | Mean (ms) | Median (ms) | P95 (ms) |
 |---|---:|---:|---:|

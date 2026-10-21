@@ -69,7 +69,7 @@ def scan(exe, path, expected, timeout):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--manifest', type=Path, default=ROOT/'data3/manifest.json')
+    parser.add_argument('--manifest', type=Path, default=ROOT/'data/qr/data3/manifest.json')
     parser.add_argument('--exe', type=Path, default=ROOT/'src/cpp/build/bin/qrscanner_cli.exe')
     parser.add_argument('--baseline', type=Path, help='Optional comparison executable')
     parser.add_argument('--repeat', type=int, default=1)

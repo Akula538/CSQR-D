@@ -141,11 +141,11 @@ def detectAndDecode(img, img_downscaled = None, can_homo = True):
 
 
 if __name__ == "__main__":
-    # img = Image.open("data/v2/M/big/img0102_v2_M_big_d2.png")
-    # img = Image.open("data/v2/M/big/img0114_v2_M_big_d2.png")
-    # img = Image.open("data/v2/L/big/img0046_v2_L_big_d3.png")
+    # img = Image.open("data/qr/data1/v2/M/big/img0102_v2_M_big_d2.png")
+    # img = Image.open("data/qr/data1/v2/M/big/img0114_v2_M_big_d2.png")
+    # img = Image.open("data/qr/data1/v2/L/big/img0046_v2_L_big_d3.png")
     # img = Image.open("data_orig/v2/M/big/img0102_v2_M_big_d2.png")
-    # img = Image.open("data/v2/H/small/img0039_v2_H_small_d1.png")
+    # img = Image.open("data/qr/data1/v2/H/small/img0039_v2_H_small_d1.png")
     # img = Image.open("data_orig/v2/M/big/img0090_v2_M_big_d2.png")
     # img = Image.open("data_orig/v2/M/small/img0120_v2_M_small_d2.png")
     img = Image.open("data_orig/v2/Q/small/img0164_v2_Q_small_d2.png")

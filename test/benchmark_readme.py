@@ -36,7 +36,7 @@ def prepare():
     previous_path = OUT / 'manifest.json'
     previous = {row['source']: row for row in json.loads(previous_path.read_text(encoding='utf-8'))} if previous_path.exists() else {}
     manifest = []
-    for source in images(ROOT / 'data'):
+    for source in images(ROOT / 'data/qr/data1'):
         match = re.fullmatch(r'img\d+_v\d+_([LMQH])_\w+_d([0-3])', source.stem)
         if not match:
             raise ValueError(f'Unrecognized metadata: {source}')
@@ -64,7 +64,7 @@ def prepare():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
     simple_manifest = []
-    for source in images(ROOT / 'data2'):
+    for source in images(ROOT / 'data/qr/data2'):
         with Image.open(source) as image:
             simple_manifest.append(dict(source=source.relative_to(ROOT).as_posix(), size=list(image.size),
                                         sha256=hashlib.sha256(source.read_bytes()).hexdigest()))
@@ -112,7 +112,7 @@ def benchmark(name, manifest, repeats):
         existing = [json.loads(line) for line in log.read_text(encoding='utf-8').splitlines()] if log.exists() else []
         done = {r['source'] for r in existing}
         if stage == 'runtime':
-            entries = [dict(source=p.relative_to(ROOT).as_posix()) for p in images(ROOT / 'data2')]
+            entries = [dict(source=p.relative_to(ROOT).as_posix()) for p in images(ROOT / 'data/qr/data2')]
             paths = [ROOT / r['source'] for r in entries]
             count = repeats
         else:

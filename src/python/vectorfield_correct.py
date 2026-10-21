@@ -663,8 +663,8 @@ def vectorfield_nodes(img, points, pattern=(None, None), QRsize=25,
 
 
 if __name__ == "__main__":
-    # img = Image.open("data/v2/H/small/img0032_v2_H_small_d2.png")
-    # img = Image.open("data/v2/H/big/img0003_v2_H_big_d2.png")
+    # img = Image.open("data/qr/data1/v2/H/small/img0032_v2_H_small_d2.png")
+    # img = Image.open("data/qr/data1/v2/H/big/img0003_v2_H_big_d2.png")
     # img = Image.open("data_orig/v2/M/small/img0124_v2_M_small_d2.png")
     img = Image.open("corrected.png")
     img = np.array(img)
@@ -691,7 +691,7 @@ if __name__ == "__main__":
     
     
 if __name__ == "__main__" and False:
-    img = Image.open("data/v2/Q/small/img0164_v2_Q_small_d2.png")
+    img = Image.open("data/qr/data1/v2/Q/small/img0164_v2_Q_small_d2.png")
     
     img = np.array(img)
     gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)

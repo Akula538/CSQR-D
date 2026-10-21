@@ -1091,13 +1091,13 @@ def find_qr_zxing(orig, zxing_qr=None):
 if __name__ == "__main__":
     # img = cv2.imread("orig_bynarized1.png")
     # img = cv2.imread("corrected.png")
-    # img = cv2.imread("data/v2/M/big/img0095_v2_M_big_d2.png")
-    # img = cv2.imread("data/v2/Q/big/img0155_v2_Q_big_d1.png")
-    # img = cv2.imread("data/v2/H/small/img0035_v2_H_small_d2.png")
-    # img = cv2.imread("data/v2/M/big/img0114_v2_M_big_d2.png")
-    # img = cv2.imread("data/v2/H/small/img0035_v2_H_small_d2.png")
+    # img = cv2.imread("data/qr/data1/v2/M/big/img0095_v2_M_big_d2.png")
+    # img = cv2.imread("data/qr/data1/v2/Q/big/img0155_v2_Q_big_d1.png")
+    # img = cv2.imread("data/qr/data1/v2/H/small/img0035_v2_H_small_d2.png")
+    # img = cv2.imread("data/qr/data1/v2/M/big/img0114_v2_M_big_d2.png")
+    # img = cv2.imread("data/qr/data1/v2/H/small/img0035_v2_H_small_d2.png")
     # img = cv2.imread("data_orig/v2/H/small/img0034_v2_H_small_d2.png")
-    img = Image.open("data2/test/150.png")
+    img = Image.open("data/qr/data2/data/150.png")
     
     
     

@@ -46,7 +46,7 @@ def main():
     if inputs != list(cases()):
         raise RuntimeError("Inputs changed during validation")
     summary = {}
-    for dataset in ("data", "data2", "data3", "data4"):
+    for dataset in ("data/qr/data1", "data/qr/data2", "data/qr/data3", "data/qr/data4"):
         rows = [r for r in records if r["dataset"] == dataset]
         summary[dataset] = dict(samples=len(rows), decoded=sum(r["success"] for r in rows),
             errors=[r["source"] for r in rows if r["error"]],
