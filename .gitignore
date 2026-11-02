@@ -30,6 +30,7 @@ local.properties
 !/test/test_geometry.py
 !/test/python_scanner_test.py
 !/test/datamatrix_benchmark.py
+!/test/datamatrix_review.py
 !/test/benchmark_results/
 /test/benchmark_results/*
 !/test/benchmark_results/manifest.json

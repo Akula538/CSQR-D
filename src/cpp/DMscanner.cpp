@@ -2,6 +2,7 @@
 #include "Barcode.h"
 #include "BarcodeFormat.h"
 #include "BitMatrix.h"
+#include "DMTrace.hpp"
 #include "DecoderResult.h"
 #include "ImageView.h"
 #include "ReadBarcode.h"
@@ -112,6 +113,7 @@ static std::vector<LocatedCandidate> candidates(const cv::Mat &gray)
 
 static ScanResult decodeGrid(const cv::Mat &binary, int w, int h, double dx = 0, double dy = 0)
 {
+    DM_SCOPE(trace, "uniform_grid", binary, {{"w", w}, {"h", h}});
     ZXing::BitMatrix bits(w, h);
     for (int y = 0; y < h; ++y)
         for (int x = 0; x < w; ++x) {
@@ -132,6 +134,9 @@ static ScanResult decodeGrid(const cv::Mat &binary, int w, int h, double dx = 0,
             }
             if (errors < .3 * (2 * bw + 2 * bh)) {
                 auto decoded = ZXing::DataMatrix::Decode(bits);
+                DM_TRACE("uniform_decode", {},
+                         {{"valid", decoded.isValid()}, {"error", int(decoded.error().type())}},
+                         {{"message", decoded.error().msg()}});
                 if (decoded.isValid())
                     return {ScanStatus::Decoded, decoded.content().text(ZXing::TextMode::HRI)};
             }
@@ -196,6 +201,7 @@ static bool edgeCurve(const cv::Mat &binary, std::array<double, 256> &curve, int
 
 static cv::Mat straighten(const cv::Mat &patch, const cv::Mat &silhouette = cv::Mat(), int degree = 2)
 {
+    DM_SCOPE(trace, "straighten", patch, {{"degree", degree}, {"silhouette", !silhouette.empty()}});
     cv::Mat binary;
     if (silhouette.empty())
         cv::threshold(patch, binary, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
@@ -203,10 +209,22 @@ static cv::Mat straighten(const cv::Mat &patch, const cv::Mat &silhouette = cv::
         binary = silhouette.clone();
     std::array<std::array<double, 256>, 4> curves;
     for (int e = 0; e < 4; ++e) {
-        if (!edgeCurve(binary, curves[e], degree))
+        if (!edgeCurve(binary, curves[e], degree)) {
+            DM_TRACE("boundary_rejected", {}, {{"side", e}});
             return {};
+        }
         cv::rotate(binary, binary, cv::ROTATE_90_COUNTERCLOCKWISE);
     }
+#ifdef CSQR_DM_TRACE
+    diagnostics::Lines boundaries(4);
+    for (int t = 0; t < 256; ++t) {
+        boundaries[0].emplace_back(t, curves[0][t]);
+        boundaries[1].emplace_back(255 - curves[1][t], t);
+        boundaries[2].emplace_back(255 - t, 255 - curves[2][t]);
+        boundaries[3].emplace_back(curves[3][t], 255 - t);
+    }
+    DM_TRACE("boundaries", patch, {}, {}, boundaries);
+#endif
     // Intermediate iterations use only rounded coordinates. Tabulate those
     // transitions exactly; retain the original double arithmetic for the final
     // subpixel mapping. This avoids repeated rounding and polynomial blending.
@@ -237,6 +255,7 @@ static cv::Mat straighten(const cv::Mat &patch, const cv::Mat &silhouette = cv::
         }
     cv::Mat result;
     cv::remap(patch, result, mx, my, cv::INTER_LINEAR, cv::BORDER_CONSTANT, 255);
+    DM_TRACE("straightened", result);
     return result;
 }
 
@@ -367,6 +386,7 @@ static ClockFit fitClock(const cv::Mat &binary, int modules, bool vertical)
             end = begin;
         }
     }
+    DM_TRACE("clock_fit", binary, {{"modules", modules}, {"vertical", vertical}, {"cost", best.cost}});
     return best;
 }
 
@@ -378,6 +398,7 @@ static std::vector<GridGuess> recoverGrids(const cv::Mat &binary)
         left += binary.at<uchar>(i, 20) == 0;
         bottom += binary.at<uchar>(235, i) == 0;
     }
+    DM_TRACE("clock_gate", binary, {{"left", left}, {"bottom", bottom}, {"required", 150}});
     if (left < 150 || bottom < 150)
         return {};
     std::array<std::vector<int>, 2> dimensions;
@@ -425,6 +446,7 @@ static std::vector<GridGuess> recoverGrids(const cv::Mat &binary)
 static ScanResult readPoints(const cv::Mat &binary, int w, int h, const std::vector<cv::Point2d> &points,
                              double pitchX = 0, double pitchY = 0)
 {
+    DM_SCOPE(trace, "read_points", binary, {{"w", w}, {"h", h}}, {}, {}, points);
     if (pitchX == 0)
         pitchX = 224. / w;
     if (pitchY == 0)
@@ -443,6 +465,9 @@ static ScanResult readPoints(const cv::Mat &binary, int w, int h, const std::vec
         if (std::find(tried.begin(), tried.end(), bits) != tried.end())
             continue;
         auto decoded = ZXing::DataMatrix::Decode(bits);
+#ifdef CSQR_DM_TRACE
+        diagnostics::recordDecode(bits, decoded, offset.x, offset.y);
+#endif
         if (decoded.isValid())
             return {ScanStatus::Decoded, decoded.content().text(ZXing::TextMode::HRI)};
         tried.push_back(std::move(bits));
@@ -524,6 +549,22 @@ static std::vector<cv::Point2d> fieldPoints(const cv::Mat &slopes, const GridGue
                 p = {at(cols[x], p.y), at(rows[y], p.x)};
             points.push_back(p);
         }
+#ifdef CSQR_DM_TRACE
+    diagnostics::Lines paths;
+    for (const auto &col : cols) {
+        std::vector<cv::Point2d> line;
+        for (int y = 16; y < 240; y += 2)
+            line.emplace_back(col[y], y);
+        paths.push_back(std::move(line));
+    }
+    for (const auto &row : rows) {
+        std::vector<cv::Point2d> line;
+        for (int x = 16; x < 240; x += 2)
+            line.emplace_back(x, row[x]);
+        paths.push_back(std::move(line));
+    }
+    DM_TRACE("field_lines", {}, {{"w", w}, {"h", h}}, {}, paths, points);
+#endif
     return points;
 }
 
@@ -532,6 +573,7 @@ static std::vector<cv::Point2d> fieldPoints(const cv::Mat &slopes, const GridGue
 // participate in this refinement. Only a valid ECC200 decode is accepted.
 static ScanResult refineGrid(const cv::Mat &gray, const GridGuess &grid, const std::vector<cv::Point2d> &points)
 {
+    DM_SCOPE(trace, "flow", gray, {{"w", double(grid.xs.size())}, {"h", double(grid.ys.size())}}, {}, {}, points);
     int w = int(grid.xs.size()), h = int(grid.ys.size());
     if (w > 64 || h > 64)
         return {};
@@ -550,6 +592,7 @@ static ScanResult refineGrid(const cv::Mat &gray, const GridGuess &grid, const s
     for (int iteration = 0; iteration < 4; ++iteration) {
         cv::Mat binary;
         cv::threshold(rectified, binary, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+        DM_SCOPE(iterationTrace, "flow_iteration", rectified, {{"iteration", iteration}}, {}, {}, centers);
         auto result = readPoints(binary, w, h, centers, module, module);
         if (result.status == ScanStatus::Decoded)
             return result;
@@ -570,6 +613,20 @@ static ScanResult refineGrid(const cv::Mat &gray, const GridGuess &grid, const s
         cv::GaussianBlur(reference, reference, {5, 5}, 1);
         cv::normalize(rectified, target, 0, 255, cv::NORM_MINMAX);
         cv::calcOpticalFlowFarneback(reference, target, flow, .5, 3, 31, 5, 7, 1.5, 0);
+#ifdef CSQR_DM_TRACE
+        diagnostics::Lines vectors;
+        int clipped = 0;
+        for (int y = 0; y < flow.rows; ++y)
+            for (int x = 0; x < flow.cols; ++x) {
+                auto f = flow.at<cv::Vec2f>(y, x);
+                clipped += std::abs(f[0]) > 9 || std::abs(f[1]) > 9;
+                if (x % module == module / 2 && y % module == module / 2)
+                    vectors.push_back({cv::Point2d(x, y), cv::Point2d(x + std::clamp(f[0], -9.f, 9.f),
+                                                                      y + std::clamp(f[1], -9.f, 9.f))});
+            }
+        DM_TRACE("flow_vectors", rectified, {{"clipped_fraction", double(clipped) / flow.total()}}, {}, vectors);
+        DM_TRACE("flow_reference", reference);
+#endif
         for (int y = 0; y < flow.rows; ++y)
             for (int x = 0; x < flow.cols; ++x) {
                 auto &f = flow.at<cv::Vec2f>(y, x);
@@ -583,6 +640,7 @@ static ScanResult refineGrid(const cv::Mat &gray, const GridGuess &grid, const s
 
 static ScanResult sample(const cv::Mat &patch)
 {
+    DM_SCOPE(trace, "sample", patch);
     std::array<cv::Mat, 2> binaries;
     for (int rot = 0; rot < 4; ++rot) {
         for (int method = 0; method < 2; ++method) {
@@ -594,7 +652,12 @@ static ScanResult sample(const cv::Mat &patch)
                     cv::adaptiveThreshold(patch, binary, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY,
                                           41, 5);
             }
-            for (const auto &grid : grids(binary)) {
+            auto hypotheses = grids(binary);
+            DM_TRACE("hard_grid_count", binary,
+                     {{"rotation", rot}, {"method", method}, {"count", double(hypotheses.size())}});
+            for (const auto &grid : hypotheses) {
+                DM_SCOPE(gridTrace, "hard_grid", binary,
+                         {{"rotation", rot}, {"method", method}, {"score", grid.score}});
                 int w = int(grid.xs.size()), h = int(grid.ys.size());
                 std::vector<cv::Point2d> points;
                 for (auto y : grid.ys)
@@ -617,6 +680,9 @@ static ScanResult sample(const cv::Mat &patch)
 struct PatchWork {
     cv::Mat gray;
     std::map<int, cv::Mat> slopes;
+#ifdef CSQR_DM_TRACE
+    int traceOrigin = 0;
+#endif
 };
 struct RecoveryCandidate {
     std::shared_ptr<PatchWork> patch;
@@ -629,6 +695,7 @@ static std::vector<RecoveryCandidate> prepareRecovery(const std::vector<cv::Mat>
 {
     std::vector<RecoveryCandidate> result;
     for (const auto &input : patches) {
+        DM_SCOPE(patchTrace, "prepare_patch", input);
         cv::Mat gray = input.clone();
         std::array<cv::Mat, 2> binaries;
         cv::threshold(gray, binaries[0], 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
@@ -636,6 +703,9 @@ static std::vector<RecoveryCandidate> prepareRecovery(const std::vector<cv::Mat>
         for (int rot = 0; rot < 4; ++rot) {
             auto work = std::make_shared<PatchWork>();
             work->gray = gray;
+#ifdef CSQR_DM_TRACE
+            work->traceOrigin = DM_TRACE("prepared_orientation", gray, {{"rotation", rot}});
+#endif
             for (int method = 0; method < 2; ++method) {
                 auto binary = binaries[method];
                 auto hard = grids(binary), soft = recoverGrids(binary);
@@ -689,6 +759,7 @@ static std::vector<RecoveryCandidate> prepareRecovery(const std::vector<cv::Mat>
                      [](const auto &a, const auto &b) { return a.quality < b.quality; });
     if (result.size() > size_t(maxCandidates))
         result.resize(maxCandidates);
+    DM_TRACE("recovery_budget", {}, {{"retained", double(result.size())}, {"limit", maxCandidates}});
     return result;
 }
 
@@ -700,6 +771,12 @@ static ScanResult recover(std::vector<RecoveryCandidate> &candidates, bool flow,
             break;
         auto &grid = candidate.grid;
         auto &work = *candidate.patch;
+        DM_SCOPE(candidateTrace, "recovery", work.gray,
+                 {{"quality", candidate.quality},
+                  {"flow", flow},
+                  {"w", double(grid.xs.size())},
+                  {"h", double(grid.ys.size())},
+                  {"origin", work.traceOrigin}});
         const int w = int(grid.xs.size()), h = int(grid.ys.size());
         std::vector<cv::Point2d> regular;
         for (auto y : grid.ys)
@@ -710,6 +787,7 @@ static ScanResult recover(std::vector<RecoveryCandidate> &candidates, bool flow,
             return result;
         for (int kernel : (flow ? std::vector<int>{45, 31, 0}
                                 : (limits.extraField ? std::vector<int>{31, 21, 45} : std::vector<int>{31, 45}))) {
+            DM_SCOPE(fieldTrace, "field", work.gray, {{"kernel", kernel}});
             std::vector<cv::Point2d> points = regular;
             if (kernel) {
                 auto found = work.slopes.find(kernel);
@@ -812,10 +890,16 @@ static ScanResult scanOnce(const cv::Mat &image, const ScanOptions &options, int
     cv::Mat small;
     cv::resize(gray, small, {std::max(1, cvRound(gray.cols * scale)), std::max(1, cvRound(gray.rows * scale))}, 0,
                0, cv::INTER_AREA);
+    DM_SCOPE(passTrace, "pass", small,
+             {{"side", detectionSide},
+              {"scale", scale},
+              {"patch_limit", limits.patches},
+              {"grid_limit", limits.grids}});
     auto r = decodeBaseline(small);
     if (r.status == ScanStatus::Decoded)
         return r;
     const auto quads = candidates(small);
+    DM_TRACE("localization_count", {}, {{"count", double(quads.size())}});
     const Quad dest = {cv::Point2f(16, 16), cv::Point2f(240, 16), cv::Point2f(240, 240), cv::Point2f(16, 240)};
     if (options.debug_output_dir)
         std::filesystem::create_directories(*options.debug_output_dir);
@@ -835,12 +919,26 @@ static ScanResult scanOnce(const cv::Mat &image, const ScanOptions &options, int
         cv::Mat thumbnail;
         cv::warpPerspective(gray, thumbnail, cv::getPerspectiveTransform(q.data(), thumbnailDest.data()), {64, 64},
                             cv::INTER_LINEAR, cv::BORDER_CONSTANT, 255);
-        if (!matrixTexture(thumbnail, 5, 25))
+        const bool texture = matrixTexture(thumbnail, 5, 25);
+        DM_TRACE("located", {}, {{"candidate", double(&located - quads.data())}, {"texture", texture}}, {},
+                 {std::vector<cv::Point2d>(located.corners.begin(), located.corners.end())});
+        if (!texture)
             continue;
         ranked.push_back({&located, thumbnail, patternScore(thumbnail)});
     }
     std::stable_sort(ranked.begin(), ranked.end(), [](const auto &a, const auto &b) { return a.score > b.score; });
     const size_t coarseLimit = size_t(limits.patches * 4);
+#ifdef CSQR_DM_TRACE
+    for (size_t rank = 0; rank < ranked.size(); ++rank)
+        DM_TRACE("coarse_rank", {},
+                 {{"candidate", double(ranked[rank].located - quads.data())},
+                  {"rank", double(rank + 1)},
+                  {"score", ranked[rank].score},
+                  {"retained", rank < coarseLimit}},
+                 {},
+                 {std::vector<cv::Point2d>(ranked[rank].located->corners.begin(),
+                                           ranked[rank].located->corners.end())});
+#endif
     if (ranked.size() > coarseLimit)
         ranked.resize(coarseLimit);
     std::vector<RankedPatch> refined;
@@ -856,13 +954,30 @@ static ScanResult scanOnce(const cv::Mat &image, const ScanOptions &options, int
     }
     ranked = std::move(refined);
     std::stable_sort(ranked.begin(), ranked.end(), [](const auto &a, const auto &b) { return a.score > b.score; });
+#ifdef CSQR_DM_TRACE
+    for (size_t rank = 0; rank < ranked.size(); ++rank)
+        DM_TRACE("fine_rank", {},
+                 {{"candidate", double(ranked[rank].located - quads.data())},
+                  {"rank", double(rank + 1)},
+                  {"score", ranked[rank].score},
+                  {"retained", rank < size_t(limits.patches)}},
+                 {},
+                 {std::vector<cv::Point2d>(ranked[rank].located->corners.begin(),
+                                           ranked[rank].located->corners.end())});
+#endif
     if (ranked.size() > size_t(limits.patches))
         ranked.resize(limits.patches);
+    DM_TRACE("selected_count", {}, {{"count", double(ranked.size())}});
     int i = 0;
     std::vector<cv::Mat> retry;
     for (const auto &rankedPatch : ranked) {
         const auto &located = *rankedPatch.located;
         auto patch = rankedPatch.patch;
+        DM_SCOPE(candidateTrace, "candidate", patch,
+                 {{"candidate", double(rankedPatch.located - quads.data())},
+                  {"score", rankedPatch.score},
+                  {"rank", double(&rankedPatch - ranked.data()) + 1}},
+                 {}, {std::vector<cv::Point2d>(located.corners.begin(), located.corners.end())});
         auto smallTransform = cv::getPerspectiveTransform(located.corners.data(), dest.data());
         std::vector<cv::Point2f> outline;
         for (auto p : located.outline)
@@ -881,6 +996,7 @@ static ScanResult scanOnce(const cv::Mat &image, const ScanOptions &options, int
         for (int polarity = 0; polarity < (tryInverted ? 2 : 1); ++polarity) {
             if (polarity)
                 cv::bitwise_not(patch, patch);
+            DM_SCOPE(polarityTrace, "polarity", patch, {{"inverted", polarity}});
             if (options.debug_output_dir)
                 cv::imwrite((std::filesystem::path(*options.debug_output_dir) /
                              ("candidate_" + std::to_string(i++) + ".png"))
@@ -979,6 +1095,8 @@ ScanResult detectAndDecode(const cv::Mat &image, const ScanOptions &options)
     }
     std::stable_sort(deferred.begin(), deferred.end(),
                      [](const auto &a, const auto &b) { return a.quality < b.quality; });
+    DM_SCOPE(deferredTrace, "deferred_flow", {},
+             {{"candidates", double(deferred.size())}, {"limit", thoroughLimits.flow}});
     return recover(deferred, true, thoroughLimits);
 }
 } // namespace datamatrix

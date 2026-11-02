@@ -97,6 +97,12 @@ add_executable(qrscanner_cli main.cpp)
 add_executable(datamatrix_cli datamatrix_main.cpp)
 target_link_libraries(datamatrix_cli PRIVATE qrscanner_cpp)
 
+# Compile the same scanner with diagnostic hooks in a separate executable.
+# The normal library/CLI have no trace collection or argument evaluation.
+add_executable(datamatrix_trace EXCLUDE_FROM_ALL datamatrix_trace.cpp DMscanner.cpp)
+target_compile_definitions(datamatrix_trace PRIVATE CSQR_DM_TRACE)
+target_link_libraries(datamatrix_trace PRIVATE qrscanner_cpp)
+
 target_link_libraries(
     qrscanner_cli
     PRIVATE
