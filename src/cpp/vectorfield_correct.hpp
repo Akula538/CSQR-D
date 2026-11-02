@@ -36,6 +36,7 @@ struct Polyline {
 };
 
 Polyline constructPolyline(DirectionField& df, const Point& p, const Point& dir, int QRsize, double line_len, int n, int kernel = 35);
+Polyline constructPolylineBetween(DirectionField& df, Point p1, Point p2, Point dir1, Point dir2, int n, int kernel);
 std::vector<Point> PolylineIntersection(const Polyline& cur1, const Polyline& cur2);
 std::pair<Polyline, Polyline> constructPolylines4recdist(DirectionField& df, const Points& points, int n);
 

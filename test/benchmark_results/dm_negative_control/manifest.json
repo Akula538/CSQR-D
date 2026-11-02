@@ -1,0 +1,136 @@
+{
+  "seed": 20261101,
+  "numpy": "2.5.3",
+  "opencv": "5.0.0",
+  "generator_sha256": "a652ccdaa5a2bd764ab5fb5de1ef1df181bf027150c25a94fecfcde9934cdda8",
+  "files": {
+    "erased_22x22_m6_r0.png": {
+      "kind": "erased",
+      "width_modules": 22,
+      "height_modules": 22,
+      "module_pixels": 6,
+      "rotation": 0,
+      "sha256": "03c607aaee49b07556552d0e29bae477a2b5a4e11e3e61ab5f0719ee52e9144a"
+    },
+    "erased_22x22_m6_r23.png": {
+      "kind": "erased",
+      "width_modules": 22,
+      "height_modules": 22,
+      "module_pixels": 6,
+      "rotation": 23,
+      "sha256": "b8932686969b9391dfc9e21a33a845a4a87df38dd090fb816f0dca0bfe171ac8"
+    },
+    "erased_22x22_m12_r0.png": {
+      "kind": "erased",
+      "width_modules": 22,
+      "height_modules": 22,
+      "module_pixels": 12,
+      "rotation": 0,
+      "sha256": "1754ec64baef7d55cf8d89bdc6b2e160a4da4fd6d8d17c6d776f8d051fff0e58"
+    },
+    "erased_22x22_m12_r23.png": {
+      "kind": "erased",
+      "width_modules": 22,
+      "height_modules": 22,
+      "module_pixels": 12,
+      "rotation": 23,
+      "sha256": "23c0667043037f7065dfb4f19f8f6aa1b4e6c334a6155620640f2698c23129ba"
+    },
+    "invalid_22x22_m6_r0.png": {
+      "kind": "invalid",
+      "width_modules": 22,
+      "height_modules": 22,
+      "module_pixels": 6,
+      "rotation": 0,
+      "sha256": "0963d18a3c0968b0906983cbb2aea422a370b2bedb458c3d1b0f36b97274c4df"
+    },
+    "invalid_22x22_m6_r23.png": {
+      "kind": "invalid",
+      "width_modules": 22,
+      "height_modules": 22,
+      "module_pixels": 6,
+      "rotation": 23,
+      "sha256": "a77e18bbf51e7361a54ea33d9024cbeaf1cb36dfd5219ae6eb565a4d82128253"
+    },
+    "invalid_22x22_m12_r0.png": {
+      "kind": "invalid",
+      "width_modules": 22,
+      "height_modules": 22,
+      "module_pixels": 12,
+      "rotation": 0,
+      "sha256": "ecc0151d549075abac85c5c90590dfd0422be8379969d115543c4b97caeed84a"
+    },
+    "invalid_22x22_m12_r23.png": {
+      "kind": "invalid",
+      "width_modules": 22,
+      "height_modules": 22,
+      "module_pixels": 12,
+      "rotation": 23,
+      "sha256": "4a67fdaf0451f66bc05abb9f3a3501b96e748cea53eb7d16b4e7ccfeb05fd535"
+    },
+    "erased_32x8_m6_r0.png": {
+      "kind": "erased",
+      "width_modules": 32,
+      "height_modules": 8,
+      "module_pixels": 6,
+      "rotation": 0,
+      "sha256": "6539f41219857c8df776287933ac122bef92b543d4a0c2265140152cdd4c58e9"
+    },
+    "erased_32x8_m6_r23.png": {
+      "kind": "erased",
+      "width_modules": 32,
+      "height_modules": 8,
+      "module_pixels": 6,
+      "rotation": 23,
+      "sha256": "87407116fb0d865b60ecbfedc03d456be3b583c6b38ba0e1c1ca7e2c6c7d2c01"
+    },
+    "erased_32x8_m12_r0.png": {
+      "kind": "erased",
+      "width_modules": 32,
+      "height_modules": 8,
+      "module_pixels": 12,
+      "rotation": 0,
+      "sha256": "368ec78a46969ca96036408fe44ef5e2d70e7e2ca6c5bfed03582fa51e0d763d"
+    },
+    "erased_32x8_m12_r23.png": {
+      "kind": "erased",
+      "width_modules": 32,
+      "height_modules": 8,
+      "module_pixels": 12,
+      "rotation": 23,
+      "sha256": "6ba3426adb082ab306197692dd5d007eef6b248d3d46a5a56f3bbd5319ed2d27"
+    },
+    "invalid_32x8_m6_r0.png": {
+      "kind": "invalid",
+      "width_modules": 32,
+      "height_modules": 8,
+      "module_pixels": 6,
+      "rotation": 0,
+      "sha256": "0c61acaa494b03dda1bbe02bff952b0223dec332973e107d03f18ce5a7614ac8"
+    },
+    "invalid_32x8_m6_r23.png": {
+      "kind": "invalid",
+      "width_modules": 32,
+      "height_modules": 8,
+      "module_pixels": 6,
+      "rotation": 23,
+      "sha256": "33ca1051005f6f47b05e832af400c7d29ae68727a457777fa95ccd136f75a9b3"
+    },
+    "invalid_32x8_m12_r0.png": {
+      "kind": "invalid",
+      "width_modules": 32,
+      "height_modules": 8,
+      "module_pixels": 12,
+      "rotation": 0,
+      "sha256": "c0c3c084986d1f0c99745a9509aeb36703c947cf5884b5b339e5c9355b45a624"
+    },
+    "invalid_32x8_m12_r23.png": {
+      "kind": "invalid",
+      "width_modules": 32,
+      "height_modules": 8,
+      "module_pixels": 12,
+      "rotation": 23,
+      "sha256": "f5b58b26f3e2eb1eb8081a06c3a9229c1ebc770bf048ee330fcd5ae05c179428"
+    }
+  }
+}

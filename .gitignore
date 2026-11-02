@@ -31,6 +31,7 @@ local.properties
 !/test/python_scanner_test.py
 !/test/datamatrix_benchmark.py
 !/test/datamatrix_review.py
+!/test/datamatrix_review_checks.py
 !/test/benchmark_results/
 /test/benchmark_results/*
 !/test/benchmark_results/manifest.json
@@ -57,6 +58,17 @@ local.properties
 build
 
 /src/python/__pycache__
+
+# Unified Data Matrix checkpoint and reproducible negative controls.
+!/test/datamatrix_negative_fixtures.py
+!/test/benchmark_results/dm_negative_control/
+/test/benchmark_results/dm_negative_control/*
+!/test/benchmark_results/dm_negative_control/manifest.json
+!/test/datamatrix_negative_resize.py
+!/test/benchmark_results/dm_negative_large/
+/test/benchmark_results/dm_negative_large/*
+!/test/benchmark_results/dm_negative_large/manifest.json
+
 
 # Local Data Matrix documentation and generated reports.
 /docs/DATAMATRIX*.md

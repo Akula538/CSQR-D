@@ -11,6 +11,10 @@
 #include <stdexcept>
 #include <vector>
 
+#ifdef CSQR_DM_COMPARE_LEGACY
+qrscanner::ScanResult decodeLegacy(const cv::Mat &image);
+#endif
+
 static std::string json_string(const std::string &text)
 {
     std::ostringstream out;
@@ -58,6 +62,12 @@ int main(int argc, char **argv)
             return 1;
         }
         cv::setNumThreads(1);
+        int scannerCount = compare ? 2 : 1;
+#ifdef CSQR_DM_COMPARE_LEGACY
+        if (!compare || options.thorough)
+            throw std::runtime_error("Legacy comparison requires --compare without --thorough");
+        scannerCount = 3;
+#endif
         std::vector<std::filesystem::path> files;
         if (std::filesystem::is_directory(path)) {
             for (const auto &entry : std::filesystem::recursive_directory_iterator(path)) {
@@ -86,29 +96,39 @@ int main(int argc, char **argv)
                 auto warmOptions = options;
                 warmOptions.debug_output_dir.reset();
                 datamatrix::detectAndDecode(image, warmOptions);
+#ifdef CSQR_DM_COMPARE_LEGACY
+                decodeLegacy(image);
+#endif
                 warmed = true;
             }
             for (int i = 0; i < repeats; ++i) {
-                for (int pass = 0; pass < (compare ? 2 : 1); ++pass) {
-                    const bool useBaseline = compare ? ((i + pass) % 2 == 0) : baseline;
+                for (int pass = 0; pass < scannerCount; ++pass) {
+                    const int scanner = compare ? (i + pass) % scannerCount : (baseline ? 0 : 1);
+                    const char *scannerName = scanner == 0 ? "ZXing-C++" : "CSQR-D-DataMatrix";
                     const auto start = std::chrono::steady_clock::now();
-                    const auto result = useBaseline ? datamatrix::decodeBaseline(image)
-                                                    : datamatrix::detectAndDecode(image, localOptions);
+                    qrscanner::ScanResult result;
+#ifdef CSQR_DM_COMPARE_LEGACY
+                    if (scanner == 2) {
+                        scannerName = "Legacy-DataMatrix";
+                        result = decodeLegacy(image);
+                    } else
+#endif
+                        result = scanner == 0 ? datamatrix::decodeBaseline(image)
+                                              : datamatrix::detectAndDecode(image, localOptions);
                     const double ms =
                         std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - start)
                             .count();
                     const bool ok = result.status == qrscanner::ScanStatus::Decoded;
                     if (json)
-                        std::cout
-                            << "{\"file\":"
-                            << json_string(
-                                   std::filesystem::is_directory(path)
-                                       ? file.lexically_relative(std::filesystem::path(path)).generic_string()
-                                       : file.filename().string())
-                            << ",\"scanner\":" << json_string(useBaseline ? "ZXing-C++" : "CSQR-D-DataMatrix")
-                            << ",\"repeat\":" << i << ",\"width\":" << image.cols << ",\"height\":" << image.rows
-                            << ",\"decoded\":" << (ok ? "true" : "false")
-                            << ",\"text\":" << json_string(result.text) << ",\"ms\":" << ms << "}\n";
+                        std::cout << "{\"file\":"
+                                  << json_string(std::filesystem::is_directory(path)
+                                                     ? file.lexically_relative(std::filesystem::path(path))
+                                                           .generic_string()
+                                                     : file.filename().string())
+                                  << ",\"scanner\":" << json_string(scannerName) << ",\"repeat\":" << i
+                                  << ",\"width\":" << image.cols << ",\"height\":" << image.rows
+                                  << ",\"decoded\":" << (ok ? "true" : "false")
+                                  << ",\"text\":" << json_string(result.text) << ",\"ms\":" << ms << "}\n";
                     else
                         std::cout << (ok ? result.text : "None") << '\n';
                     std::cout.flush();

@@ -67,6 +67,9 @@ add_library(qrscanner_cpp
     find_qr.cpp
     QRscanner.cpp
     DMscanner.cpp
+    find_dm.cpp
+    dm_correct.cpp
+    dm_decode.cpp
 )
 
 target_include_directories(
@@ -85,7 +88,6 @@ target_link_libraries(
         opencv_imgproc
         opencv_imgcodecs
         opencv_objdetect
-        opencv_video
         ZXing::ZXing
 )
 
@@ -97,9 +99,17 @@ add_executable(qrscanner_cli main.cpp)
 add_executable(datamatrix_cli datamatrix_main.cpp)
 target_link_libraries(datamatrix_cli PRIVATE qrscanner_cpp)
 
+set(CSQR_DM_LEGACY_SOURCE "" CACHE FILEPATH "Historical DMscanner.cpp for optional matched benchmark")
+if(CSQR_DM_LEGACY_SOURCE)
+    add_executable(datamatrix_compare EXCLUDE_FROM_ALL datamatrix_main.cpp datamatrix_legacy_compare.cpp)
+    target_compile_definitions(datamatrix_compare PRIVATE CSQR_DM_COMPARE_LEGACY
+        CSQR_DM_LEGACY_SOURCE="${CSQR_DM_LEGACY_SOURCE}")
+    target_link_libraries(datamatrix_compare PRIVATE qrscanner_cpp opencv_video)
+endif()
+
 # Compile the same scanner with diagnostic hooks in a separate executable.
 # The normal library/CLI have no trace collection or argument evaluation.
-add_executable(datamatrix_trace EXCLUDE_FROM_ALL datamatrix_trace.cpp DMscanner.cpp)
+add_executable(datamatrix_trace EXCLUDE_FROM_ALL datamatrix_trace.cpp DMscanner.cpp find_dm.cpp dm_correct.cpp dm_decode.cpp)
 target_compile_definitions(datamatrix_trace PRIVATE CSQR_DM_TRACE)
 target_link_libraries(datamatrix_trace PRIVATE qrscanner_cpp)
 

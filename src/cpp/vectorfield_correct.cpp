@@ -316,7 +316,7 @@ Polyline constructPolyline(DirectionField& df, const Point& p, const Point& dir,
     return {pol1};
 }
 
-static Polyline constructPolylineBetween(DirectionField& df, Point p1, Point p2, Point dir1, Point dir2, int n, int kernel)
+Polyline constructPolylineBetween(DirectionField& df, Point p1, Point p2, Point dir1, Point dir2, int n, int kernel)
 {
     const double length = norm(p2 - p1);
     if (length == 0.0 || n <= 0)

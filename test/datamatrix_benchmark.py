@@ -35,10 +35,15 @@ def main():
     parser.add_argument('--repeat', type=int, default=3)
     parser.add_argument('--output', type=Path, default=None)
     parser.add_argument('--thorough', action='store_true', help='Enable the slower extended recovery')
+    parser.add_argument('--legacy-source', type=Path,
+                        help='Source compiled into the optional three-scanner datamatrix_compare executable')
     parser.add_argument('--labels', type=Path, help='Optional independent JSON mapping of relative file names to expected HRI text')
     args = parser.parse_args()
     if args.repeat < 1:
         parser.error('--repeat must be positive')
+    if args.legacy_source and args.thorough:
+        parser.error('Historical comparison supports only fast mode')
+    scanners = ['ZXing-C++', 'CSQR-D-DataMatrix'] + (['Legacy-DataMatrix'] if args.legacy_source else [])
     if args.output is None:
         filename = 'datamatrix_thorough.json' if args.thorough else 'datamatrix.json'
         args.output = ROOT / 'test/benchmark_results' / filename
@@ -52,10 +57,16 @@ def main():
                                any(not isinstance(value, str) for value in labels.values())):
         parser.error('Labels must cover exactly the input images')
     source_paths = ['src/cpp/DMscanner.cpp', 'src/cpp/DMscanner.hpp', 'src/cpp/datamatrix_main.cpp',
+                    'src/cpp/find_dm.cpp', 'src/cpp/find_dm.hpp', 'src/cpp/dm_correct.cpp', 'src/cpp/dm_decode.cpp', 'src/cpp/dm_decode.hpp', 'src/cpp/dm_correct.hpp', 'src/cpp/scan_result.hpp', 'src/cpp/QRscanner.hpp',
+                    'src/cpp/decoder.cpp', 'src/cpp/decoder.hpp',
+                    'src/cpp/binarizer.cpp', 'src/cpp/binarizer.hpp',
                     'src/cpp/vectorfield_correct.cpp', 'src/cpp/CMakeLists.txt',
                     'src/cpp/vectorfield_correct.hpp', 'src/cpp/datamatrix_checks.cpp',
                     'test/datamatrix_benchmark.py']
     source_hashes = {name: sha256(ROOT / name) for name in source_paths}
+    if args.legacy_source:
+        source_hashes['src/cpp/datamatrix_legacy_compare.cpp'] = sha256(ROOT / 'src/cpp/datamatrix_legacy_compare.cpp')
+    legacy_hash = sha256(args.legacy_source) if args.legacy_source else None
     executable_hash = sha256(exe)
     labels_hash = sha256(args.labels) if args.labels else None
     command = [str(exe), str(dataset), '--compare', '--json', '--repeat', str(args.repeat)]
@@ -72,15 +83,15 @@ def main():
             records.append(record)
             raw.write(json.dumps(record, ensure_ascii=False) + '\n')
             raw.flush()
-            if len(records) % (args.repeat * 2 * 10) == 0:
-                print(f'{len(records) // (args.repeat * 2)}/{len(files)} images', flush=True)
+            if len(records) % (args.repeat * len(scanners) * 10) == 0:
+                print(f'{len(records) // (args.repeat * len(scanners))}/{len(files)} images', flush=True)
         if process.wait():
             raise RuntimeError(f'Scanner failed with exit {process.returncode}; raw records: {raw_path}')
-    if len(records) != len(files) * args.repeat * 2:
+    if len(records) != len(files) * args.repeat * len(scanners):
         raise RuntimeError('Incomplete measurement')
     summary = {}
     by_scanner = {}
-    for scanner in ['ZXing-C++', 'CSQR-D-DataMatrix']:
+    for scanner in scanners:
         grouped = {}
         for record in records:
             if record['scanner'] == scanner:
@@ -116,6 +127,8 @@ def main():
         raise RuntimeError('Scanner executable or sources changed during benchmark')
     if args.labels and sha256(args.labels) != labels_hash:
         raise RuntimeError('Labels changed during benchmark')
+    if args.legacy_source and sha256(args.legacy_source) != legacy_hash:
+        raise RuntimeError('Historical source changed during benchmark')
     for path in files:
         if sha256(path) != manifest[path.relative_to(dataset).as_posix()]['sha256']:
             raise RuntimeError(f'Input changed during benchmark: {path}')
@@ -130,6 +143,7 @@ def main():
         'git_head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         'zxing_head': subprocess.check_output(['git', '-C', 'src/cpp/zxing-cpp_finder/zxing-cpp', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         'labels_sha256': labels_hash,
+        'legacy_source': {'path': str(args.legacy_source.resolve()), 'sha256': legacy_hash} if args.legacy_source else None,
         'manifest': manifest, 'summary': summary, 'gains': gains, 'losses': losses,
         'payload_disagreements': disagreements, 'results': by_scanner,
     }

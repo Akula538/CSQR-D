@@ -2,21 +2,23 @@
 
 #include "Barcode.h"
 #include "BarcodeFormat.h"
+#include "BitMatrix.h"
+#include "DecoderResult.h"
 #include "ImageView.h"
 #include "ReadBarcode.h"
 #include "ReaderOptions.h"
-#include "BitMatrix.h"
-#include "DecoderResult.h"
+#include "datamatrix/DMDecoder.h"
+#include "datamatrix/DMVersion.h"
 #include "qrcode/QRDecoder.h"
 
-#include <opencv2/objdetect.hpp>
 #include <opencv2/imgproc.hpp>
+#include <opencv2/objdetect.hpp>
 #include <opencv2/opencv.hpp>
 
-namespace qrscanner {
+namespace qrscanner
+{
 
-
-cv::Mat croplocate_cv2(const cv::Mat& image)
+cv::Mat croplocate_cv2(const cv::Mat &image)
 {
     if (image.empty())
         return image;
@@ -54,7 +56,7 @@ cv::Mat croplocate_cv2(const cv::Mat& image)
     return image(bbox).clone();
 }
 
-static cv::Mat continuous_for_zxing(const cv::Mat& img, ZXing::ImageFormat& format)
+static cv::Mat continuous_for_zxing(const cv::Mat &img, ZXing::ImageFormat &format)
 {
     cv::Mat view = img;
     if (img.channels() == 1) {
@@ -72,7 +74,7 @@ static cv::Mat continuous_for_zxing(const cv::Mat& img, ZXing::ImageFormat& form
     return view;
 }
 
-std::optional<std::string> decode_cv2(const cv::Mat& img)
+std::optional<std::string> decode_cv2(const cv::Mat &img)
 {
     cv::Mat gray;
     if (img.channels() == 1)
@@ -87,25 +89,20 @@ std::optional<std::string> decode_cv2(const cv::Mat& img)
     return std::nullopt;
 }
 
-std::optional<std::string> decode_zxingcpp(const cv::Mat& img)
+std::optional<std::string> decode_zxingcpp(const cv::Mat &img, ZXing::BarcodeFormat barcodeFormat)
 {
     ZXing::ImageFormat format = ZXing::ImageFormat::None;
     cv::Mat buffer = continuous_for_zxing(img, format);
-    ZXing::ImageView view(buffer.data,
-                          static_cast<int>(buffer.total() * buffer.elemSize()),
-                          buffer.cols,
-                          buffer.rows,
-                          format,
-                          static_cast<int>(buffer.step),
-                          static_cast<int>(buffer.elemSize()));
+    ZXing::ImageView view(buffer.data, static_cast<int>(buffer.total() * buffer.elemSize()), buffer.cols,
+                          buffer.rows, format, static_cast<int>(buffer.step), static_cast<int>(buffer.elemSize()));
 
     ZXing::ReaderOptions options;
-    options.setFormats(ZXing::BarcodeFormat::QRCode)
-           .setTryHarder(true)
-           .setTryRotate(true)
-           .setTryInvert(true)
-           .setTryDownscale(true)
-           .setTextMode(ZXing::TextMode::HRI);
+    options.setFormats(barcodeFormat)
+        .setTryHarder(true)
+        .setTryRotate(true)
+        .setTryInvert(true)
+        .setTryDownscale(true)
+        .setTextMode(ZXing::TextMode::HRI);
 
     auto result = ZXing::ReadBarcode(view, options);
     if (result.isValid())
@@ -113,123 +110,162 @@ std::optional<std::string> decode_zxingcpp(const cv::Mat& img)
     return std::nullopt;
 }
 
-std::optional<std::string> decode_qr_grid(const cv::Mat& img, int dimension, int module_size)
+std::optional<std::string> decode_qr_grid(const cv::Mat &img, int dimension, int module_size)
 {
-    if (img.type() != CV_8UC1 || dimension < 21 || dimension > 177 ||
-        (dimension - 21) % 4 || module_size < 2 ||
+    if (img.type() != CV_8UC1 || dimension < 21 || dimension > 177 || (dimension - 21) % 4 || module_size < 2 ||
         img.rows != (dimension + 4) * module_size || img.cols != img.rows)
         return std::nullopt;
 
+    return decode_matrix_grid(img, dimension, dimension, ZXing::BarcodeFormat::QRCode, module_size);
+}
+
+static std::optional<std::string> decode_sampled_grid(const cv::Mat &img, int columns, int rows,
+                                                      ZXing::BarcodeFormat format, int module_size,
+                                                      GridDecodeCache &sampled)
+{
+    if (img.type() != CV_8UC1 || module_size < 2 || columns < 8 || rows < 8 || columns > 177 || rows > 177 ||
+        img.cols != (columns + 4) * module_size || img.rows != (rows + 4) * module_size)
+        return std::nullopt;
+    if (format == ZXing::BarcodeFormat::DataMatrix) {
+        if (!ZXing::DataMatrix::VersionForDimensions(rows, columns))
+            return std::nullopt;
+    } else if (format != ZXing::BarcodeFormat::QRCode || columns != rows || columns < 21 || (columns - 21) % 4)
+        return std::nullopt;
     // Geometry has already been recovered by TPS. Sample the known module
     // centers directly so residual finder distortion cannot prevent decoding.
     cv::Mat smooth;
     cv::blur(img, smooth, cv::Size(3, 3));
-    for (int method = 0; method < 2; ++method) {
-        cv::Mat binary;
-        if (method == 0)
-            cv::adaptiveThreshold(smooth, binary, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C,
-                                  cv::THRESH_BINARY, module_size * 5 + 1, 5);
-        else
-            cv::threshold(smooth, binary, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
-        for (int dy : {0, -1, 1}) {
-            for (int dx : {0, -1, 1}) {
-                ZXing::BitMatrix bits(dimension, dimension);
-                for (int y = 0; y < dimension; ++y) {
-                    const auto* row = binary.ptr<uchar>((y + 2) * module_size + module_size / 2 + dy);
-                    for (int x = 0; x < dimension; ++x)
-                        bits.set(x, y, row[(x + 2) * module_size + module_size / 2 + dx] == 0);
+    for (int smoothing = format == ZXing::BarcodeFormat::DataMatrix ? 0 : 1; smoothing < 2; ++smoothing) {
+        const auto &sampleImage = smoothing ? smooth : img;
+        for (int method = 0; method < 2; ++method) {
+            cv::Mat binary;
+            if (method == 0)
+                cv::adaptiveThreshold(sampleImage, binary, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY,
+                                      module_size * 5 + 1, 5);
+            else
+                cv::threshold(sampleImage, binary, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+            int offset = format == ZXing::BarcodeFormat::DataMatrix ? std::max(1, cvRound(module_size / 6.)) : 1;
+            for (int dy : {0, -offset, offset}) {
+                for (int dx : {0, -offset, offset}) {
+                    ZXing::BitMatrix bits(columns, rows);
+                    for (int y = 0; y < rows; ++y) {
+                        const auto *row = binary.ptr<uchar>((y + 2) * module_size + module_size / 2 + dy);
+                        for (int x = 0; x < columns; ++x)
+                            bits.set(x, y, row[(x + 2) * module_size + module_size / 2 + dx] == 0);
+                    }
+                    std::string key;
+                    if (format == ZXing::BarcodeFormat::DataMatrix) {
+                        int errors = 0;
+                        for (int x = 0; x < columns; ++x) {
+                            errors += !bits.get(x, rows - 1);
+                            errors += bits.get(x, 0) != (x % 2 == 0);
+                        }
+                        for (int y = 0; y < rows; ++y) {
+                            errors += !bits.get(0, y);
+                            errors += bits.get(columns - 1, y) != (y % 2 == 1);
+                        }
+                        if (errors > .3 * (2 * rows + 2 * columns))
+                            continue;
+                        key.push_back(char(columns));
+                        key.push_back(char(rows));
+                        key.append(reinterpret_cast<const char *>(bits.row(0).begin()), columns * rows);
+                        if (sampled.failed.count(key))
+                            continue;
+                    }
+                    auto decoded = format == ZXing::BarcodeFormat::QRCode ? ZXing::QRCode::Decode(bits)
+                                                                          : ZXing::DataMatrix::Decode(bits);
+                    if (decoded.isValid())
+                        return decoded.content().text(ZXing::TextMode::HRI);
+                    if (!key.empty() && sampled.failed.size() < 4096)
+                        sampled.failed.insert(std::move(key));
                 }
-                auto decoded = ZXing::QRCode::Decode(bits);
-                if (decoded.isValid())
-                    return decoded.content().text(ZXing::TextMode::HRI);
             }
         }
     }
     return std::nullopt;
 }
 
-static std::optional<std::string> try_decode(const cv::Mat& img)
+std::optional<std::string> decode_matrix_grid(const cv::Mat &img, int columns, int rows,
+                                              ZXing::BarcodeFormat format, int module_size, GridDecodeCache *cache)
 {
-    auto result = decode_zxingcpp(img);
+    GridDecodeCache local;
+    return decode_sampled_grid(img, columns, rows, format, module_size, cache ? *cache : local);
+}
+
+static std::optional<std::string> try_decode(const cv::Mat &img, ZXing::BarcodeFormat format, cv::Size grid,
+                                             int module_size, GridDecodeCache &sampled)
+{
+    // The caller has already run the native finder on this rectified image.
+    // Filtered variants of a known DM lattice only need module sampling/ECC.
+    if (!grid.empty() && format == ZXing::BarcodeFormat::DataMatrix)
+        return decode_sampled_grid(img, grid.width, grid.height, format, module_size, sampled);
+    auto result = decode_zxingcpp(img, format);
     if (result && !result->empty())
         return result;
+    if (!grid.empty()) {
+        return decode_sampled_grid(img, grid.width, grid.height, format, module_size, sampled);
+    }
     return std::nullopt;
 }
 
-static std::optional<std::string> try_gray_variants(const cv::Mat& gray)
+static std::optional<std::string> try_gray_variants(const cv::Mat &gray, ZXing::BarcodeFormat format,
+                                                    cv::Size grid, int module_size, GridDecodeCache *cache)
 {
-    // if (auto r = try_decode(gray); r)
-    //     return r;
-
-    cv::Mat binary;
-    cv::threshold(gray, binary, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
-    if (auto r = try_decode(binary); r)
-        return r;
-
-    cv::Mat blurred;
-    cv::GaussianBlur(gray, blurred, cv::Size(5, 5), 0.0);
-    if (auto r = try_decode(blurred); r)
-        return r;
-
-    cv::GaussianBlur(gray, blurred, cv::Size(7, 7), 0.0);
-    if (auto r = try_decode(blurred); r)
-        return r;
-
+    GridDecodeCache local;
+    auto &sampled = cache ? *cache : local;
+    // A known DM lattice is already sampled with adaptive/Otsu thresholds
+    // and a 3x3 box filter. Retain the two complementary wide Gaussian reads;
+    // the unconstrained image/QR path keeps its established seven variants.
+    bool knownDM = !grid.empty() && format == ZXing::BarcodeFormat::DataMatrix;
     cv::Mat sharpened;
-    static const cv::Mat sharpen_kernel = (cv::Mat_<float>(3, 3) <<
-        -1.f, -1.f, -1.f,
-        -1.f,  9.f, -1.f,
-        -1.f, -1.f, -1.f
-    );
-
-    cv::filter2D(gray, sharpened, -1, sharpen_kernel);
-    if (auto r = try_decode(sharpened); r)
-        return r;
-
-    cv::threshold(sharpened, binary, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
-    if (auto r = try_decode(binary); r)
-        return r;
-
-    cv::GaussianBlur(sharpened, blurred, cv::Size(5, 5), 0.0);
-    if (auto r = try_decode(blurred); r)
-        return r;
-
-    cv::GaussianBlur(sharpened, blurred, cv::Size(7, 7), 0.0);
-    if (auto r = try_decode(blurred); r)
-        return r;
+    static const cv::Mat sharpenKernel =
+        (cv::Mat_<float>(3, 3) << -1.f, -1.f, -1.f, -1.f, 9.f, -1.f, -1.f, -1.f, -1.f);
+    for (int variant = 0; variant < 7; ++variant) {
+        if (knownDM && variant != 2 && variant != 6)
+            continue;
+        if (variant >= 3 && sharpened.empty())
+            cv::filter2D(gray, sharpened, -1, sharpenKernel);
+        cv::Mat prepared;
+        switch (variant) {
+        case 0:
+            cv::threshold(gray, prepared, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+            break;
+        case 1:
+            cv::GaussianBlur(gray, prepared, {5, 5}, 0);
+            break;
+        case 2:
+            cv::GaussianBlur(gray, prepared, {7, 7}, 0);
+            break;
+        case 3:
+            prepared = sharpened;
+            break;
+        case 4:
+            cv::threshold(sharpened, prepared, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+            break;
+        case 5:
+            cv::GaussianBlur(sharpened, prepared, {5, 5}, 0);
+            break;
+        case 6:
+            cv::GaussianBlur(sharpened, prepared, {7, 7}, 0);
+            break;
+        }
+        if (auto result = try_decode(prepared, format, grid, module_size, sampled))
+            return result;
+    }
 
     return std::nullopt;
 }
 
-std::optional<std::string> decode_qreader(const cv::Mat& img)
+std::optional<std::string> decode_qreader(const cv::Mat &img, ZXing::BarcodeFormat format, cv::Size grid,
+                                          int module_size, GridDecodeCache *cache)
 {
-    // return std::nullopt;
     if (img.empty() || img.depth() != CV_8U)
         return std::nullopt;
 
-    // if (auto r = try_decode(img); r)
-    //     return r;
-
-    // cv::Mat cropped = croplocate_cv2(img);
-    // cv::imwrite("debug/cropped.png", cropped);
-
-    // decode_zxingcpp already tries both polarities.
-
-    // cv::Mat gray;
-    // if (img.channels() == 1) {
-    //     gray = img;
-    // } else if (img.channels() == 3) {
-    //     cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
-    // } else if (img.channels() == 4) {
-    //     cv::cvtColor(img, gray, cv::COLOR_BGRA2GRAY);
-    // } else {
-    //     cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
-    // }
-
-    return try_gray_variants(img);
+    return try_gray_variants(img, format, grid, module_size, cache);
 }
 
-std::optional<std::string> decode(const cv::Mat& img)
+std::optional<std::string> decode(const cv::Mat &img)
 {
     auto result = decode_zxingcpp(img);
     if (result)

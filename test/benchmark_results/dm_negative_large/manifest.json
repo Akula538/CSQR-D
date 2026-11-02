@@ -1,0 +1,176 @@
+{
+  "opencv": "5.0.0",
+  "interpolation": "INTER_LINEAR",
+  "long_side": 4080,
+  "generator_sha256": "33feeab4045d5b1697f5b49d32fb3891bae16d620fb85f1f4e94bb8fc431effe",
+  "files": {
+    "kodim01.png": {
+      "sha256": "31f6bc0ff0ba91a0a97f3b906724e1bc90922ac18dfb105637b98a9b41bba2a6",
+      "source_sha256": "a56e27cbf5f843c048b6af1d6e090760e9c92fadba88b7dee0205918a37523bd",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim01.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim02.png": {
+      "sha256": "400b30c332c2975ad3131659d15fb63c566db8961324198ae2d859da5518cb7f",
+      "source_sha256": "4f4b74a79237e311d72cad958237b5f7088d8bce1c82305ebefe1a70e3022dfd",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim02.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim03.png": {
+      "sha256": "db9e4621b311e9313550089998b3530ada00fc895300cd2851b2eaaf3eb19280",
+      "source_sha256": "e25ca1ff2f0c0cb5fdfd5f9b0a0bb21ac4c3de3c84a67f35b09a85d3306249db",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim03.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim04.png": {
+      "sha256": "7272d7d2505c1c5ec578778e67f4c875cdc1b80c409f287cd3501ba239aaab7a",
+      "source_sha256": "e3b946107c5d3441c022f678d0c3caf1e224d81b1604ba840a4f88e562de61aa",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim04.png",
+      "width": 2720,
+      "height": 4080
+    },
+    "kodim05.png": {
+      "sha256": "299307828456591d39e2484f8d7bbc87e6888e47027ba79de28a8da33bd647db",
+      "source_sha256": "10349e963c5c813d327852f82c1795fa4148d69fedffc4c589bee458e3ac3d53",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim05.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim06.png": {
+      "sha256": "c8d2ac9585d16787914de386f7b3b407ab6a27fcff8355ac69db8f2bd77e95b9",
+      "source_sha256": "363510303b715d4cbc384e1ce227e466b613a09e1b71ae985882bf8e7fbd9b18",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim06.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim07.png": {
+      "sha256": "b4d6ab92c72e89d1f7e89e7f7f8bafbd1755f82e68cf0e98c5fc59493b9d4a5b",
+      "source_sha256": "b77d3f006f42414bb242222e0482e750c0fb9e5ee8d4bed2f6f11c5605fe54a4",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim07.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim08.png": {
+      "sha256": "07736cbcbf15c152f0d22b50deae4351972c6f4c4fdd1b2406263ed045f64398",
+      "source_sha256": "ba23983c76b4832ee0e8af0592664756841a16779acd69f792e268fb6d13d6e7",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim08.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim09.png": {
+      "sha256": "363d3e25a850f3d58d5ae9ea608708b9a94fd22a19ffd103be2e627d6d2cb946",
+      "source_sha256": "6a4361c2fc194feb4edaa9f9a4a0620fb9943e460ac7fdf037fb0f6dd6607a7d",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim09.png",
+      "width": 2720,
+      "height": 4080
+    },
+    "kodim10.png": {
+      "sha256": "25733567c30c612c841c0ee11a92a93e82d3cf93324fa238b77ddfdf250c07c9",
+      "source_sha256": "9dfb70f5867c29ff9ed6313683f19b3d867849e40fbc0c4c54a4a89df341cf23",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim10.png",
+      "width": 2720,
+      "height": 4080
+    },
+    "kodim11.png": {
+      "sha256": "f07b27b2a43011cbdb776f99f044d2c0c777d2413ac6cf7e0350e5588fc62929",
+      "source_sha256": "7936814b58b5387fce2e4e2488b4ec830dadd95fa9520f358ddb30990b50f2b6",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim11.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim12.png": {
+      "sha256": "40db676fdec989f4177967b98c5d5339b79acece658b75271f0d6391990e0095",
+      "source_sha256": "d78c37c2f04f23761ed2367dd77e2db584ddd4c3950833fecf89f199a8126980",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim12.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim13.png": {
+      "sha256": "a4ff7c1408a72f7808ff414a98ac9f5011c64459fff31ca4eaf690d7ffd712c2",
+      "source_sha256": "bc34a3ce58dea09dce1704c997171602de90cb34d0c8503a988b77f473d39b08",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim13.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim14.png": {
+      "sha256": "cd0e793e563e6cc0bdba8e7b2ee3eb1ebed239bd6d09d968fd71e27628712f27",
+      "source_sha256": "55a94550ff18f3246c4074fd32b77b0c74447c26b6ad274d564d999c0450ba6e",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim14.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim15.png": {
+      "sha256": "ec8932149fe79dc32b619bc99615d70b085d9f1cac17f52ec201ded18ffe66ed",
+      "source_sha256": "7538cbb80cb9103606c48b806eae57d56c885c7f90b9b3be70a41160f9cbb683",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim15.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim16.png": {
+      "sha256": "0b067e0ce6f15078de25932530bc7bdc59a4431d79fa7b53ed68868b00d13835",
+      "source_sha256": "a89c7268ccd4718ba424a99fc4643c572cf692ca6eae887185ceb4e9f11d2e54",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim16.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim17.png": {
+      "sha256": "32a1af4bb80c203149c58e154741807815e1dda7c65904814b63ede4f2b79256",
+      "source_sha256": "37afcc89fbdcb76d9518e04b2fc011027e2f4cd14b3b2f83cefd721641a47c5b",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim17.png",
+      "width": 2720,
+      "height": 4080
+    },
+    "kodim18.png": {
+      "sha256": "efa430b9e617e9bd3ef5077fd7e89e8c70b916585211c65a4c835c9f627ed13c",
+      "source_sha256": "1a9258c365988961d87a0598725b609139c303ad48a5aad6c503c3b1a87849aa",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim18.png",
+      "width": 2720,
+      "height": 4080
+    },
+    "kodim19.png": {
+      "sha256": "86c04cd6694c3dc4bedcc0ff93bbbabb8698d7c1bea0d060d6f0a4827b53e347",
+      "source_sha256": "b7450b264b1b0a411390d8931b112c27905a992520fc90569dc4b920aa32bbdc",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim19.png",
+      "width": 2720,
+      "height": 4080
+    },
+    "kodim20.png": {
+      "sha256": "7a2a22c1bcca5ae6e159e338c3c0ecfbced54d406bee6028e7dcd08241264774",
+      "source_sha256": "3b46c71e3b92a563820ba32936be8330c586c41f938efd94be938386aae4328a",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim20.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim21.png": {
+      "sha256": "8a17e2d8abf07b2a84fcf416a476263593ea16bb8877059c0fc46618eac37e81",
+      "source_sha256": "ac958597c82073f6bb65129c68f72b651db5b9efd82e11547d07350214bc268b",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim21.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim22.png": {
+      "sha256": "1e840ba92457210c975b2b88ea5ac19d9f4dfd8d001d0d4c4512c841e599801f",
+      "source_sha256": "1cee58eb1f2d9c7ebb254d208a03c783ce6cf2c4d8c2cf45e235dd23b4ce1b29",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim22.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim23.png": {
+      "sha256": "abbbf3fe8617c9358ac069f825ccf410e85d98434b802842b2a142fc21bc8d76",
+      "source_sha256": "e3111a2fd4da24af15d6459ef9eacfe54106b38e27b4a21821b75c3f5d2d5baf",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim23.png",
+      "width": 4080,
+      "height": 2720
+    },
+    "kodim24.png": {
+      "sha256": "e2b20500238bcc9e924b746d3f26b69d7acc157b4ac1bc80780b644b0cc88814",
+      "source_sha256": "1071c68372cc5a01435c2c225a5cf7d4bb803846ec08bb6b3d6721b156d7cb96",
+      "url": "https://r0k.us/graphics/kodak/kodak/kodim24.png",
+      "width": 4080,
+      "height": 2720
+    }
+  }
+}

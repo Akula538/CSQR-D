@@ -26,6 +26,32 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def jpeg_without_orientation(data):
+    """Preserve compressed pixels, strip APP1 so browsers match IMREAD_IGNORE_ORIENTATION."""
+    if data[:2] != b'\xff\xd8':
+        raise ValueError('Expected JPEG')
+    output = bytearray(data[:2])
+    pos = 2
+    while pos < len(data):
+        start = pos
+        if data[pos] != 255:
+            raise ValueError('Invalid JPEG marker')
+        while data[pos] == 255:
+            pos += 1
+        marker = data[pos]
+        pos += 1
+        if marker in (0xda, 0xd9):
+            output.extend(data[start:])
+            return bytes(output)
+        length = int.from_bytes(data[pos:pos + 2], 'big')
+        if length < 2 or pos + length > len(data):
+            raise ValueError('Invalid JPEG segment')
+        if marker != 0xe1:
+            output.extend(data[start:pos + length])
+        pos += length
+    raise ValueError('Missing JPEG scan')
+
+
 def relative(path, root):
     return os.path.relpath(path, root).replace('\\', '/')
 
@@ -37,6 +63,8 @@ def command(args):
 
 
 def compact_case(name, events, base, root, fast, thorough):
+    if not any(e['kind'] == 'pass' for e in events):
+        return compact_source_case(name, events, base, root, fast, thorough)
     by_id = {e['id']: e for e in events}
     children = collections.defaultdict(list)
     for e in events:
@@ -183,6 +211,78 @@ def compact_case(name, events, base, root, fast, thorough):
             'warning': 'Checksum относится к проверенной гипотезе сетки. Это не доказательство повреждения печати: причиной может быть неверная геометрия, размер сетки или бинаризация.'}
 
 
+def compact_source_case(name, events, base, root, fast, thorough):
+    by_id = {e['id']: e for e in events}
+    def ancestors(e):
+        while e.get('parent'):
+            e = by_id[e['parent']]
+            yield e
+    result = events[-1]
+    width, height = result['numbers']['width'], result['numbers']['height']
+    original = relative(ROOT / 'data/datamatrix/data1' / name, root)
+    views = []
+    searches = [e for e in events if e['kind'] == 'source_search']
+    if not searches:  # Traces made before multiscale localization.
+        searches = [{'id': 1, 'numbers': {'side': 1000, 'scale': min(1, 1000 / max(width, height))}}]
+    passes = {e['id']: {'id': e['id'], 'label': f"Исходное изображение · поиск {int(e['numbers']['side'])} px",
+                         'image': original, 'width': width, 'height': height, 'numbers': e['numbers'],
+                         'boxes': [], 'ranks': [], 'counts': {}, 'selected': []} for e in searches}
+    for e in events:
+        chain = [e, *ancestors(e)]
+        search = next((a for a in chain if a['kind'] == 'source_search'), None)
+        if search is None:
+            recovery = next((a for a in chain if a['kind'] == 'source_recovery'), None)
+            side = recovery['numbers']['side'] if recovery else None
+            search = next((a for a in searches if a['numbers']['side'] == side), searches[0])
+        pas = passes[search['id']]
+        pas['counts'][e['kind']] = pas['counts'].get(e['kind'], 0) + 1
+        if e['kind'] == 'proposal':
+            scale = 1 / search['numbers']['scale']
+            pas['boxes'].append({'id': e['id'], 'selected': False, 'texture': False,
+                          'points': [[x * scale, y * scale] for line in e['lines'] for x, y in line]})
+        candidate = next((a for a in chain if a['kind'] in {'candidate', 'recovery_candidate'}), None)
+        if e['kind'] == 'boundaries' and candidate:
+            shift = candidate['numbers']
+            pas['selected'].append(candidate['id'])
+            pas['boxes'].append({'id': candidate['id'], 'selected': True, 'texture': True,
+                          'points': [[x + shift['crop_x'], y + shift['crop_y']]
+                                     for line in e['lines'] for x, y in line]})
+        if e['kind'] not in {'candidate', 'recovery_candidate', 'recovery_rejected', 'boundaries', 'boundary_render', 'clock_estimate',
+                              'clock_line', 'field_lines', 'field_nodes', 'rectified',
+                              'boundary_refinement', 'charted_lines', 'charted_nodes', 'aligned_nodes'}:
+            continue
+        img = next((a for a in chain if a.get('image')), None)
+        if not img:
+            continue
+        numbers = dict(e['numbers'])
+        grid = next((a for a in chain if a['kind'] in {'grid', 'refinement'}), None)
+        if grid:
+            numbers.update(grid['numbers'])
+        # Rectified-event nodes belong to the SOURCE crop, not its render.
+        points = [] if e['kind'] == 'rectified' else e['points']
+        views.append({'id': e['id'], 'kind': e['kind'], 'label': e['kind'],
+                      'image': relative(base / img['image'], root), 'width': img['width'], 'height': img['height'],
+                      'numbers': numbers, 'strings': e['strings'], 'lines': e['lines'], 'points': points,
+                      'pass': search['id'], 'candidate': candidate['id'] if candidate else 0,
+                      'valid': bool(numbers.get('valid'))})
+    counts = collections.Counter(e['kind'] for e in events)
+    if thorough['decoded']:
+        stage, observed = 'Восстановлен расширенным режимом', 'Расширенный режим получил валидное ECC200-декодирование.'
+    elif counts['rectified']:
+        stage, observed = 'Отказ декодирования сетки', 'Допущены тактовые размеры и построены сетки, но проверенные изображения не декодировались. Сравните границы, узлы и результат TPS.'
+    elif counts['candidate']:
+        stage, observed = 'Не восстановлены тактовые дорожки', 'Кандидаты проверены, но тактовая оценка не дала допустимой сетки. Проверьте положение контура и бинаризацию тактовых сторон.'
+    else:
+        stage, observed = 'Не найден кандидат', 'Ни одна область не прошла отбор. Включите все контуры: показаны предварительные предложения, включая отклонённые.'
+    dims = collections.Counter((int(e['numbers']['w']), int(e['numbers']['h'])) for e in events if e['kind'] == 'grid')
+    return {'name': name, 'fast': fast, 'thorough': thorough, 'passes': list(passes.values()),
+            'views': views, 'counts': dict(counts), 'errors': {}, 'error_messages': {},
+            'dimensions': [{'w': w, 'h': h, 'attempts': n} for (w, h), n in dims.items()],
+            'stage': stage, 'observed': observed, 'raw': relative(base / 'events.jsonl.gz', root),
+            'raw_events': len(events), 'shown_views': len(views), 'source_geometry': True,
+            'warning': 'Наложения показывают расширенный режим (--thorough); обычный режим ограничивает работу на кадр. Контуры и узлы — гипотезы сканера. Трасса не содержит подробных ошибок ECC200; отказ сам по себе не доказывает повреждение печати.'}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=ROOT / 'test/datamatrix_review')
@@ -193,8 +293,12 @@ def main():
     args = parser.parse_args()
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=True)
-    fast_path = ROOT / 'test/benchmark_results/datamatrix.json'
-    thorough_path = ROOT / 'test/benchmark_results/datamatrix_thorough.json'
+    fast_path, thorough_path = out / 'benchmark_fast.json', out / 'benchmark_thorough.json'
+    import sys
+    for report_path, mode in [(fast_path, []), (thorough_path, ['--thorough'])]:
+        if not (args.reuse and report_path.exists() and read_json(report_path)['executable_sha256'] == sha(args.cli)):
+            print(command([sys.executable, ROOT / 'test/datamatrix_benchmark.py', '--exe', args.cli,
+                           '--repeat', '3', '--output', report_path, *mode]), flush=True)
     fast_report, thorough_report = read_json(fast_path), read_json(thorough_path)
     fast, thorough = fast_report['results'][SCANNER], thorough_report['results'][SCANNER]
     names = [name for name, result in fast.items() if not result['decoded']]
@@ -226,10 +330,16 @@ def main():
         if (bool(result['numbers']['decoded']), result['strings']['text']) != (thorough[name]['decoded'], thorough[name]['text']):
             raise RuntimeError('Trace changes scanner result: ' + name)
         case = compact_case(name, events, trace, out, fast[name], thorough[name])
-        case['original'] = relative(image, out)
+        # SVG/browser JPEG auto-orientation must not rotate source overlays.
+        display_image = case_dir / 'source.jpg'
+        display_image.write_bytes(jpeg_without_orientation(image.read_bytes()))
+        case['original'] = relative(display_image, out)
+        if case.get('source_geometry'):
+            for pas in case['passes']:
+                pas['image'] = case['original']
         case['width'], case['height'] = result['numbers']['width'], result['numbers']['height']
         case['source_sha256'] = image_sha
-        case['notes'] = read_json(ROOT / 'tools/datamatrix_review/notes.json').get(name, {})
+        case['notes'] = {} if case.get('source_geometry') else read_json(ROOT / 'tools/datamatrix_review/notes.json').get(name, {})
         # script loading works for local files without browser fetch/CORS exceptions.
         data_js = 'window.reviewCase(' + json.dumps(case, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + ');'
         (case_dir / 'data.js').write_text(data_js, encoding='utf-8')
@@ -255,7 +365,7 @@ def main():
                   'trace_executable_sha256': trace_sha, 'cli_sha256': sha(args.cli),
                   'sources': {str(p.relative_to(ROOT)).replace('\\', '/'): sha(p) for p in
                               [ROOT / 'src/cpp/DMscanner.cpp', ROOT / 'src/cpp/DMTrace.hpp', ROOT / 'src/cpp/datamatrix_trace.cpp',
-                               ROOT / 'src/cpp/DMscanner.hpp', ROOT / 'src/cpp/vectorfield_correct.cpp',
+                               ROOT / 'src/cpp/DMscanner.hpp', ROOT / 'src/cpp/find_dm.cpp', ROOT / 'src/cpp/find_dm.hpp', ROOT / 'src/cpp/dm_correct.cpp', ROOT / 'src/cpp/dm_decode.cpp', ROOT / 'src/cpp/dm_decode.hpp', ROOT / 'src/cpp/dm_correct.hpp', ROOT / 'src/cpp/scan_result.hpp', ROOT / 'src/cpp/vectorfield_correct.cpp',
                                ROOT / 'src/cpp/vectorfield_correct.hpp', ROOT / 'src/cpp/CMakeLists.txt',
                                ROOT / 'test/datamatrix_review.py', ROOT / 'tools/datamatrix_review/index.html',
                                ROOT / 'tools/datamatrix_review/notes.json']},
@@ -266,7 +376,7 @@ def main():
     (out / 'summary.js').write_text('window.REVIEW=' + json.dumps({'cases': summaries, 'provenance': provenance}, ensure_ascii=False).replace('</', '<\\/') + ';', encoding='utf-8')
     shutil.copyfile(ROOT / 'tools/datamatrix_review/index.html', out / 'index.html')
     md = ['# Разбор нераспознанных Data Matrix', '', '[Открыть интерактивную подборку](index.html)', '',
-          '19 отказов быстрого режима: 15 остаются нераспознанными, 4 читает расширенный режим.', '',
+          f'{len(names)} отказов быстрого режима; {sum(not thorough[n]["decoded"] for n in names)} остаются нераспознанными расширенным режимом.', '',
           'Время ниже взято из сохранённого тройного бенчмарка; диагностические запуски не измеряют производительность.', '',
           '| Кадр | Быстрый, мс | Расширенный, мс | Результат | Наблюдение / гипотеза |', '|---|---:|---:|---|---|']
     for s in summaries:
