@@ -66,6 +66,7 @@ add_library(qrscanner_cpp
     decoder.cpp
     find_qr.cpp
     QRscanner.cpp
+    DMscanner.cpp
 )
 
 target_include_directories(
@@ -84,6 +85,7 @@ target_link_libraries(
         opencv_imgproc
         opencv_imgcodecs
         opencv_objdetect
+        opencv_video
         ZXing::ZXing
 )
 
@@ -92,6 +94,8 @@ target_link_libraries(
 # ============================================================
 
 add_executable(qrscanner_cli main.cpp)
+add_executable(datamatrix_cli datamatrix_main.cpp)
+target_link_libraries(datamatrix_cli PRIVATE qrscanner_cpp)
 
 target_link_libraries(
     qrscanner_cli
@@ -105,4 +109,7 @@ if(CSQR_BUILD_TESTS)
     add_executable(scanner_checks scanner_checks.cpp)
     target_link_libraries(scanner_checks PRIVATE qrscanner_cpp)
     add_test(NAME scanner_checks COMMAND scanner_checks)
+    add_executable(datamatrix_checks datamatrix_checks.cpp)
+    target_link_libraries(datamatrix_checks PRIVATE qrscanner_cpp)
+    add_test(NAME datamatrix_checks COMMAND datamatrix_checks)
 endif()

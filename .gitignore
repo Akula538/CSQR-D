@@ -29,6 +29,7 @@ local.properties
 !/test/compare_scanners.py
 !/test/test_geometry.py
 !/test/python_scanner_test.py
+!/test/datamatrix_benchmark.py
 !/test/benchmark_results/
 /test/benchmark_results/*
 !/test/benchmark_results/manifest.json
@@ -55,3 +56,8 @@ local.properties
 build
 
 /src/python/__pycache__
+
+# Local Data Matrix documentation and generated reports.
+/docs/DATAMATRIX*.md
+/test/benchmark_results/datamatrix*.json
+/test/benchmark_results/datamatrix*.jsonl
