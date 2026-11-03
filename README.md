@@ -2,11 +2,11 @@
 
 [Русская версия](README.ru.md)
 
-QR code detection and decoding for QR codes placed on arbitrary smooth non-planar surfaces.
+Detection and decoding of QR codes on arbitrary smooth non-planar surfaces. The C++ implementation also supports Data Matrix.
 
-CSQR-D reconstructs the geometry of a curved QR code, rectifies the image, and then uses conventional QR decoding to recover the encoded data.
+CSQR-D reconstructs the geometry of a curved matrix code, rectifies the image, and then uses a conventional decoder to recover the encoded data.
 
-On the current benchmark dataset, the C++ implementation of CSQR-D decodes **166 of 169 images (98.22%)**. Detailed results and measurement conditions are provided below.
+On the current QR benchmark dataset, the C++ implementation of CSQR-D decodes **166 of 169 images (98.22%)**. Detailed results and measurement conditions are provided below.
 
 ![Curved QR geometric correction](docs/images/Original_Corrected.png)
 
@@ -16,7 +16,7 @@ Most QR decoders are designed to work with images where the QR code can be appro
 
 CSQR-D is designed specifically for this type of geometric deformation. Instead of trying to make a conventional decoder handle the distorted image directly, it first recovers the geometry of the QR code and reconstructs an approximately regular representation that can be decoded by conventional QR readers.
 
-The current implementation is intended for QR codes located on **smooth curved surfaces**. It is not designed primarily for arbitrary physical damage, tearing, or highly non-smooth deformation.
+The current implementation is intended for QR codes and Data Matrix codes located on **smooth curved surfaces**. It is not designed primarily for arbitrary physical damage, tearing, or highly non-smooth deformation.
 
 ## Application
 
@@ -76,17 +76,27 @@ This test measures CSQR-D on the curved-QR dataset. The table shows mean process
 
 CSQR-D uses the C++ implementation in all tests. [Detailed methodology, environment and reproduction](docs/BENCHMARKS.md).
 
+### Data Matrix
+
+C++ scanner results on 114 photographs of curved Data Matrix codes from `data/datamatrix/data1` at their original resolutions. Times include preprocessing, exclude file loading, and use the median of three runs per image with one OpenCV thread.
+
+| Scanner / mode | Decoded | Mean (ms) | Median (ms) | P95 (ms) |
+|---|---:|---:|---:|---:|
+| ZXing-C++ | 10/114 | 23.4 | 18.9 | 31.0 |
+| CSQR-D, normal | 98/114 | 116.2 | 65.3 | 339.0 |
+| CSQR-D, extended | 102/114 | 213.5 | 69.0 | 1040.6 |
+
 ## How it works
 
-CSQR-D is organized as a multi-stage recovery pipeline. It first tries ordinary QR decoding and only performs the more expensive geometric reconstruction when necessary.
+CSQR-D is organized as a multi-stage recovery pipeline. It first tries ordinary matrix-code decoding and only performs the more expensive geometric reconstruction when necessary.
 
 ### 1. Initial decoding
 
-The input image is first passed to conventional QR decoders. If the QR code is already readable, no geometric reconstruction is required.
+The input image is first passed to a conventional decoder for the relevant format. If the code is already readable, no geometric reconstruction is required.
 
 ### 2. Finder pattern detection
 
-When standard decoding fails, CSQR-D searches for the three QR finder patterns.
+When standard decoding fails, CSQR-D searches for the three QR finder patterns. For Data Matrix, the reference is the solid L-border and two timing sides.
 
 The contour-based detector uses the structure of nested contours together with geometric constraints to identify candidate finder patterns and determine the configuration of the three patterns. This provides the geometric reference needed for the following reconstruction stages.
 
@@ -98,15 +108,15 @@ CSQR-D therefore reconstructs additional information about the QR grid, includin
 
 ### 4. Local deformation recovery
 
-For strongly curved or otherwise difficult samples, CSQR-D estimates the local deformation of the QR image from image gradients.
+For strongly curved or otherwise difficult samples, CSQR-D estimates the local deformation of the code image from image gradients.
 
-First, Sobel derivatives are used to obtain local gradient directions. The image is then considered in local regions where the dominant gradient directions are estimated from peaks in the local orientation distribution. These directions form a vector field describing the local structure of the distorted QR image.
+First, Sobel derivatives are used to obtain local gradient directions. The image is then considered in local regions where the dominant gradient directions are estimated from peaks in the local orientation distribution. These directions form a vector field describing the local structure of the distorted code image.
 
-Integral curves are traced through this vector field. Their intersections provide a reconstructed grid of points corresponding to the regular structure of the QR code. A **Thin Plate Spline (TPS)** transformation is then fitted to these points and used to rectify the image.
+Integral curves are traced through this vector field. Their intersections provide a reconstructed grid of points corresponding to the regular structure of the matrix code. A **Thin Plate Spline (TPS)** transformation is then fitted to these points and used to rectify the image.
 
 ### 5. Final decoding
 
-After geometric correction, the reconstructed QR image is passed to a conventional QR decoder. The purpose of CSQR-D is therefore primarily to solve the **geometric recovery problem**, while the standard decoder handles the actual QR symbol decoding.
+After geometric correction, the reconstructed image is passed to a conventional QR or Data Matrix decoder. The purpose of CSQR-D is therefore primarily to solve the **geometric recovery problem**, while the standard decoder handles the actual symbol decoding.
 
 ## Limitations
 
@@ -119,7 +129,7 @@ CSQR-D currently works best when:
 - the QR code is captured at sufficient resolution;
 - the deformation is smooth rather than arbitrary or discontinuous.
 
-The current implementation does not reliably support multiple QR codes in the same image.
+The current implementation does not reliably support multiple codes in the same image.
 
 ## Dataset
 
@@ -129,7 +139,7 @@ The benchmark dataset is available directly in the repository:
 
 ## Usage and integration
 
-The repository contains both Python and C++ implementations of CSQR-D, so the scanner can also be integrated into other projects.
+The repository contains both Python and C++ implementations of CSQR-D, so the scanner can also be integrated into other projects. Data Matrix support is available in the C++ implementation.
 
 - [Python implementation](src/python)
 - [C++ implementation](src/cpp)
